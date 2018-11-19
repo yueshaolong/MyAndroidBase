@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         Log.d(TAG, "onResume is invoke");
 
         if (onActivityDataChangedListener != null) {
-            onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。");
+            onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。lalala");
         } else {
             throw new IllegalArgumentException("fragment must invoke setOnActivityDataChangedListener()");
         }
