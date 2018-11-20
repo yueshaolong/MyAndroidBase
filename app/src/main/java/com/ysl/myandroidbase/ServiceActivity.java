@@ -4,57 +4,57 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.ysl.myandroidbase.MyFragment.FragmentListener;
+import com.ysl.myandroidbase.MyService.CallBack;
+import com.ysl.myandroidbase.MyService.MyBinder;
 
-public class MainActivity extends AppCompatActivity implements FragmentListener {
-    public static final String TAG = "MainActivity";
+public class ServiceActivity extends AppCompatActivity{
+    public static final String TAG = "ServiceActivity";
     private Intent intent;
+    private MyBinder myBinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_service);
         Log.d(TAG, "onCreate is invoke");
 
-
-
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        Fragment fragment = new MyFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("id", "ysl");
-        fragment.setArguments(bundle);
-        transaction.add(R.id.fragment, fragment);
-        transaction.show(fragment);
-        transaction.commit();
-
-        findViewById(R.id.tv1).setOnClickListener(new OnClickListener() {
+        intent = new Intent(ServiceActivity.this, MyService.class);
+//        intent.putExtra("data", "ysl");
+        findViewById(R.id.startService).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name", "ysl");
-                intent.putExtra("age", 22);
-
-                Bundle bundle = new Bundle();
-                bundle.putString("name1", "Mjj");
-                bundle.putInt("age1", 18);
-                intent.putExtras(bundle);
-                startActivity(intent);
+//                startService(intent);
+                if (onActivityDataChangedListener != null) {
+                    onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。activity");
+                } else {
+                    throw new IllegalArgumentException("activity must invoke setOnActivityDataChangedListener()");
+                }
             }
         });
-    }
-
-
-    public String getTitles(){
-        return "getTitle";
+        findViewById(R.id.stopService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopService(intent);
+            }
+        });
+        findViewById(R.id.bindService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bindService(intent, serviceConnection, BIND_AUTO_CREATE);
+            }
+        });
+        findViewById(R.id.unbindService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                unbindService(serviceConnection);
+            }
+        });
     }
 
     @Override
@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Log.d(TAG, "onRestoreInstanceState is invoke");
-
     }
 
     @Override
@@ -86,12 +85,6 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume is invoke");
-
-        if (onActivityDataChangedListener != null) {
-            onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。lalala");
-        } else {
-            throw new IllegalArgumentException("fragment must invoke setOnActivityDataChangedListener()");
-        }
     }
 
     @Override
@@ -112,11 +105,6 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         Log.d(TAG, "onDestroy is invoke");
     }
 
-    @Override
-    public void process(String str) {
-        Log.d(TAG, str);
-    }
-
     private OnActivityDataChangedListener onActivityDataChangedListener;
 
     public interface OnActivityDataChangedListener {
@@ -131,6 +119,15 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             Log.d(TAG, "onServiceConnected is invoke");
+            MyBinder myBinder = (MyBinder) service;
+//            myBinder.setData("bindService启动服务了");
+            myBinder.getMyService().setDataCallBack(new CallBack() {
+                @Override
+                public void dataCallBack(String data) {
+                    Log.d(TAG, "setDataCallBack is invoke   "+data);
+                }
+            });
+            myBinder.setActivity(ServiceActivity.this);
         }
 
         @Override
