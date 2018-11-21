@@ -22,36 +22,40 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate is invoke");
+        Log.d(TAG, "onCreate is invoke  ");
 
 
 
-
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment = new MyFragment();
         Bundle bundle = new Bundle();
         bundle.putString("id", "ysl");
         fragment.setArguments(bundle);
         transaction.add(R.id.fragment, fragment);
         transaction.show(fragment);
-        transaction.commit();
+        transaction.commit();*/
 
         findViewById(R.id.tv1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name", "ysl");
+                /*intent.putExtra("name", "ysl");
                 intent.putExtra("age", 22);
 
                 Bundle bundle = new Bundle();
                 bundle.putString("name1", "Mjj");
                 bundle.putInt("age1", 18);
-                intent.putExtras(bundle);
+                intent.putExtras(bundle);*/
                 startActivity(intent);
             }
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d(TAG, "onNewIntent is invoke");
+    }
 
     public String getTitles(){
         return "getTitle";
@@ -73,25 +77,25 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d(TAG, "onRestart is invoke");
+        Log.d(TAG, "onRestart is invoke  ");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d(TAG, "onStart is invoke");
+        Log.d(TAG, "onStart is invoke  ");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(TAG, "onResume is invoke");
+        Log.d(TAG, "onResume is invoke  ");
 
-        if (onActivityDataChangedListener != null) {
+        /*if (onActivityDataChangedListener != null) {
             onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。lalala");
         } else {
             throw new IllegalArgumentException("fragment must invoke setOnActivityDataChangedListener()");
-        }
+        }*/
     }
 
     @Override
@@ -138,4 +142,5 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
             Log.d(TAG, "onServiceDisconnected is invoke");
         }
     };
+
 }
