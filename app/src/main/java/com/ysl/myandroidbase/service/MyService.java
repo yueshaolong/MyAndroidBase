@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.service;
 
 import android.app.Activity;
 import android.app.Service;
@@ -8,6 +8,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.ysl.myandroidbase.ServiceActivity;
 
 public class MyService extends Service {
     public static final String TAG = "MyService";

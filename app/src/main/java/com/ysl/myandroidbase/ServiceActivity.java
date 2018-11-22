@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.ysl.myandroidbase.MyService.CallBack;
-import com.ysl.myandroidbase.MyService.MyBinder;
+import com.ysl.myandroidbase.service.MyService;
+import com.ysl.myandroidbase.service.MyService.CallBack;
+import com.ysl.myandroidbase.service.MyService.MyBinder;
+import com.ysl.myandroidbase.service.ForegroundService;
+import com.ysl.myandroidbase.service.MyIntentService;
 
 public class ServiceActivity extends AppCompatActivity{
     public static final String TAG = "ServiceActivity";
@@ -29,7 +32,7 @@ public class ServiceActivity extends AppCompatActivity{
         findViewById(R.id.startService).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startService(intent);
+                startService(intent);
                 if (onActivityDataChangedListener != null) {
                     onActivityDataChangedListener.onActivityDataChanged("哈哈哈，activity的数据变了。activity");
                 } else {
@@ -53,6 +56,28 @@ public class ServiceActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 unbindService(serviceConnection);
+            }
+        });
+
+        findViewById(R.id.intentService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ServiceActivity.this, MyIntentService.class);
+                intent.putExtra("age", 15);
+                startService(intent);
+            }
+        });
+        findViewById(R.id.foregroundService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(ServiceActivity.this, ForegroundService.class);
+                startService(intent);
+            }
+        });
+        findViewById(R.id.stopForegroundService).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopService(intent);
             }
         });
     }
