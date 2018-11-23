@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.ysl.myandroidbase.MyFragment.FragmentListener;
+import com.ysl.myandroidbase.bean.Cat;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {
     public static final String TAG = "MainActivity";
@@ -40,12 +41,16 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 /*intent.putExtra("name", "ysl");
-                intent.putExtra("age", 22);
+                intent.putExtra("age", 22);*/
 
                 Bundle bundle = new Bundle();
-                bundle.putString("name1", "Mjj");
-                bundle.putInt("age1", 18);
-                intent.putExtras(bundle);*/
+                /*bundle.putString("name1", "Mjj");
+                bundle.putInt("age1", 18);*/
+                Cat cat = new Cat();
+                cat.name = "tom";
+                cat.age = 1;
+                bundle.putParcelable("cat", cat);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

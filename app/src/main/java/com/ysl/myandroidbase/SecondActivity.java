@@ -4,11 +4,14 @@ package com.ysl.myandroidbase;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import com.ysl.myandroidbase.bean.Cat;
 
 public class SecondActivity extends Activity {
     public static final String TAG = "SecondActivity";
@@ -18,13 +21,13 @@ public class SecondActivity extends Activity {
         setContentView(R.layout.activity_second);
         Log.d(TAG, "onCreate is invoke  ");
 
-        findViewById(R.id.tv2).setOnClickListener(new OnClickListener() {
+        /*findViewById(R.id.tv2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
         /*String name = getIntent().getStringExtra("name");
         int age = getIntent().getIntExtra("age", 0);
         TextView tv2 = findViewById(R.id.tv2);
@@ -33,6 +36,10 @@ public class SecondActivity extends Activity {
         int age1 = getIntent().getIntExtra("age1", 0);
         TextView tv3 = findViewById(R.id.tv3);
         tv3.setText(name1+"_"+age1);*/
+
+        Cat cat = getIntent().getParcelableExtra("cat");
+        TextView tv3 = findViewById(R.id.tv3);
+        tv3.setText(cat.name+"_"+cat.age);
     }
     @Override
     protected void onNewIntent(Intent intent) {
