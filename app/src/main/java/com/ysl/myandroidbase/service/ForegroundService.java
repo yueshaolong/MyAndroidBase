@@ -11,7 +11,6 @@ import android.util.Log;
 
 import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.ServiceActivity;
-import com.ysl.myandroidbase.service.CancelNoticeService;
 
 public class ForegroundService extends Service {
     public static final String TAG = "ForegroundService";

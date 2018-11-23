@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ysl.myandroidbase">
 
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <application
         android:allowBackup="true"
@@ -11,21 +11,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"><!--android:launchMode="singleTask"-->
+        <activity android:name="com.ysl.myandroidbase.MainActivity"> <!-- android:launchMode="singleTask" -->
+
+        </activity>
+        <activity android:name="com.ysl.myandroidbase.SecondActivity" /> <!-- android:launchMode="singleTask" android:taskAffinity="com.app" -->
+        <service android:name="com.ysl.myandroidbase.service.MyService" />
+
+        <activity android:name="com.ysl.myandroidbase.ServiceActivity"></activity>
+
+        <service android:name="com.ysl.myandroidbase.service.MyIntentService" />
+        <service android:name="com.ysl.myandroidbase.service.ForegroundService" />
+        <service android:name="com.ysl.myandroidbase.service.CancelNoticeService" />
+
+        <activity android:name="com.ysl.myandroidbase.Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" /><!--android:launchMode="singleTask" android:taskAffinity="com.app"-->
-        <service android:name=".service.MyService"/>
-        <activity android:name=".ServiceActivity">
+        <service android:name="com.ysl.myandroidbase.service.MyAIDLService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote">
 
-        </activity>
-        <service android:name=".service.MyIntentService"/>
-        <service android:name=".service.ForegroundService"/>
-        <service android:name=".service.CancelNoticeService"/>
+        </service>
     </application>
 
 </manifest>

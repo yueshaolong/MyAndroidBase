@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.bean;
+package com.ysl.myaidl.bean;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,13 +6,20 @@ import android.os.Parcelable;
 public class Cat implements Parcelable {
     public String name;
     public int age;
+    public int price;
 
     public Cat() {
+    }
+
+    public Cat(String name, int price) {
+        this.name = name;
+        this.price = price;
     }
 
     public Cat(Parcel source) {
         this.name = source.readString();
         this.age = source.readInt();
+        this.price = source.readInt();
     }
 
     @Override
@@ -20,10 +27,17 @@ public class Cat implements Parcelable {
         return 0;
     }
 
+    public void readFromParcel(Parcel source){
+        this.name = source.readString();
+        this.age = source.readInt();
+        this.price = source.readInt();
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.name);
         dest.writeInt(this.age);
+        dest.writeInt(this.price);
     }
     /**
      * public static final一个都不能少，内部对象CREATOR的名称也不能改变，必须全部大写。
@@ -47,4 +61,13 @@ public class Cat implements Parcelable {
             return new Cat[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", price=" + price +
+                '}';
+    }
 }

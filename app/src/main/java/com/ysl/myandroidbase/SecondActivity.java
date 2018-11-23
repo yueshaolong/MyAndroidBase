@@ -4,14 +4,11 @@ package com.ysl.myandroidbase;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.ysl.myandroidbase.bean.Cat;
+import com.ysl.myaidl.bean.Cat;
 
 public class SecondActivity extends Activity {
     public static final String TAG = "SecondActivity";

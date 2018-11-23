@@ -4,8 +4,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,7 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 
 import com.ysl.myandroidbase.MyFragment.FragmentListener;
-import com.ysl.myandroidbase.bean.Cat;
+import com.ysl.myaidl.bean.Cat;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {
     public static final String TAG = "MainActivity";

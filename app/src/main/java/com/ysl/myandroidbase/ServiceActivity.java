@@ -10,11 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.ysl.myandroidbase.service.ForegroundService;
+import com.ysl.myandroidbase.service.MyIntentService;
 import com.ysl.myandroidbase.service.MyService;
 import com.ysl.myandroidbase.service.MyService.CallBack;
 import com.ysl.myandroidbase.service.MyService.MyBinder;
-import com.ysl.myandroidbase.service.ForegroundService;
-import com.ysl.myandroidbase.service.MyIntentService;
 
 public class ServiceActivity extends AppCompatActivity{
     public static final String TAG = "ServiceActivity";
