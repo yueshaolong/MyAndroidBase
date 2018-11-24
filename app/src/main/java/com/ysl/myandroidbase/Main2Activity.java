@@ -49,11 +49,11 @@ public class Main2Activity extends AppCompatActivity {
             tv.setText(cat.name+"_"+cat.price+"/n"+catCount);
 
             Cat cat1 = iCatService.addCatIn(new Cat("t", 1));
-            Log.d(TAG, cat1.toString());
-            /*Cat cat1 = iCatService.addCatOut(new Cat("t", 1));
-            Log.d(TAG, cat1.toString());*/
-            /*Cat cat1 = iCatService.addCatInout(new Cat("t", 1));
-            Log.d(TAG, cat1.toString());*/
+            Log.d(TAG, "In-->"+cat1.toString());
+            Cat cat2 = iCatService.addCatOut(new Cat("t", 1));
+            Log.d(TAG, "Out-->"+cat2.toString());
+            Cat cat3 = iCatService.addCatInout(new Cat("t", 1));
+            Log.d(TAG, "Inout-->"+cat3.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
         }

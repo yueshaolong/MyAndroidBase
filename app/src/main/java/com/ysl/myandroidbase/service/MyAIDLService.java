@@ -43,22 +43,23 @@ public class MyAIDLService extends Service {
 
         @Override
         public Cat addCatIn(Cat cat) throws RemoteException {
-            Log.d(TAG, cat.toString());
-            cat.name = "tt";
+            Log.d(TAG, "In-->"+cat.toString());
+            cat.name = "In";
             return cat;
         }
 
         @Override
         public Cat addCatOut(Cat cat) throws RemoteException {
-            Log.d(TAG, cat.toString());
-            cat.name = "oo";
+            Log.d(TAG, "Out-->"+cat.toString());
+            cat.name = "Out";
+            cat.price = 11;
             return cat;
         }
 
         @Override
         public Cat addCatInout(Cat cat) throws RemoteException {
-            Log.d(TAG, cat.toString());
-            cat.name = "dsf";
+            Log.d(TAG, "Inout-->"+cat.toString());
+            cat.name = "Inout";
             return cat;
         }
     };
