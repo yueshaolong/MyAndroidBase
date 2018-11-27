@@ -1,7 +1,8 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
@@ -10,12 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.ysl.myandroidbase.MyFragment.FragmentListener;
-import com.ysl.myaidl.bean.Cat;
+import com.ysl.myandroidbase.R;
+import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
+import com.ysl.myandroidbase.receiver.MyReceiver;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {
     public static final String TAG = "MainActivity";
-    private Intent intent;
+    private MyReceiver myReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,11 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate is invoke  ");
 
+        myReceiver = new MyReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("android.media.VOLUME_CHANGED_ACTION");
+//        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        registerReceiver(myReceiver, intentFilter);
 
 
         /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -37,19 +44,23 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         findViewById(R.id.tv1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                /*intent.putExtra("name", "ysl");
-                intent.putExtra("age", 22);*/
+                /*Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("name", "ysl");
+                intent.putExtra("age", 22);
 
                 Bundle bundle = new Bundle();
-                /*bundle.putString("name1", "Mjj");
-                bundle.putInt("age1", 18);*/
+                bundle.putString("name1", "Mjj");
+                bundle.putInt("age1", 18);
                 Cat cat = new Cat();
                 cat.name = "tom";
                 cat.age = 1;
                 bundle.putParcelable("cat", cat);
                 intent.putExtras(bundle);
-                startActivity(intent);
+                startActivity(intent);*/
+
+                Intent intent = new Intent();
+                intent.setAction("cn.ysl");
+                sendBroadcast(intent);
             }
         });
     }
@@ -117,6 +128,9 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
     protected void onDestroy() {
         super.onDestroy();
         Log.d(TAG, "onDestroy is invoke");
+        if (myReceiver != null) {
+            unregisterReceiver(myReceiver);
+        }
     }
 
     @Override

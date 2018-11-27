@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.activity;
 
 
 import android.app.Activity;
@@ -9,6 +9,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.ysl.myaidl.bean.Cat;
+import com.ysl.myandroidbase.R;
 
 public class SecondActivity extends Activity {
     public static final String TAG = "SecondActivity";

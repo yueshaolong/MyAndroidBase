@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ysl.myandroidbase.MainActivity.OnActivityDataChangedListener;
+import com.ysl.myandroidbase.activity.MainActivity.OnActivityDataChangedListener;
 
 public class MyFragment extends Fragment {
     public static final String TAG = "MyFragment";

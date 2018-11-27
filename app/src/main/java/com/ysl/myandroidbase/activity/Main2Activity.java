@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.activity;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.ysl.myaidl.ICatService;
 import com.ysl.myaidl.bean.Cat;
+import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.service.MyAIDLService;
 
 public class Main2Activity extends AppCompatActivity {
