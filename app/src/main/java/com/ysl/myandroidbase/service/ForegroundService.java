@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.ysl.myandroidbase.R;
-import com.ysl.myandroidbase.ServiceActivity;
+import com.ysl.myandroidbase.activity.ServiceActivity;
 
 public class ForegroundService extends Service {
     public static final String TAG = "ForegroundService";

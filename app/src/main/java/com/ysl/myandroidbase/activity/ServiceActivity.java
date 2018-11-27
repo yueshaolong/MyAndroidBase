@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.myandroidbase.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.service.ForegroundService;
 import com.ysl.myandroidbase.service.MyIntentService;
 import com.ysl.myandroidbase.service.MyService;
