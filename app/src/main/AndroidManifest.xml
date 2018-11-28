@@ -3,6 +3,7 @@
     package="com.ysl.myandroidbase">
 
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -10,6 +11,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity"> <!-- android:launchMode="singleTask" -->
             <intent-filter>
@@ -27,16 +29,15 @@
         <service android:name=".service.ForegroundService" />
         <service android:name=".service.CancelNoticeService" />
 
-        <activity android:name=".activity.Main2Activity">
-
-        </activity>
+        <activity android:name=".activity.Main2Activity"></activity>
 
         <service
             android:name=".service.MyAIDLService"
             android:enabled="true"
             android:exported="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

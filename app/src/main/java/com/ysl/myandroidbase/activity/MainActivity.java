@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.ysl.myaidl.bean.Cat;
 import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
 import com.ysl.myandroidbase.receiver.MyReceiver;
@@ -25,11 +26,11 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate is invoke  ");
 
-        myReceiver = new MyReceiver();
+        /*myReceiver = new MyReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.media.VOLUME_CHANGED_ACTION");
 //        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-        registerReceiver(myReceiver, intentFilter);
+        registerReceiver(myReceiver, intentFilter);*/
 
 
         /*FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
         findViewById(R.id.tv1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-                intent.putExtra("name", "ysl");
+                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                /*intent.putExtra("name", "ysl");
                 intent.putExtra("age", 22);
 
                 Bundle bundle = new Bundle();
@@ -55,12 +56,13 @@ public class MainActivity extends AppCompatActivity implements FragmentListener 
                 cat.name = "tom";
                 cat.age = 1;
                 bundle.putParcelable("cat", cat);
-                intent.putExtras(bundle);
-                startActivity(intent);*/
+                intent.putExtras(bundle);*/
+                startActivity(intent);
 
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 intent.setAction("cn.ysl");
-                sendBroadcast(intent);
+                sendBroadcast(intent);*/
+
             }
         });
     }
