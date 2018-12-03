@@ -14,11 +14,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity"> <!-- android:launchMode="singleTask" -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.SecondActivity" /> <!-- android:launchMode="singleTask" android:taskAffinity="com.app" -->
         <service android:name=".service.MyService" />
@@ -38,6 +34,13 @@
             android:process=":remote" />
 
         <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.HandleActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
