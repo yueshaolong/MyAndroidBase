@@ -22,11 +22,10 @@ public class HandleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        doThread();
-//        new MyThread().start();
-
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.tv1);
+//        doThread();
+//        new MyThread().start();
         asyncTask.execute();
         tv.setOnClickListener(new OnClickListener() {
             @Override
