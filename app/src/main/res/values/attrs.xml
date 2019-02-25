@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyImageView">
+        <attr name="radius" />
+        <attr name="width" />
+        <attr name="height" />
+    </declare-styleable>
+
+    <attr name="radius" format="float"/>
+    <attr name="width" format="integer"/>
+    <attr name="height" format="integer"/>
+</resources>
