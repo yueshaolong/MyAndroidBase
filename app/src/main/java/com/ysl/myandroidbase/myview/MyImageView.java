@@ -1,16 +1,28 @@
 package com.ysl.myandroidbase.myview;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
+import android.graphics.Shader.TileMode;
+import android.graphics.SweepGradient;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import com.ysl.myandroidbase.R;
 
 public class MyImageView extends AppCompatImageView {
 
     private Paint paint;
+    private Context context;
 
     public MyImageView(Context context) {
         super(context);
@@ -29,6 +41,7 @@ public class MyImageView extends AppCompatImageView {
 
     private void init(Context context, AttributeSet attrs) {
         paint = new Paint();
+        this.context = context;
     }
 
     @Override
@@ -56,7 +69,7 @@ public class MyImageView extends AppCompatImageView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.drawColor(Color.parseColor("#88008800"));
+        /*canvas.drawColor(Color.parseColor("#88008800"));
 
         paint.setColor(Color.RED);
         paint.setStyle(Style.STROKE);
@@ -87,6 +100,19 @@ public class MyImageView extends AppCompatImageView {
         canvas.drawLine(200, 200, 300, 300, paint);
 
         paint.setTextSize(50);
-        canvas.drawText("hello", 220, 270, paint);
+        canvas.drawText("hello", 220, 270, paint);*/
+
+//        Shader shader = new LinearGradient(50, 50, 450, 450, Color.parseColor("#00FF00"),
+//                Color.parseColor("#FF0000"), Shader.TileMode.CLAMP);
+//        Shader shader = new RadialGradient(250, 250, 200, Color.parseColor("#FF0000"),
+//                 Color.parseColor("#00FF00"), TileMode.REPEAT);
+//        Shader shader = new SweepGradient(250, 250, Color.parseColor("#FF0000"),
+//                Color.parseColor("#00FF00"));
+        Drawable drawable = context.getDrawable(R.drawable.ic_launcher_background);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_background);
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),drawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Shader shader = new BitmapShader(bitmap,TileMode.CLAMP, TileMode.CLAMP);
+        paint.setShader(shader);
+        canvas.drawCircle(250, 250, 200, paint);
     }
 }
