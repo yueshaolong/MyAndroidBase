@@ -37,6 +37,7 @@ public class MyImageView extends AppCompatImageView {
     private Context context;
     private float radius;
     private int width;
+    private int mWidth;
     private int height;
 
     public MyImageView(Context context) {
@@ -75,17 +76,6 @@ public class MyImageView extends AppCompatImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        /*//获得原有的宽高
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        //通过计算，获得自己想要的宽高
-        if (measuredHeight > measuredWidth){
-            measuredHeight = measuredWidth;
-        }else {
-            measuredWidth = measuredHeight;
-        }
-        //把高度传给父view保存
-        setMeasuredDimension(measuredWidth, measuredHeight);*/
 
         //获取控件的宽度大小和模式
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
@@ -98,6 +88,7 @@ public class MyImageView extends AppCompatImageView {
                 widthMeasureSpec = getPaddingLeft() + getPaddingRight() + width;
                 break;
         }
+//        resolveSize()
         //获取控件的高度大小和模式
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
@@ -110,6 +101,14 @@ public class MyImageView extends AppCompatImageView {
                 break;
         }
 
+        //通过计算，获得自己想要的宽高
+        if (widthMeasureSpec > heightMeasureSpec){
+            widthMeasureSpec = heightMeasureSpec;
+        }else {
+            heightMeasureSpec = widthMeasureSpec;
+        }
+
+        mWidth = widthMeasureSpec;
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
     }
 
@@ -132,9 +131,9 @@ public class MyImageView extends AppCompatImageView {
 
         paint.setColor(Color.RED);
         paint.setStyle(Style.STROKE);
-        paint.setStrokeWidth(radius/10);
+        paint.setStrokeWidth(mWidth/10);
         paint.setAntiAlias(true);
-        canvas.drawCircle(width/2, height/2, radius, paint);
+        canvas.drawCircle(mWidth/2, mWidth/2, mWidth/2-mWidth/10/2, paint);
         postInvalidate();
 
         /*paint.setColor(Color.BLUE);
