@@ -35,6 +35,9 @@
 
         <activity android:name=".activity.WebViewActivity"></activity>
         <activity android:name=".activity.HandleActivity">
+
+        </activity>
+        <activity android:name=".myview.MyViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

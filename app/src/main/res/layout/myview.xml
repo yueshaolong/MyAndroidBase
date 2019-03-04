@@ -7,10 +7,10 @@
 
     <com.ysl.myandroidbase.myview.MyImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         app:radius="200"
-        app:width="500"
-        app:height="500"
+        app:width="600"
+        app:height="600"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

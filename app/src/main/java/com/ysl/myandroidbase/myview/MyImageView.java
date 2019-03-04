@@ -34,7 +34,6 @@ import java.io.InputStream;
 public class MyImageView extends AppCompatImageView {
 
     private Paint paint;
-    private Context context;
     private float radius;
     private int width;
     private int mWidth;
@@ -56,7 +55,6 @@ public class MyImageView extends AppCompatImageView {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        this.context = context;
         paint = new Paint();
         paint.setTextSize(10);
 
@@ -75,40 +73,77 @@ public class MyImageView extends AppCompatImageView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        //获取控件的宽度大小和模式
+        System.out.println("父控件的要求：widthMeasureSpec = "+widthMeasureSpec+", heightMeasureSpec = "+heightMeasureSpec);
+
+        /**
+         * 第一种使用方法：先调用super.onMeasure()，然后再调用getMeasuredWidth() 和 getMeasuredHeight()；
+         * 获取到父类给我们测量的值后，就可以根据自己的需求来设置宽高了，比如让宽高相等...
+         */
+        // 先用 getMeasuredWidth() 和 getMeasuredHeight() 取到 super.onMeasure() 的计算结果
+        /*super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        widthMeasureSpec = getMeasuredWidth();//如果不调用super.onMeasure()，此值为0.
+        heightMeasureSpec = getMeasuredHeight();//如果不调用super.onMeasure()，此值为0.
+        System.out.println("调用super后测量的结果：widthMeasureSpec = "+widthMeasureSpec+", heightMeasureSpec = "+heightMeasureSpec);*/
+
+
+        /**
+         * 第二种使用方法：（不能调用super.onMeasure()方法，可以注释掉或直接删除）
+         * 1.通过MeasureSpec.getMode()和MeasureSpec.getSize()获取测量模式和测量大小
+         * 2.根据不同的模式进行赋值：
+         * MeasureSpec.EXACTLY（精确模式，表现形式为xml文件中layout开头的宽高值设置为具体数值或match_parent）
+         * 表示精确的方式，直接返回MeasureSpec.getSize()返回的值
+         * MeasureSpec.AT_MOST（xml中使用wrap_content）
+         * 表示view想要多大；注意：：此时就需要计算了，view不能想要多大就多大，它的最大值不能超过MeasureSpec.getSize()测量
+         * 出来的值（即不能超过父view指定的值），两者做比较，取小者即可。
+         */
+        //获取控件被要求的宽度大小和模式
+        //宽度模式
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        //宽度大小
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        System.out.println("不调用super，MeasureSpec测量的结果：widthMode = "+widthMode+", widthSize = "+widthSize);
         switch (widthMode){
             case MeasureSpec.EXACTLY:
-                widthMeasureSpec = getPaddingLeft() + getPaddingRight() + widthSize;
+                widthMeasureSpec = widthSize;//精确模式（250dp或match_parent）
                 break;
-            case MeasureSpec.AT_MOST:
-                widthMeasureSpec = getPaddingLeft() + getPaddingRight() + width;
+            case MeasureSpec.AT_MOST://最大值不能超过上面计算的widthSize
+                int w = getPaddingLeft() + getPaddingRight() + width;
+                System.out.println(widthSize+"<>"+w);
+                widthMeasureSpec = w > widthSize ? widthSize : w;
+                break;
+            case MeasureSpec.UNSPECIFIED://这种情况一般不存在
                 break;
         }
-//        resolveSize()
+        System.out.println("最终的宽度："+widthMeasureSpec);
+
+        /**高度和上面的宽度计算方式一样*/
         //获取控件的高度大小和模式
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        System.out.println("不调用super，MeasureSpec测量的结果：heightMode = "+heightMode+", heightSize = "+heightSize);
         switch (heightMode){
             case MeasureSpec.EXACTLY:
-                heightMeasureSpec = getPaddingTop() + getPaddingBottom() + heightSize;
+                heightMeasureSpec = heightSize;
                 break;
             case MeasureSpec.AT_MOST:
-                heightMeasureSpec = getPaddingTop() + getPaddingBottom() + height;
+                int h = getPaddingTop() + getPaddingBottom() + height;
+                System.out.println(heightSize+"<>"+h);
+                heightMeasureSpec = h > heightSize ? heightSize : h;
                 break;
         }
+        System.out.println("最终的高度："+heightMeasureSpec);
 
-        //通过计算，获得自己想要的宽高
+
+        //通过计算，获得自己想要的半径
         if (widthMeasureSpec > heightMeasureSpec){
-            widthMeasureSpec = heightMeasureSpec;
+            mWidth = heightMeasureSpec;
         }else {
-            heightMeasureSpec = widthMeasureSpec;
+            mWidth = widthMeasureSpec;
         }
+        System.out.println("最终的半径："+mWidth);
 
-        mWidth = widthMeasureSpec;
+        /**宽高都计算好了，千万别忘记调用setMeasuredDimension()把它们都存起来，否则白忙活了。*/
         setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
     }
 
