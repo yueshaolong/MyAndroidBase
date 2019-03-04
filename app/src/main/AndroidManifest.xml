@@ -38,6 +38,8 @@
 
         </activity>
         <activity android:name=".myview.MyViewActivity">
+        </activity>
+        <activity android:name=".myview.MyViewGroupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
