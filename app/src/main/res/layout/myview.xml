@@ -7,7 +7,7 @@
 
     <com.ysl.myandroidbase.myview.MyImageView
         android:layout_width="wrap_content"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         app:radius="200"
         app:width="600"
         app:height="600"

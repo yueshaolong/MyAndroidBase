@@ -150,9 +150,14 @@ public class MyImageView extends AppCompatImageView {
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        /*int width = getMeasuredWidth();
+
+        int width = getMeasuredWidth();
         int height = getMeasuredHeight();
-        LayoutParams layoutParams = getLayoutParams();
+        int width1 = getWidth();
+        int height1 = getHeight();
+        System.out.println("onLayout--->width = "+width+", height = "+height+"，width1 = "+width1+", height1 = "+height1);
+
+        /*LayoutParams layoutParams = getLayoutParams();
         int width2 = layoutParams.width;
         int height2 = layoutParams.height;
         layout(width2/2 - width/2, height2/2 - height/2, width2/2 + width/2, height2/2 + height/2);*/
