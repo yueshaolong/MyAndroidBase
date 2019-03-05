@@ -35,8 +35,8 @@ public class MyImageView extends AppCompatImageView {
 
     private Paint paint;
     private float radius;
+    private int diameter;
     private int width;
-    private int mWidth;
     private int height;
 
     public MyImageView(Context context) {
@@ -74,6 +74,9 @@ public class MyImageView extends AppCompatImageView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
+        int widthMeasure = 0;
+        int heightMeasure = 0;
+
         System.out.println("父控件的要求：widthMeasureSpec = "+widthMeasureSpec+", heightMeasureSpec = "+heightMeasureSpec);
 
         /**
@@ -82,10 +85,9 @@ public class MyImageView extends AppCompatImageView {
          */
         // 先用 getMeasuredWidth() 和 getMeasuredHeight() 取到 super.onMeasure() 的计算结果
         /*super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        widthMeasureSpec = getMeasuredWidth();//如果不调用super.onMeasure()，此值为0.
-        heightMeasureSpec = getMeasuredHeight();//如果不调用super.onMeasure()，此值为0.
-        System.out.println("调用super后测量的结果：widthMeasureSpec = "+widthMeasureSpec+", heightMeasureSpec = "+heightMeasureSpec);*/
-
+        widthMeasure = getMeasuredWidth();//如果不调用super.onMeasure()，此值为0.
+        heightMeasure = getMeasuredHeight();//如果不调用super.onMeasure()，此值为0.
+        System.out.println("调用super后测量的结果：widthMeasure = "+widthMeasure+", heightMeasure = "+heightMeasure);*/
 
         /**
          * 第二种使用方法：（不能调用super.onMeasure()方法，可以注释掉或直接删除）
@@ -102,49 +104,65 @@ public class MyImageView extends AppCompatImageView {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         //宽度大小
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        System.out.println("不调用super，MeasureSpec测量的结果：widthMode = "+widthMode+", widthSize = "+widthSize);
+        System.out.println("MeasureSpec测量的结果：widthMode = "+widthMode+", widthSize = "+widthSize);
         switch (widthMode){
             case MeasureSpec.EXACTLY:
-                widthMeasureSpec = widthSize;//精确模式（250dp或match_parent）
+                widthMeasure = widthSize;//精确模式（250dp或match_parent）
                 break;
             case MeasureSpec.AT_MOST://最大值不能超过上面计算的widthSize
                 int w = getPaddingLeft() + getPaddingRight() + width;
                 System.out.println(widthSize+"<>"+w);
-                widthMeasureSpec = w > widthSize ? widthSize : w;
+                widthMeasure = w > widthSize ? widthSize : w;
                 break;
             case MeasureSpec.UNSPECIFIED://这种情况一般不存在
+            default:
+                widthMeasure = getPaddingLeft() + getPaddingRight() + width;
                 break;
         }
-        System.out.println("最终的宽度："+widthMeasureSpec);
+        System.out.println("最终的宽度："+widthMeasure);
 
-        /**高度和上面的宽度计算方式一样*/
+        //高度和上面的宽度计算方式一样
         //获取控件的高度大小和模式
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         System.out.println("不调用super，MeasureSpec测量的结果：heightMode = "+heightMode+", heightSize = "+heightSize);
         switch (heightMode){
             case MeasureSpec.EXACTLY:
-                heightMeasureSpec = heightSize;
+                heightMeasure = heightSize;
                 break;
             case MeasureSpec.AT_MOST:
                 int h = getPaddingTop() + getPaddingBottom() + height;
                 System.out.println(heightSize+"<>"+h);
-                heightMeasureSpec = h > heightSize ? heightSize : h;
+                heightMeasure = h > heightSize ? heightSize : h;
+                break;
+            case MeasureSpec.UNSPECIFIED://这种情况一般不存在
+            default:
+                heightMeasure = getPaddingTop() + getPaddingBottom() + height;
                 break;
         }
-        System.out.println("最终的高度："+heightMeasureSpec);
+        System.out.println("最终的高度："+heightMeasure);
 
+        /**
+         * 第三种方式；调用resolveSize(int size, int measureSpec)方法，进行测算；这是系统的方法。
+         * 第一个参数传入自己想要的大小；第二个参数传入父view规定的尺寸大小。
+         * 事实上，可以点进去看resolveSize(int size, int measureSpec)的源码；源码中的处理方式大致上和
+         * 第二种方法差不多，都是要通过父view的规定模式和自己想要的大小进行判断，最终确定控件的大小。
+         *//*
+        widthMeasure = resolveSize(getPaddingLeft() + getPaddingRight() + width, widthMeasureSpec);
+        heightMeasure = resolveSize(getPaddingTop() + getPaddingBottom() + height, heightMeasureSpec);
+        System.out.println("调用resolveSize(int size, int measureSpec)方法，测量的结果：widthMeasure = "
+                +widthMeasure+", heightMeasure = "+heightMeasure);*/
 
         //通过计算，获得自己想要的半径
-        if (widthMeasureSpec > heightMeasureSpec){
-            mWidth = heightMeasureSpec;
+        if (widthMeasure > heightMeasure){
+            diameter = heightMeasure;
         }else {
-            mWidth = widthMeasureSpec;
+            diameter = widthMeasure;
         }
-        System.out.println("最终的半径："+mWidth);
+        System.out.println("最终的直径："+diameter);
 
         /**宽高都计算好了，千万别忘记调用setMeasuredDimension()把它们都存起来，否则白忙活了。*/
-        setMeasuredDimension(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(widthMeasure, heightMeasure);
     }
 
     @Override
@@ -171,9 +189,9 @@ public class MyImageView extends AppCompatImageView {
 
         paint.setColor(Color.RED);
         paint.setStyle(Style.STROKE);
-        paint.setStrokeWidth(mWidth/10);
+        paint.setStrokeWidth(diameter/10);
         paint.setAntiAlias(true);
-        canvas.drawCircle(mWidth/2, mWidth/2, mWidth/2-mWidth/10/2, paint);
+        canvas.drawCircle(diameter/2, diameter/2, diameter/2-diameter/10/2, paint);
         postInvalidate();
 
         /*paint.setColor(Color.BLUE);

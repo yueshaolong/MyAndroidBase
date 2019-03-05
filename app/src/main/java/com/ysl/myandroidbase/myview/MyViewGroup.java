@@ -55,24 +55,21 @@ public class MyViewGroup extends ViewGroup {
             int childViewWidth = childView.getMeasuredWidth();
             int childViewHeight = childView.getMeasuredHeight();
             MarginLayoutParams marginLayoutParams = (MarginLayoutParams)childView.getLayoutParams();
-
             //获取子view的宽高
             if (i < 2) {//上面的宽度
                 widthS +=  childViewWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
             } else {//下面的宽度
                 widthX += childViewWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
             }
-
             if (i == 0 || i == 2){//左边的高度
                 heightL += childViewHeight + marginLayoutParams.topMargin + marginLayoutParams.bottomMargin;
-            }else {
+            }else {//右边的高度
                 heightR += childViewHeight + marginLayoutParams.topMargin + marginLayoutParams.bottomMargin;
             }
-
         }
 
         //定义自己的宽高
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        /*int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         switch (widthMode){
             case MeasureSpec.EXACTLY:
@@ -82,9 +79,11 @@ public class MyViewGroup extends ViewGroup {
                 System.out.println(widthSize+"<>"+Math.max(widthS, widthX));
                 width = Math.max(widthS, widthX) > widthSize ? widthSize : Math.max(widthS, widthX);
                 break;
-        }
+        }*/
+        width = resolveSize(Math.max(widthS, widthX), widthMeasureSpec);
 
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        /*int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         switch (heightMode){
             case MeasureSpec.EXACTLY:
@@ -94,7 +93,8 @@ public class MyViewGroup extends ViewGroup {
                 System.out.println(heightSize+"<>"+Math.max(heightL, heightR));
                 height = Math.max(heightL, heightR) > heightSize ? heightSize : Math.max(heightL, heightR);
                 break;
-        }
+        }*/
+        height = resolveSize(Math.max(heightL, heightR), heightMeasureSpec);
 
         //保存
         setMeasuredDimension(width, height);
