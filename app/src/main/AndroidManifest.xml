@@ -40,6 +40,8 @@
         <activity android:name=".myview.MyViewActivity">
         </activity>
         <activity android:name=".myview.MyViewGroupActivity">
+        </activity>
+        <activity android:name=".myview.MyDragViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
