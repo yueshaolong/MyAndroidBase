@@ -51,6 +51,16 @@ public class MyDragView extends ViewGroup {
             }
 
             //第二个view
+
+            @Override
+            public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
+                super.onViewCaptured(capturedChild, activePointerId);
+                if (capturedChild == autoBackView){
+                    left = capturedChild.getLeft();
+                    top = capturedChild.getTop();
+                }
+            }
+
             @Override
             public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
                 super.onViewReleased(releasedChild, xvel, yvel);
@@ -123,8 +133,9 @@ public class MyDragView extends ViewGroup {
 //            }
         }
 
-        left = autoBackView.getLeft();
-        top = autoBackView.getTop();
+        //可以使用回调里的onViewCaptured()方法获取到捕获到view时的坐标
+//        left = autoBackView.getLeft();
+//        top = autoBackView.getTop();
     }
 
     @Override
