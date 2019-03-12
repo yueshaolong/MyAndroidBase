@@ -3,7 +3,9 @@ package com.ysl.myandroidbase.handler;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Message;
+import android.service.carrier.CarrierService;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,13 +28,29 @@ public class HandleActivity extends AppCompatActivity {
         tv = findViewById(R.id.tv1);
 //        doThread();
 //        new MyThread().start();
-        asyncTask.execute();
-        tv.setOnClickListener(new OnClickListener() {
+//        asyncTask.execute();
+//        tv.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                asyncTask.cancel(false);
+//            }
+//        });
+
+        HandlerThread handlerThread = new HandlerThread("ysl");
+        handlerThread.start();
+        Handler mHandler = new Handler(handlerThread.getLooper()){
             @Override
-            public void onClick(View v) {
-                asyncTask.cancel(false);
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 0:
+                        Log.e("handlerThread子线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+                        break;
+                }
             }
-        });
+        };
+        mHandler.sendEmptyMessage(0);
+        Log.e("handlerThread主线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
     }
 
     private AsyncTask asyncTask = new AsyncTask() {
