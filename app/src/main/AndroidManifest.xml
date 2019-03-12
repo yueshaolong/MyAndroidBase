@@ -34,7 +34,7 @@
             android:process=":remote" />
 
         <activity android:name=".activity.WebViewActivity"></activity>
-        <activity android:name=".activity.HandleActivity">
+        <activity android:name=".handler.HandleActivity">
 
         </activity>
         <activity android:name=".myview.MyViewActivity">
@@ -42,12 +42,15 @@
         <activity android:name=".myview.MyViewGroupActivity">
         </activity>
         <activity android:name=".myview.MyDragViewActivity">
+        </activity>
+        <activity android:name=".eventbus.EventbusActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".eventbus.EventbusActivity2"/>
     </application>
 
 </manifest>

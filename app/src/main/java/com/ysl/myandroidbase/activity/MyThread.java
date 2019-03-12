@@ -1,12 +1,9 @@
 package com.ysl.myandroidbase.activity;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
-
-import static com.ysl.myandroidbase.activity.HandleActivity.MSG_CODE2;
 
 public class MyThread extends Thread {
 
