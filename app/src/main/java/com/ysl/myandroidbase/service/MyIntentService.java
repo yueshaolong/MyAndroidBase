@@ -10,25 +10,25 @@ public class MyIntentService extends IntentService {
 
     public MyIntentService() {
         super(TAG);
-        Log.d(TAG, "MyIntentService() is invoke "+Thread.currentThread().getId());
+        Log.d(TAG, "MyIntentService() is invoke "+Thread.currentThread().getId()+"="+Thread.currentThread().getName());
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "onCreate is invoke "+Thread.currentThread().getId());
+        Log.d(TAG, "onCreate is invoke "+Thread.currentThread().getId()+"="+Thread.currentThread().getName());
     }
 
     @Override
     public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand is invoke "+Thread.currentThread().getId());
+        Log.d(TAG, "onStartCommand is invoke "+Thread.currentThread().getId()+"="+Thread.currentThread().getName());
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         //做耗时操作
-        Log.d(TAG, "onHandleIntent is invoke "+Thread.currentThread().getId());
+        Log.d(TAG, "onHandleIntent is invoke "+Thread.currentThread().getId()+"="+Thread.currentThread().getName());
         int age = intent.getIntExtra("age",0);
         try {
             Thread.sleep(10000);
@@ -41,6 +41,6 @@ public class MyIntentService extends IntentService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "onDestroy is invoke "+Thread.currentThread().getId());
+        Log.d(TAG, "onDestroy is invoke "+Thread.currentThread().getId()+"="+Thread.currentThread().getName());
     }
 }

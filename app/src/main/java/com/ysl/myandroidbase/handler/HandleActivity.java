@@ -1,5 +1,7 @@
 package com.ysl.myandroidbase.handler;
 
+import android.app.IntentService;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import com.ysl.myandroidbase.R;
+import com.ysl.myandroidbase.service.MyIntentService;
 
 public class HandleActivity extends AppCompatActivity {
     public static final int MSG_CODE = 0;
@@ -36,21 +39,32 @@ public class HandleActivity extends AppCompatActivity {
 //            }
 //        });
 
-        HandlerThread handlerThread = new HandlerThread("ysl");
-        handlerThread.start();
-        Handler mHandler = new Handler(handlerThread.getLooper()){
+//        HandlerThread handlerThread = new HandlerThread("ysl");
+//        handlerThread.start();
+//        Handler mHandler = new Handler(handlerThread.getLooper()){
+//            @Override
+//            public void handleMessage(Message msg) {
+//                super.handleMessage(msg);
+//                switch (msg.what){
+//                    case 0:
+//                        Log.e("handlerThread子线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+//                        break;
+//                }
+//            }
+//        };
+//        mHandler.sendEmptyMessage(0);
+//        Log.e("handlerThread主线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+
+        tv.setOnClickListener(new OnClickListener() {
             @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                switch (msg.what){
-                    case 0:
-                        Log.e("handlerThread子线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
-                        break;
-                }
+            public void onClick(View v) {
+                Intent intent = new Intent(HandleActivity.this, MyIntentService.class);
+                intent.putExtra("name", "jj");
+                intent.putExtra("age", 15);
+                startService(intent);
             }
-        };
-        mHandler.sendEmptyMessage(0);
-        Log.e("handlerThread主线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+        });
+
     }
 
     private AsyncTask asyncTask = new AsyncTask() {
