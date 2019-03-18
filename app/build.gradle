@@ -31,4 +31,9 @@ dependencies {
     //    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation rootProject.ext.dependencies.espresso
     implementation rootProject.ext.dependencies.eventbus
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    // Optional, if you use support library fragments:
+    debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
 }

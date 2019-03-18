@@ -15,7 +15,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
+import com.ysl.MyApp;
 import com.ysl.myandroidbase.R;
+import com.ysl.myandroidbase.activity.MyThread;
 import com.ysl.myandroidbase.service.MyIntentService;
 
 public class HandleActivity extends AppCompatActivity {
@@ -29,33 +31,35 @@ public class HandleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tv = findViewById(R.id.tv1);
-//        doThread();
-//        new MyThread().start();
-//        asyncTask.execute();
-//        tv.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                asyncTask.cancel(false);
-//            }
-//        });
 
-//        HandlerThread handlerThread = new HandlerThread("ysl");
-//        handlerThread.start();
-//        Handler mHandler = new Handler(handlerThread.getLooper()){
-//            @Override
-//            public void handleMessage(Message msg) {
-//                super.handleMessage(msg);
-//                switch (msg.what){
-//                    case 0:
-//                        Log.e("handlerThread子线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
-//                        break;
-//                }
-//            }
-//        };
-//        mHandler.sendEmptyMessage(0);
-//        Log.e("handlerThread主线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+        /*doThread();
+        new MyThread().start();*/
 
+        asyncTask.execute();
         tv.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                asyncTask.cancel(false);
+            }
+        });
+
+        /*HandlerThread handlerThread = new HandlerThread("ysl");
+        handlerThread.start();
+        Handler mHandler = new Handler(handlerThread.getLooper()){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 0:
+                        Log.e("handlerThread子线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());
+                        break;
+                }
+            }
+        };
+        mHandler.sendEmptyMessage(0);
+        Log.e("handlerThread主线程Name:", Thread.currentThread().getId()+"="+Thread.currentThread().getName());*/
+
+        /*tv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HandleActivity.this, MyIntentService.class);
@@ -63,7 +67,7 @@ public class HandleActivity extends AppCompatActivity {
                 intent.putExtra("age", 15);
                 startService(intent);
             }
-        });
+        });*/
 
     }
 
@@ -146,10 +150,10 @@ public class HandleActivity extends AppCompatActivity {
             super.handleMessage(msg);
             switch (msg.what){
                 case MSG_CODE:
-                    Log.d(TAG, msg.getData().getString("data")+"  线程："+Thread.currentThread().getName());
+//                    Log.d(TAG, msg.getData().getString("data")+"  线程："+Thread.currentThread().getName());
                     break;
                 case MSG_CODE2:
-                    Log.d(TAG, msg.getData().getString("data")+"  线程："+Thread.currentThread().getName());
+//                    Log.d(TAG, msg.getData().getString("data")+"  线程："+Thread.currentThread().getName());
                     break;
             }
         }
