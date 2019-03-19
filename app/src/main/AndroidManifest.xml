@@ -49,6 +49,8 @@
         </activity>
         <activity android:name=".eventbus.EventbusActivity2"/>
         <activity android:name=".leak.LeakActivity">
+        </activity>
+        <activity android:name=".viewstub.MyViewStubActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
