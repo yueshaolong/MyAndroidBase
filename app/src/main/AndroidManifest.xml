@@ -55,6 +55,8 @@
         <activity android:name="com.ysl.mvc.controller.SampleActivity">
         </activity>
         <activity android:name="com.ysl.mvp.view.MVPActivity">
+        </activity>
+        <activity android:name="com.ysl.mvvm.view.MVVMActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

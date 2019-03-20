@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data >
+        <import type="android.view.View"/><!--导入包-->
+
+        <variable
+            name="userInfo"
+            type="com.ysl.mvvm.model.UserInfo">
+        </variable>
+        <variable
+            name="mvvmActivity"
+            type="com.ysl.mvvm.view.MVVMActivity">
+        </variable>
+        <variable
+            name="input"
+            type="String" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/edt"
+            android:text="@={input}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> mvvmActivity.set(input)}"
+            android:text="设置"/>
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={userInfo.name}"
+            android:visibility="@{(userInfo.name != null || userInfo.name.length() == 0) ? View.VISIBLE : View.GONE}"/>
+        <TextView
+            android:id="@+id/tv_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={userInfo.age+``}" />
+
+    </LinearLayout>
+</layout>
