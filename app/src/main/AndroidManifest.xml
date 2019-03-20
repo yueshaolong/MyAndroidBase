@@ -51,6 +51,10 @@
         <activity android:name=".leak.LeakActivity">
         </activity>
         <activity android:name=".viewstub.MyViewStubActivity">
+        </activity>
+        <activity android:name="com.ysl.mvc.controller.SampleActivity">
+        </activity>
+        <activity android:name="com.ysl.mvp.view.MVPActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
