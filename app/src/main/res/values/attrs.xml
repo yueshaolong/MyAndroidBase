@@ -9,4 +9,10 @@
     <attr name="radius" format="float"/>
     <attr name="width" format="integer"/>
     <attr name="height" format="integer"/>
+
+    <!--关键技术点:通过自定义属性来标识哪些view支持换肤-->
+    <declare-styleable name="SkinView">
+        <!--isSupport=true标识当前控件支持换肤-->
+        <attr name="isSupport" format="boolean"/>
+    </declare-styleable>
 </resources>
