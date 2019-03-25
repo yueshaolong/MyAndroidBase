@@ -3,7 +3,6 @@ package com.ysl.mvvm.view;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,7 +24,9 @@ public class MVVMActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mvc);
+        ActivitySampleMvvmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sample_mvvm);
+        mSampleViewModel = new SampleViewModel(binding);
+        mSampleViewModel.mViewDataBinding.setMvvmActivity(this);
 
         button = findViewById(R.id.btn);
         editText = findViewById(R.id.edt);
@@ -33,9 +34,6 @@ public class MVVMActivity extends AppCompatActivity{
         tvAge = findViewById(R.id.tv_age);
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
-        ActivitySampleMvvmBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_sample_mvvm);
-        mSampleViewModel = new SampleViewModel(binding);
-        mSampleViewModel.mViewDataBinding.setMvvmActivity(this);
 
     }
 

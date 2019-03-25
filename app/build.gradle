@@ -41,4 +41,8 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     // Optional, if you use support library fragments:
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.3'
+
+    implementation 'com.tencent:mmkv:1.0.18'
+    implementation('com.github.hotchemi:permissionsdispatcher:3.1.0') { exclude module: 'support-v13' }
+    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 }
