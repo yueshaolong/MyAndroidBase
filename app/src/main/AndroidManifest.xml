@@ -61,6 +61,8 @@
         <activity android:name="com.ysl.mvvm.view.MVVMActivity">
         </activity>
         <activity android:name="com.ysl.hookskin.SkinActivity">
+        </activity>
+        <activity android:name="com.ysl.hookskin.HookActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
