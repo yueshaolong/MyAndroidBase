@@ -17,7 +17,7 @@ interface ICatService {
     //都需要在前面加上定向tag，具体加什么量需而定
     void setCatPrice(in Cat cat , int price);
     void setCatName(in Cat cat , String name);
-    void addCatIn(in Cat cat);
-    void addCatOut(out Cat cat);
-    void addCatInout(inout Cat cat);
+    Cat addCatIn(in Cat cat);
+    Cat addCatOut(out Cat cat);
+    Cat addCatInout(inout Cat cat);
 }

@@ -28,7 +28,13 @@
         <service android:name=".service.ForegroundService" />
         <service android:name=".service.CancelNoticeService" />
 
-        <activity android:name=".activity.Main2Activity"></activity>
+        <activity android:name=".activity.Main2Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".service.MyAIDLService"
@@ -63,11 +69,7 @@
         <activity android:name="com.ysl.hookskin.SkinActivity">
         </activity>
         <activity android:name="com.ysl.hookskin.HookActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
