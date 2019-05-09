@@ -3,10 +3,10 @@ package com.ysl.mmkv;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,7 +16,6 @@ import com.ysl.myandroidbase.R;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Map;
 
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnNeverAskAgain;

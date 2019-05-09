@@ -1,17 +1,18 @@
 package com.ysl.myandroidbase.activity;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.myaidl.bean.Cat;
 import com.ysl.myandroidbase.R;
 
-public class SecondActivity extends Activity {
+public class SecondActivity extends AppCompatActivity {
     public static final String TAG = "SecondActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,6 +1,5 @@
 package com.ysl.myandroidbaseserver;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -8,8 +7,10 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.myaidl.ICatService;
 import com.ysl.myaidl.ICatService.Stub;
@@ -17,7 +18,7 @@ import com.ysl.myaidl.MyAIDLService;
 import com.ysl.myaidl.bean.Cat;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private ICatService iCatService;
     private TextView tv1;
 

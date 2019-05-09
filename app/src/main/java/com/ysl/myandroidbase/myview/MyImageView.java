@@ -1,35 +1,18 @@
 package com.ysl.myandroidbase.myview;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.graphics.RadialGradient;
 import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.Shader.TileMode;
-import android.graphics.SweepGradient;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatImageView;
-import android.text.TextUtils;
-import android.text.TextUtils.TruncateAt;
+
+import androidx.appcompat.widget.AppCompatImageView;
+
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.View;
-import android.view.ViewGroup.LayoutParams;
 
 import com.ysl.myandroidbase.R;
-
-import java.io.InputStream;
 
 public class MyImageView extends AppCompatImageView {
 

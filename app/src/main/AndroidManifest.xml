@@ -28,7 +28,11 @@
         <service android:name=".service.ForegroundService" />
         <service android:name=".service.CancelNoticeService" />
 
-        <activity android:name=".activity.Main2Activity">
+        <activity android:name="com.ysl.myaidl.bean.AIDLActivity">
+
+        </activity>
+
+        <activity android:name="com.ysl.dagger2.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,7 +41,7 @@
         </activity>
 
         <service
-            android:name=".service.MyAIDLService"
+            android:name="com.ysl.myaidl.bean.MyAIDLService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" />
@@ -52,19 +56,19 @@
         </activity>
         <activity android:name=".myview.MyDragViewActivity">
         </activity>
-        <activity android:name=".eventbus.EventbusActivity">
+        <activity android:name="com.ysl.eventbus.EventbusActivity">
 
         </activity>
-        <activity android:name=".eventbus.EventbusActivity2"/>
+        <activity android:name="com.ysl.eventbus.EventbusActivity2"/>
         <activity android:name=".leak.LeakActivity">
         </activity>
         <activity android:name=".viewstub.MyViewStubActivity">
         </activity>
-        <activity android:name="com.ysl.mvc.controller.SampleActivity">
+        <activity android:name="com.ysl.appframework.mvc.controller.SampleActivity">
         </activity>
-        <activity android:name="com.ysl.mvp.view.MVPActivity">
+        <activity android:name="com.ysl.appframework.mvp.view.MVPActivity">
         </activity>
-        <activity android:name="com.ysl.mvvm.view.MVVMActivity">
+        <activity android:name="com.ysl.appframework.mvvm.view.MVVMActivity">
         </activity>
         <activity android:name="com.ysl.hookskin.SkinActivity">
         </activity>

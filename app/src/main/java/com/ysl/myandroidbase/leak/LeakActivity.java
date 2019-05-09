@@ -1,21 +1,19 @@
 package com.ysl.myandroidbase.leak;
 
-import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.myandroidbase.R;
 
 import java.lang.ref.WeakReference;
 
-public class LeakActivity extends Activity {
+public class LeakActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

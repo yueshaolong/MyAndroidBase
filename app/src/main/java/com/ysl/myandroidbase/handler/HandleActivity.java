@@ -1,24 +1,18 @@
 package com.ysl.myandroidbase.handler;
 
-import android.app.IntentService;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Message;
-import android.service.carrier.CarrierService;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.ysl.MyApp;
 import com.ysl.myandroidbase.R;
-import com.ysl.myandroidbase.activity.MyThread;
-import com.ysl.myandroidbase.service.MyIntentService;
 
 public class HandleActivity extends AppCompatActivity {
     public static final int MSG_CODE = 0;

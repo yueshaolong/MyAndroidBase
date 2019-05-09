@@ -2,16 +2,14 @@ package com.ysl.myandroidbase.activity;
 
 import android.content.ComponentName;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.ysl.myaidl.bean.Cat;
 import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
 import com.ysl.myandroidbase.receiver.MyReceiver;

@@ -1,9 +1,9 @@
 package com.ysl.myandroidbase.viewstub;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.TextView;

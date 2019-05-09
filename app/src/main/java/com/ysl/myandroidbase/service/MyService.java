@@ -1,13 +1,14 @@
 package com.ysl.myandroidbase.service;
 
-import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.myandroidbase.activity.ServiceActivity;
 
@@ -30,7 +31,7 @@ public class MyService extends Service {
         public MyService getMyService(){
             return MyService.this;
         }
-        public void setActivity(Activity activity){
+        public void setActivity(AppCompatActivity activity){
             ((ServiceActivity)activity).setOnActivityDataChangedListener(new ServiceActivity.OnActivityDataChangedListener() {
                 @Override
                 public void onActivityDataChanged(String string) {

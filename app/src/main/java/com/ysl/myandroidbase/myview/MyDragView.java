@@ -1,9 +1,9 @@
 package com.ysl.myandroidbase.myview;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.widget.ViewDragHelper;
-import android.support.v4.widget.ViewDragHelper.Callback;
+import androidx.annotation.NonNull;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.customview.widget.ViewDragHelper.Callback;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;

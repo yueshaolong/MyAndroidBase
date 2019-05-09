@@ -5,11 +5,11 @@
 
         <variable
             name="userInfo"
-            type="com.ysl.mvvm.model.UserInfo">
+            type="com.ysl.appframework.mvvm.model.UserInfo">
         </variable>
         <variable
             name="mvvmActivity"
-            type="com.ysl.mvvm.view.MVVMActivity">
+            type="com.ysl.appframework.mvvm.view.MVVMActivity">
         </variable>
         <variable
             name="input"
