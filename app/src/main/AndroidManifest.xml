@@ -39,6 +39,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.ysl.dagger2.view.SingletonTestActivity"/>
 
         <service
             android:name="com.ysl.myaidl.bean.MyAIDLService"
