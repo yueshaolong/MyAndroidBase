@@ -14,6 +14,8 @@ import com.ysl.dagger2.DaggerLoginComponent;
 import com.ysl.dagger2.model.MySingleton;
 import com.ysl.dagger2.model.U;
 import com.ysl.dagger2.model.User;
+import com.ysl.dagger2.model.User.QualifierA;
+import com.ysl.dagger2.model.User.QualifierB;
 import com.ysl.dagger2.presenter.LoginPresenter;
 import com.ysl.myandroidbase.R;
 
@@ -30,7 +32,11 @@ public class LoginActivity extends AppCompatActivity implements ICommonView{
      * 第二步  使用Inject 注解，获取到user对象的实例
      */
     @Inject
+    @QualifierB
     User user;
+    @QualifierA
+    @Inject
+    User user1;
     @Inject
     U u;
     @Inject
@@ -75,6 +81,7 @@ public class LoginActivity extends AppCompatActivity implements ICommonView{
 
     @OnClick(R.id.btn_login) void login(){
         user.show();//u:ysl
+        user1.show();//u:ysl
         System.out.println(u.getMessage());//ysl
 
         System.out.println(sharedPreferences);//android.app.SharedPreferencesImpl@5c49587

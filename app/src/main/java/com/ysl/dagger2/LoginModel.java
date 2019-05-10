@@ -3,6 +3,8 @@ package com.ysl.dagger2;
 import com.ysl.dagger2.model.MySingleton;
 import com.ysl.dagger2.model.U;
 import com.ysl.dagger2.model.User;
+import com.ysl.dagger2.model.User.QualifierA;
+import com.ysl.dagger2.model.User.QualifierB;
 import com.ysl.dagger2.presenter.LoginPresenter;
 
 import javax.inject.Singleton;
@@ -24,14 +26,16 @@ public class LoginModel {
 
 
     //第二步 使用Provider 注解 实例化对象
-//    @Provides
-//    User provideUser(){
-////        return new User();//无参的
-//        return new User("ysl", "123");//有参，基本类型的参数
-//    }
-
+    @QualifierA
     @Provides
-    User provideUser(U u){
+    User provideUserA(){
+        //return new User();//无参的
+        return new User("ysl", "123");//有参，基本类型的参数
+    }
+    //当类型不足以鉴别一个依赖的时候，我们就可以使用这个注解标示,上下这两个方法都提供User对象；所以使用@Qulifier进行区分
+    @QualifierB
+    @Provides
+    User provideUserB(U u){
         return new User(u);//有参，非基本类型的参数
     }
     @Provides
