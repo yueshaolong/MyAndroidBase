@@ -61,12 +61,12 @@ public class Person {
 
     public static void test1() {
         //实现接口，比较两个的age大小
-        PersonInterface<Person> lamdba3Interface =(p1,p2) -> p1.getAge().compareTo(p2.getAge());
-        System.out.println(lamdba3Interface);
+        PersonInterface<Person> personInterface =(p1,p2) -> p1.getAge().compareTo(p2.getAge());
+        System.out.println(personInterface);
     }
     public static void test2() {
         //实现接口，比较两个的score大小
-        PersonInterface<Person> lamdba3Interface =(p1,p2) -> p1.getScore().compareTo(p2.getScore());
-        System.out.println(lamdba3Interface);
+        PersonInterface<Person> personInterface =(p1,p2) -> p1.getScore().compareTo(p2.getScore());
+        System.out.println(personInterface);
     }
 }

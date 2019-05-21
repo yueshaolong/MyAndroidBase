@@ -30,11 +30,11 @@ public class AIDLActivity extends AppCompatActivity {
         findViewById(R.id.bind).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AIDLActivity.this, MyAIDLService.class);
+//                Intent intent = new Intent(AIDLActivity.this, MyAIDLService.class);
 
-//                Intent intent = new Intent();
-//                intent.setAction("com.ysl.myandroidbase.MyAIDLService");
-//                intent.setPackage("com.ysl.myandroidbaseserver");
+                Intent intent = new Intent();
+                intent.setAction("com.ysl.myandroidbase.MyAIDLService");
+                intent.setPackage("com.ysl.myandroidbaseserver");
                 bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
             }
         });
