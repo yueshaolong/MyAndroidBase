@@ -35,6 +35,7 @@ public class AIDLActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setAction("com.ysl.myandroidbase.MyAIDLService");
                 intent.setPackage("com.ysl.myandroidbaseserver");
+//                intent.setComponent(new ComponentName("com.ysl.myandroidbaseserver", "com.ysl.myandroidbase.MyAIDLService"));
                 bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
             }
         });

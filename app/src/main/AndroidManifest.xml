@@ -41,11 +41,11 @@
         </activity>
         <activity android:name="com.ysl.dagger2.view.SingletonTestActivity"/>
 
-        <service
+        <!--<service
             android:name="com.ysl.myaidl.bean.MyAIDLService"
             android:enabled="true"
             android:exported="true"
-            android:process=":remote" />
+            android:process=":remote" />-->
 
         <activity android:name=".activity.WebViewActivity"></activity>
         <activity android:name=".handler.HandleActivity">
