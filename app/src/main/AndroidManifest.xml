@@ -33,11 +33,7 @@
         </activity>
 
         <activity android:name="com.ysl.dagger2.view.LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.ysl.dagger2.view.SingletonTestActivity"/>
 
@@ -74,7 +70,13 @@
         <activity android:name="com.ysl.hookskin.SkinActivity">
         </activity>
         <activity android:name="com.ysl.hookskin.HookActivity">
+        </activity>
+        <activity android:name="com.ysl.touchlisten.TouchActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
