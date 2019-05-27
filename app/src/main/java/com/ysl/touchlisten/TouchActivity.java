@@ -20,15 +20,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TouchActivity extends AppCompatActivity {
-//    @BindView(R.id.vp)
-//    ViewPager viewPager;
-    @BindView(R.id.lv)
-    ListView listView;
+    @BindView(R.id.vp)
+    ViewPager viewPager;
+//    @BindView(R.id.lv)
+//    ListView listView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.touch_activity2);
+        setContentView(R.layout.touch_activity);
         ButterKnife.bind(this);
 
         String[] strings = new String[100];
@@ -36,10 +36,10 @@ public class TouchActivity extends AppCompatActivity {
             strings[i] = i+"";
         }
 
-        listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, strings));
+//        listView.setAdapter(new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1, strings));
 
-        /*MyListView listview1 = new MyListView(this);
+        MyListView listview1 = new MyListView(this);
         MyListView listview2 = new MyListView(this);
         MyListView listview3 = new MyListView(this);
 
@@ -78,6 +78,6 @@ public class TouchActivity extends AppCompatActivity {
             public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
                 container.removeView((View) object);
             }
-        });*/
+        });
     }
 }
