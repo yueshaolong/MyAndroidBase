@@ -42,6 +42,7 @@ public class MyListView extends ListView {
                     getParent().requestDisallowInterceptTouchEvent(false);
                 }
                 break;
+            default:
         }
         return super.dispatchTouchEvent(ev);
     }
