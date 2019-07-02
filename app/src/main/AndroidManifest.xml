@@ -73,9 +73,10 @@
         <activity android:name="com.ysl.hookskin.HookActivity">
         </activity>
         <activity android:name="com.ysl.touchlisten.TouchActivity">
-
         </activity>
         <activity android:name="com.ysl.windowmanager.WindowActivity">
+        </activity>
+        <activity android:name=".myview.TextViewGroupActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
