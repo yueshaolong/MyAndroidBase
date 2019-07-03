@@ -77,6 +77,8 @@
         <activity android:name="com.ysl.windowmanager.WindowActivity">
         </activity>
         <activity android:name=".myview.TextViewGroupActivity">
+        </activity>
+        <activity android:name=".myview.FlowLayoutActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

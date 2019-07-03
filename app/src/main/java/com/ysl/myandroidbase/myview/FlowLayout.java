@@ -25,10 +25,7 @@ public class FlowLayout extends ViewGroup {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    int flowLayoutWidth = 0;
-    int flowLayoutHeight = 0;
-//    int currWidth = 0;
-//    int currHeight = 0;
+
     List<RowView> rowViews = new ArrayList<>();
 
     @Override
@@ -40,7 +37,8 @@ public class FlowLayout extends ViewGroup {
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
         //3. 把上一步确定的限制信息，传递给每一个子View，然后子View开始measure自己的尺寸
         int childCount = getChildCount();
-        RowView rowView = new RowView();
+        RowView rowView = null;
+        rowViews.clear();//因为onMeasure方法会执行多次，这里必须做清理
         for (int i = 0; i < childCount; i++) {
             View child = getChildAt(i);
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
@@ -48,18 +46,20 @@ public class FlowLayout extends ViewGroup {
             int childHeight = child.getMeasuredHeight();
 
             //判断是否要换行
-            if (rowView.rowWidth + childWidth > widthSize){
+            if (i == 0 || rowView.rowWidth + childWidth > widthSize){
                 rowView = new RowView();
-                rowView.views.add(child);
-                rowView.rowWidth = childWidth;
-                rowView.rowHeight = childHeight;
                 rowViews.add(rowView);
-                flowLayoutWidth = Math.max(flowLayoutWidth, rowView.rowWidth);
-                flowLayoutHeight += rowView.rowHeight;
             }
             rowView.views.add(child);
             rowView.rowWidth += childWidth;
             rowView.rowHeight = Math.max(rowView.rowHeight, childHeight);
+        }
+
+        int flowLayoutWidth = 0;
+        int flowLayoutHeight = 0;
+        for (RowView r : rowViews) {
+            flowLayoutWidth = Math.max(flowLayoutWidth, r.rowWidth);
+            flowLayoutHeight += r.rowHeight;
         }
 
         setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : flowLayoutWidth,
@@ -69,12 +69,33 @@ public class FlowLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
+        int top = 0;
+        for (RowView rowView : rowViews) {//循环行
+            int left = 0;
+            for (View v : rowView.views) {//循环每行的view
+                int measuredWidth = v.getMeasuredWidth();
+                int measuredHeight = v.getMeasuredHeight();
+                int right = left + measuredWidth;
+                int bottom = top + measuredHeight;
+                v.layout(left, top, right, bottom);
+                left += measuredWidth;
+            }
+            top += rowView.rowHeight;
+        }
     }
 
     private class RowView{
         List<View> views = new ArrayList<>();
         int rowWidth = 0;
         int rowHeight = 0;
+
+        @Override
+        public String toString() {
+            return "RowView{" +
+                    "views=" + views.size() +
+                    ", rowWidth=" + rowWidth +
+                    ", rowHeight=" + rowHeight +
+                    '}';
+        }
     }
 }
