@@ -44,22 +44,41 @@ public class FlowLayout extends ViewGroup {
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
             int childWidth = child.getMeasuredWidth();
             int childHeight = child.getMeasuredHeight();
+            MarginLayoutParams marginLayoutParams = (MarginLayoutParams)child.getLayoutParams();
+            childWidth += 30;
 
             //判断是否要换行
             if (i == 0 || rowView.rowWidth + childWidth > widthSize){
+                if (rowView != null && rowView.views.size() == 1
+                        && rowView.views.get(0).getLayoutParams().height == LayoutParams.MATCH_PARENT
+                        && rowView.views.get(0).getLayoutParams().width == LayoutParams.MATCH_PARENT){
+                    rowView.rowHeight = 150;
+                }
                 rowView = new RowView();
                 rowViews.add(rowView);
             }
             rowView.views.add(child);
             rowView.rowWidth += childWidth;
-            rowView.rowHeight = Math.max(rowView.rowHeight, childHeight);
+            if (child.getLayoutParams().height != LayoutParams.MATCH_PARENT) {
+                rowView.rowHeight = Math.max(rowView.rowHeight, childHeight);
+            }
+        }
+
+        //对高度为MATCH_PARENT的再测量一次
+        for (RowView r : rowViews) {
+            for (View v : r.views) {
+                if (v.getLayoutParams().height == LayoutParams.MATCH_PARENT) {
+                    v.measure(getChildMeasureSpec(widthMeasureSpec, 0, v.getLayoutParams().width),
+                            getChildMeasureSpec(heightMeasureSpec, 0, r.rowHeight));
+                }
+            }
         }
 
         int flowLayoutWidth = 0;
         int flowLayoutHeight = 0;
         for (RowView r : rowViews) {
             flowLayoutWidth = Math.max(flowLayoutWidth, r.rowWidth);
-            flowLayoutHeight += r.rowHeight;
+            flowLayoutHeight += (r.rowHeight + 30);
         }
 
         setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : flowLayoutWidth,
@@ -75,12 +94,24 @@ public class FlowLayout extends ViewGroup {
             for (View v : rowView.views) {//循环每行的view
                 int measuredWidth = v.getMeasuredWidth();
                 int measuredHeight = v.getMeasuredHeight();
+                MarginLayoutParams marginLayoutParams = (MarginLayoutParams)v.getLayoutParams();
+                int l1 = marginLayoutParams.leftMargin;
+                int r1 = marginLayoutParams.rightMargin;
+                int t1 = marginLayoutParams.topMargin;
+                int b1 = marginLayoutParams.bottomMargin;
+
+                l1 = 0;
+                r1 = 30;
+                t1 = 0;
+                b1 = 10;
+
+                left += l1;
                 int right = left + measuredWidth;
                 int bottom = top + measuredHeight;
                 v.layout(left, top, right, bottom);
-                left += measuredWidth;
+                left += (measuredWidth + r1);
             }
-            top += rowView.rowHeight;
+            top += (rowView.rowHeight + 30);
         }
     }
 
@@ -97,5 +128,10 @@ public class FlowLayout extends ViewGroup {
                     ", rowHeight=" + rowHeight +
                     '}';
         }
+    }
+
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new MarginLayoutParams(getContext(), attrs);
     }
 }

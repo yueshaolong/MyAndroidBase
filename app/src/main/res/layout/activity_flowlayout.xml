@@ -5,7 +5,8 @@
 
 <com.ysl.myandroidbase.myview.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/GRAY">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
@@ -25,14 +26,14 @@
         android:gravity="center"
         android:text="第3个view发v步伐加快"/>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:background="@color/GREEN"
+        android:background="@color/RED"
         android:gravity="center"
         android:text="第4个view"/>
     <TextView
         android:layout_width="100dp"
-        android:layout_height="match_parent"
+        android:layout_height="50dp"
         android:background="@color/GREEN"
         android:gravity="center"
         android:text="第7个viewfjdskfeif"/>
@@ -177,7 +178,7 @@
         android:gravity="center"
         android:text="第4个view"/>
     <TextView
-        android:layout_width="400dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:background="@color/colorAccent"
         android:gravity="center"

@@ -57,7 +57,7 @@ public class MyViewGroup extends ViewGroup {
             MarginLayoutParams marginLayoutParams = (MarginLayoutParams)childView.getLayoutParams();
             //获取子view的宽高
             if (i < 2) {//上面的宽度
-                widthS +=  childViewWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
+                widthS += childViewWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
             } else {//下面的宽度
                 widthX += childViewWidth + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
             }
