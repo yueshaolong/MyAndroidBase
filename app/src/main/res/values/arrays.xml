@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="arr_tab_indicator">
+        <item>首页</item>
+        <item>聊天</item>
+        <item>朋友圈</item>
+        <item>发现</item>
+        <item>我</item>
+    </string-array>
+</resources>
