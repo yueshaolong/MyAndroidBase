@@ -2,13 +2,24 @@ package com.ysl.myandroidbase.myview;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.view.ViewConfigurationCompat;
+
 public class FlowLayout extends ViewGroup {
+    private static final String TAG = "FlowLayout";
+    private int flowLayoutHeight;//此自定义控件的真正高度
+    private int heightSize;//父类能给的最大高度
+    private int scaledPagingTouchSlop;
+    private boolean scrollable;
+
     public FlowLayout(Context context) {
         super(context);
     }
@@ -19,6 +30,9 @@ public class FlowLayout extends ViewGroup {
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+        //获取最小滑动距离
+        scaledPagingTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(viewConfiguration);
     }
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -34,7 +48,7 @@ public class FlowLayout extends ViewGroup {
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        heightSize = MeasureSpec.getSize(heightMeasureSpec);
         //3. 把上一步确定的限制信息，传递给每一个子View，然后子View开始measure自己的尺寸
         int childCount = getChildCount();
         RowView rowView = null;
@@ -75,11 +89,13 @@ public class FlowLayout extends ViewGroup {
         }
 
         int flowLayoutWidth = 0;
-        int flowLayoutHeight = 0;
+        flowLayoutHeight = 0;
         for (RowView r : rowViews) {
             flowLayoutWidth = Math.max(flowLayoutWidth, r.rowWidth);
             flowLayoutHeight += (r.rowHeight + 30);
         }
+
+        scrollable = flowLayoutHeight > heightSize;
 
         setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : flowLayoutWidth,
                 heightMode == MeasureSpec.EXACTLY ? heightSize : flowLayoutHeight);
@@ -133,5 +149,82 @@ public class FlowLayout extends ViewGroup {
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
+    }
+
+    float lastX = 0;
+    float lastY = 0;
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {//一个down事件，多个move事件
+        Log.i(TAG, "onInterceptTouchEvent: "+ ev.getAction());
+        boolean intercept = false;
+        float x = ev.getX();
+        float y = ev.getY();
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                lastX = x;
+                lastY = y;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //move的时候，判断和上一次的距离，大于抖动距离了，认为是在滑动，拦截事件
+                float dx = x - lastX;
+                float dy = y - lastY;
+                if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > scaledPagingTouchSlop){
+                    intercept = true;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                break;
+        }
+        lastX = x;
+        lastY = y;
+
+        return intercept;
+    }
+    float mLastY;
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.i(TAG, "onTouchEvent: "+ event.getAction());
+
+        if (!scrollable){
+            return super.onTouchEvent(event);
+        }
+
+        float currY = event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mLastY = currY;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //相邻两个事件滑动的距离
+                float dy = mLastY - currY;
+
+                /*//使用scrollBy
+                int scrollY = (int) dy + getScrollY();
+                if (scrollY < 0){
+                    scrollY = 0;
+                }
+                if (scrollY > flowLayoutHeight - heightSize){
+                    scrollY = flowLayoutHeight - heightSize;
+                }
+                dy = scrollY - getScrollY();
+                scrollBy(0, (int) dy);*/
+
+                //使用scrollTo
+                int scrollY = (int) dy + getScrollY();
+                if (scrollY < 0){
+                    scrollY = 0;
+                }
+                if (scrollY > flowLayoutHeight - heightSize){
+                    scrollY = flowLayoutHeight - heightSize;
+                }
+                scrollTo(0, scrollY);
+                break;
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_CANCEL:
+                break;
+        }
+        mLastY = currY;
+        return super.onTouchEvent(event);
     }
 }
