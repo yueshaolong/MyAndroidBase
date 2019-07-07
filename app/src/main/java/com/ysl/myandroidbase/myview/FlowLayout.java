@@ -4,9 +4,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
+import android.widget.OverScroller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +21,18 @@ public class FlowLayout extends ViewGroup {
     private int heightSize;//父类能给的最大高度
     private int scaledPagingTouchSlop;
     private boolean scrollable;
+    private OverScroller overScroller;
+    private int scaledMinimumFlingVelocity;
+    private int scaledMaximumFlingVelocity;
+    private int scaledOverscrollDistance;
+    private VelocityTracker velocityTracker;
 
     public FlowLayout(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public FlowLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -33,12 +40,12 @@ public class FlowLayout extends ViewGroup {
         ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
         //获取最小滑动距离
         scaledPagingTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(viewConfiguration);
+        //初始化scroller
+        overScroller = new OverScroller(context);
+        scaledMinimumFlingVelocity = viewConfiguration.getScaledMinimumFlingVelocity();
+        scaledMaximumFlingVelocity = viewConfiguration.getScaledMaximumFlingVelocity();
+        scaledOverscrollDistance = viewConfiguration.getScaledOverscrollDistance();
     }
-
-    public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-    }
-
 
     List<RowView> rowViews = new ArrayList<>();
 
@@ -190,9 +197,17 @@ public class FlowLayout extends ViewGroup {
             return super.onTouchEvent(event);
         }
 
+        if (velocityTracker == null) {
+            velocityTracker = VelocityTracker.obtain();
+        }
+        velocityTracker.addMovement(event);
+
         float currY = event.getY();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                if (!overScroller.isFinished()) {
+                    overScroller.abortAnimation();
+                }
                 mLastY = currY;
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -210,7 +225,7 @@ public class FlowLayout extends ViewGroup {
                 dy = scrollY - getScrollY();
                 scrollBy(0, (int) dy);*/
 
-                //使用scrollTo
+                /*//使用scrollTo
                 int scrollY = (int) dy + getScrollY();
                 if (scrollY < 0){
                     scrollY = 0;
@@ -218,13 +233,46 @@ public class FlowLayout extends ViewGroup {
                 if (scrollY > flowLayoutHeight - heightSize){
                     scrollY = flowLayoutHeight - heightSize;
                 }
-                scrollTo(0, scrollY);
+                scrollTo(0, scrollY);*/
+
+                overScroller.startScroll(0, overScroller.getFinalY(), 0, (int) dy);//mCurrY = oldScrollY + dy*scale;
+                invalidate();
+
                 break;
             case MotionEvent.ACTION_UP:
+                velocityTracker.computeCurrentVelocity(1000, scaledMaximumFlingVelocity);
+
+                int yVelocity = (int) velocityTracker.getYVelocity();
+                if (Math.abs(yVelocity) > scaledMinimumFlingVelocity){
+                    fling(-yVelocity);
+                }else if (overScroller.springBack(getScrollX(), getScrollY(), 0, 0,
+                        0, (flowLayoutHeight - heightSize))){
+                    postInvalidateOnAnimation();
+                }
+                break;
             case MotionEvent.ACTION_CANCEL:
                 break;
         }
         mLastY = currY;
         return super.onTouchEvent(event);
+    }
+    public void fling(int velocityY) {
+        if (getChildCount() > 0) {
+            int height = heightSize;
+            int bottom = flowLayoutHeight;
+
+            overScroller.fling(getScrollX(), getScrollY(), 0, velocityY, 0, 0, 0,
+                    Math.max(0, bottom - height), 0, height / 2);
+
+            postInvalidateOnAnimation();
+        }
+    }
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        if (overScroller.computeScrollOffset()){
+            scrollTo(0, overScroller.getCurrY());
+            postInvalidate();
+        }
     }
 }
