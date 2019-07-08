@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">MyAndroidBase</string>
-    <string name="bu">主页</string>
+    <string name="home">主页</string>
 </resources>

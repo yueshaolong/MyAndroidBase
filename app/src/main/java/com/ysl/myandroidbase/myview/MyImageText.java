@@ -11,12 +11,14 @@ import android.graphics.Rect;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.ysl.myandroidbase.R;
 
 public class MyImageText extends View {
 
+    private static final String TAG ="MyImageText";
     private static final int IMAGE_SCALE_FITXY = 0;
     private static final int IMAGE_SCALE_CENTER = 1;
     private String text;
@@ -29,6 +31,7 @@ public class MyImageText extends View {
     private Rect rect;
     private int mWidth = 0;
     private int mHeight = 0;
+    private int imageId;
 
     public MyImageText(Context context) {
         this(context, null);
@@ -45,9 +48,13 @@ public class MyImageText extends View {
         text = ta.getString(R.styleable.MyImageText_text);
         textColor = ta.getColor(R.styleable.MyImageText_textColor, Color.BLACK);
         textSize = ta.getDimensionPixelSize(R.styleable.MyImageText_textSize, 16);
-        bitmap = BitmapFactory.decodeResource(getResources(), ta.getResourceId(R.styleable.MyImageText_image, R.drawable.girl));
+        imageId = ta.getResourceId(R.styleable.MyImageText_image, R.drawable.girl);
+        bitmap = BitmapFactory.decodeResource(getResources(), imageId);
         imageScaleType = ta.getInt(R.styleable.MyImageText_imageScaleType, 0);
         ta.recycle();  //注意回收
+
+        Log.i(TAG, "MyImageText: text" + text);
+        Log.i(TAG, "MyImageText: imageId" + imageId);
 
         rect = new Rect();
         mPaint = new Paint();
@@ -110,10 +117,11 @@ public class MyImageText extends View {
             TextPaint paint = new TextPaint(mPaint);
             String msg = TextUtils.ellipsize(text, paint, (float) mWidth - getPaddingLeft() - getPaddingRight(),
                     TextUtils.TruncateAt.END).toString();
-            canvas.drawText(msg, getPaddingLeft(), mHeight - getPaddingBottom(), mPaint);
+            canvas.drawText(msg, getPaddingLeft(), mHeight - getPaddingBottom() - 10, mPaint);
         } else {
             //正常情况，将字体居中
-            canvas.drawText(text, mWidth / 2 - mTextBound.width() * 1.0f / 2, mHeight - getPaddingBottom(), mPaint);
+            canvas.drawText(text, mWidth / 2 - mTextBound.width() * 1.0f / 2,
+                    mHeight - getPaddingBottom() - 10, mPaint);
         }
         //取消使用掉的快
         rect.bottom -= mTextBound.height();
