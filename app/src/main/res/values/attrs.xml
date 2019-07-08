@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="MyImageText">
+        <attr name="text" format="string" />
+        <attr name="textSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="image" format="reference" />
+        <attr name="imageScaleType">
+            <enum name="fillXY" value="0"/>
+            <enum name="center" value="1"/>
+        </attr>
+    </declare-styleable>
+
     <declare-styleable name="MyImageView">
         <attr name="radius" />
         <attr name="width" />

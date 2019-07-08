@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ivtv="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.ysl.myandroidbase.myview.MyImageText
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        ivtv:text="@string/bu"
+        ivtv:textColor="@color/RED"
+        ivtv:textSize="16sp"
+        ivtv:image="@mipmap/home_pre"
+        ivtv:imageScaleType="fillXY"
+        ivtv:layout_constraintTop_toTopOf="parent"
+        ivtv:layout_constraintBottom_toBottomOf="parent"
+        ivtv:layout_constraintLeft_toLeftOf="parent"
+        ivtv:layout_constraintRight_toRightOf="parent"
+        android:paddingBottom="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,6 +51,7 @@
         <activity android:name=".myview.MyViewActivity">
         </activity>
         <activity android:name=".myview.MyViewGroupActivity">
+
         </activity>
         <activity android:name=".myview.MyDragViewActivity">
         </activity>
@@ -79,13 +80,16 @@
         <activity android:name=".myview.TextViewGroupActivity">
         </activity>
         <activity android:name=".myview.FlowLayoutActivity">
+
+        </activity>
+        <activity android:name=".myview.FragmentTabHostActivity">
+        </activity>
+        <activity android:name=".myview.MyImageTextActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".myview.FragmentTabHostActivity">
         </activity>
     </application>
 
