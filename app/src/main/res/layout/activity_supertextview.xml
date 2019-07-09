@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sLeftTopTextString="lefttop"
+        app:sLeftTextString="left"
+        app:sLeftBottomTextString="leftbottom"
+        app:sCenterTopTextString="centertop"
+        app:sCenterTextString="center"
+        app:sCenterBottomTextString="centerbottom"
+        app:sRightTopTextString="righttop"
+        app:sRightTextString="right"
+        app:sRightBottomTextString="rightbottom"
+
+        app:sCenterViewGravity="center"
+        app:sLeftViewGravity="left_center"
+        app:sRightViewGravity="right_center"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:sLeftTextString="已巡检"
+        app:sCenterTextString="999"
+        app:sRightTextString="次"
+        app:sCenterTextSize="20dp"
+        app:sCenterTextColor="@color/RED"
+
+        app:sLeftViewMarginLeft="140dp"
+        app:sRightViewMarginRight="170dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv3"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+
+        app:sCenterTextString="扫一扫"
+        app:sCenterTextSize="20dp"
+        app:sCenterTextColor="@color/RED"
+
+        app:sUseShape="true"
+        app:sShapeStrokeWidth="2dp"
+        app:sShapeSolidColor="@color/GREEN"
+        app:sShapeStrokeColor="@color/GREEN"
+        app:sShapeCornersRadius="8dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:sLeftTopTextString="lefttop"
+        app:sLeftTextString="left"
+        app:sLeftBottomTextString="leftbottom"
+        app:sCenterTopTextString="centertop"
+        app:sCenterTextString="center"
+        app:sCenterBottomTextString="centerbottom"
+        app:sRightTopTextString="righttop"
+        app:sRightTextString="right"
+        app:sRightBottomTextString="rightbottom"
+
+        app:sLeftTextBackground="@color/RED"
+        app:sCenterTextBackground="@color/GREEN"
+        app:sRightTextBackground="@color/RED"
+
+        app:sCenterSpaceHeight="10dp"
+
+        app:sCenterViewGravity="center"
+        app:sLeftViewGravity="right_center"
+        app:sRightViewGravity="left_center"
+
+        app:sDividerLineType="both"
+        app:sDividerLineColor="@color/RED"
+        app:sDividerLineHeight="5dp"
+        app:sTopDividerLineMarginLR="30dp"
+        app:sBottomDividerLineMarginLeft="8dp"
+        app:sBottomDividerLineMarginRight="10dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv3"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        app:sCenterTextString="999"
+        app:sCenterTextSize="20dp"
+        app:sCenterTextColor="@color/RED"
+
+        app:sLeftTvDrawableLeft="@drawable/talkback2"
+        app:sLeftTvDrawableHeight="50dp"
+        app:sLeftTvDrawableWidth="50dp"
+
+        app:sRightTvDrawableRight="@drawable/girl"
+        app:sRightTvDrawableHeight="50dp"
+        app:sRightTvDrawableWidth="50dp"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv4"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        app:sCenterTextString="999"
+        app:sCenterTextSize="20dp"
+        app:sCenterTextColor="@color/RED"
+
+        app:sLeftTvDrawableLeft="@drawable/talkback2"
+        app:sLeftTvDrawableHeight="50dp"
+        app:sLeftTvDrawableWidth="50dp"
+
+        app:sRightViewType="checkbox"
+        app:sIsChecked="true"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv5"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/stv7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        app:sCenterTextString="999"
+        app:sCenterTextSize="20dp"
+        app:sCenterTextColor="@color/RED"
+
+        app:sLeftTvDrawableLeft="@drawable/talkback2"
+        app:sLeftTvDrawableHeight="50dp"
+        app:sLeftTvDrawableWidth="50dp"
+
+        app:sRightViewType="switchBtn"
+        app:sSwitchIsChecked="true"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stv6"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

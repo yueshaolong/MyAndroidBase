@@ -58,4 +58,6 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.22.1'
     compile('com.github.hotchemi:permissionsdispatcher:3.1.0')
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
+
+    implementation 'com.github.lygttpod:SuperTextView:2.2.4'
 }

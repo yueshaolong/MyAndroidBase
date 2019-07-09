@@ -85,6 +85,8 @@
         <activity android:name=".myview.FragmentTabHostActivity">
         </activity>
         <activity android:name=".myview.MyImageTextActivity">
+        </activity>
+        <activity android:name=".myview.SuperTextViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
