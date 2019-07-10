@@ -9,6 +9,11 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Util {
+    public static int dp2px(Context context, float dipValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dipValue * scale + 0.5f);
+    }
+
     public static String printTrack(){
         StackTraceElement[] st = Thread.currentThread().getStackTrace();
         if(st==null){

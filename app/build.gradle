@@ -60,4 +60,5 @@ dependencies {
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:3.1.0'
 
     implementation 'com.github.lygttpod:SuperTextView:2.2.4'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

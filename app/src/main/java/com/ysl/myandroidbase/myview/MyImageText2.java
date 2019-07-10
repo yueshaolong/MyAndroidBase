@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ysl.myandroidbase.R;
+import com.ysl.myandroidbase.Util;
 
 public class MyImageText2 extends LinearLayout {
 
@@ -26,6 +27,9 @@ public class MyImageText2 extends LinearLayout {
     private int imageId;
     private ImageView iv;
     private TextView tv;
+    private int textSize;
+    private float imageWidth;
+    private float imageHeight;
 
     public MyImageText2(Context context) {
         this(context, null);
@@ -41,12 +45,14 @@ public class MyImageText2 extends LinearLayout {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.MyImageText);
         text = ta.getString(R.styleable.MyImageText_text);
         textColor = ta.getColor(R.styleable.MyImageText_textColor, Color.BLACK);
-//        textSize = ta.getDimensionPixelSize(R.styleable.MyImageText_textSize, 16);
+        textSize = ta.getDimensionPixelSize(R.styleable.MyImageText_textSize, 6);
+        imageWidth = ta.getDimension(R.styleable.MyImageText_imageWidth, 50);
+        imageHeight = ta.getDimension(R.styleable.MyImageText_imageHeight, 50);
         imageId = ta.getResourceId(R.styleable.MyImageText_image, R.drawable.girl);
         ta.recycle();  //注意回收
 
-        Log.i(TAG, "MyImageText: text" + text);
-        Log.i(TAG, "MyImageText: imageId" + imageId);
+        Log.i(TAG, "MyImageText: textSize" + textSize);
+        Log.i(TAG, "MyImageText: imageWidth" + imageWidth);
 
         init(context);
     }
@@ -56,11 +62,17 @@ public class MyImageText2 extends LinearLayout {
         iv = view.findViewById(R.id.iv);
         tv = view.findViewById(R.id.tv);
         iv.setImageResource(imageId);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                Util.dp2px(context, imageWidth),
+                Util.dp2px(context, imageHeight));
+        iv.setLayoutParams(params);
+        iv.setScaleType(ImageView.ScaleType.FIT_XY);//使图片充满控件大小
+//        iv.setMaxWidth(Util.dp2px(context, imageWidth));
+//        iv.setMaxHeight(Util.dp2px(context, imageHeight));
         tv.setText(text);
         tv.setTextColor(textColor);
+        tv.setTextSize(textSize);
 
-        int width = iv.getWidth();
-        Log.i(TAG, "init: "+width);
 
     }
 

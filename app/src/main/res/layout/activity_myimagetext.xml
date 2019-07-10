@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.ysl.myandroidbase.myview.MyImageText
+    <!--<com.ysl.myandroidbase.myview.MyImageText
         android:id="@+id/mtt"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -18,7 +18,7 @@
         ivtv:layout_constraintBottom_toBottomOf="parent"
         ivtv:layout_constraintLeft_toLeftOf="parent"
         ivtv:layout_constraintRight_toRightOf="parent"
-        />
+        />-->
 
     <com.ysl.myandroidbase.myview.MyImageText2
         android:id="@+id/mtt2"
@@ -30,6 +30,9 @@
         ivtv:image="@mipmap/home_pre"
         ivtv:text="@string/home"
         ivtv:textColor="@color/RED"
+        ivtv:textSize="4sp"
+        ivtv:imageWidth = "10dp"
+        ivtv:imageHeight = "10dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
