@@ -89,6 +89,8 @@
         <activity android:name=".myview.SuperTextViewActivity">
         </activity>
         <activity android:name=".myview.PieChartActivity">
+        </activity>
+        <activity android:name=".myview.BadgeViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
