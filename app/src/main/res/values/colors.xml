@@ -6,4 +6,5 @@
     <color name="RED">#ff0000</color>
     <color name="GREEN">#00FF00</color>
     <color name="GRAY">#C0C3C0</color>
+    <color name="font_color_sub">#091609</color>
 </resources>
