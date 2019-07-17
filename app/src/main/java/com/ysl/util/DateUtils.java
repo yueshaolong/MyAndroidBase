@@ -2,10 +2,15 @@ package com.ysl.util;
 
 import android.text.format.DateFormat;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateUtils {
     public static final String formatPattern = "yyyy-MM-dd";
@@ -107,7 +112,116 @@ public class DateUtils {
         return simpleDateFormat.format(date);
     }
 
+    /*将int转为低字节在前，高字节在后的byte数组
+    b[0] = 11111111(0xff) & 01100001
+    b[1] = 11111111(0xff) & (n >> 8)00000000
+    b[2] = 11111111(0xff) & (n >> 8)00000000
+    b[3] = 11111111(0xff) & (n >> 8)00000000
+    */
+    public static byte[] IntToByteArray(int n) {
+        byte[] b = new byte[4];
+        b[0] = (byte) (n & 0xff);
+        b[1] = (byte) (n >> 8 & 0xff);
+        b[2] = (byte) (n >> 16 & 0xff);
+        b[3] = (byte) (n >> 24 & 0xff);
+        return b;
+    }
+    //将低字节在前转为int，高字节在后的byte数组(与IntToByteArray1想对应)
+    public static int ByteArrayToInt(byte[] bArr) {
+        if(bArr.length!=4){
+            return -1;
+        }
+        return (int) ((((bArr[3] & 0xff) << 24)
+                | ((bArr[2] & 0xff) << 16)
+                | ((bArr[1] & 0xff) << 8)
+                | ((bArr[0] & 0xff) << 0)));
+    }
+    /*将int转为低字节在后，高字节在前的byte数组
+    b[0] = 11111111(0xff) & 01100001
+    b[1] = 11111111(0xff) & 00000000
+    b[2] = 11111111(0xff) & 00000000
+    b[3] = 11111111(0xff) & 00000000
+    */
+    public static byte[] IntToByteArray2(int value) {
+        byte[] src = new byte[4];
+        src[0] = (byte) ((value>>24) & 0xFF);
+        src[1] = (byte) ((value>>16)& 0xFF);
+        src[2] = (byte) ((value>>8)&0xFF);
+        src[3] = (byte) (value & 0xFF);
+        return src;
+    }
+    //将高字节在前转为int，低字节在后的byte数组(与IntToByteArray2想对应)
+    public static int ByteArrayToInt2(byte[] bArr) {
+        if(bArr.length!=4){
+            return -1;
+        }
+        return (int) ((((bArr[0] & 0xff) << 24)
+                | ((bArr[1] & 0xff) << 16)
+                | ((bArr[2] & 0xff) << 8)
+                | ((bArr[3] & 0xff) << 0)));
+    }
+
+
+    /**
+     * 将byte数组转化成String,为了支持中文，转化时用GBK编码方式
+     */
+    public static String ByteArrayToString(byte[] valArr,int maxLen) {
+        String result=null;
+        int index = 0;
+        while(index < valArr.length && index < maxLen) {
+            if(valArr[index] == 0) {
+                break;
+            }
+            index++;
+        }
+        byte[] temp = new byte[index];
+        System.arraycopy(valArr, 0, temp, 0, index);
+        try {
+            result= new String(temp,"GBK");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+    /**
+     * 将String转化为byte,为了支持中文，转化时用GBK编码方式
+     */
+    public static byte[] StringToByteArray(String str){
+        byte[] temp = null;
+        try {
+            temp = str.getBytes("GBK");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return temp;
+    }
+
     public static void main(String[] args) {
-        System.out.println(get7DayAgoTime());
+//        System.out.println(get7DayAgoTime());
+
+//        System.out.println(Arrays.toString(IntToByteArray(2345)));
+//        System.out.println(ByteArrayToInt(IntToByteArray(2345)));
+//
+//        System.out.println(Arrays.toString(IntToByteArray2(6789)));
+//        System.out.println(ByteArrayToInt2(IntToByteArray2(6789)));
+//
+//        System.out.println(Arrays.toString(StringToByteArray("sdfhweui")));
+//        System.out.println(ByteArrayToString(StringToByteArray("sdfhweui"), StringToByteArray("sdfhweui").length));
+
+//        double d = 1.239;
+//        double d = 1.2345;
+        double d = 1.2355;
+//        BigDecimal bg = new BigDecimal(d).setScale(2, BigDecimal.ROUND_HALF_EVEN);
+//        System.out.println(bg);
+
+//        System.out.println(Math.round(d * 100)/100.0);
+
+//        System.out.println(Double.valueOf(new DecimalFormat("#.##").format(d)));
+
+//        System.out.println(String.format(Locale.getDefault(),"%.2f", d));
+
+//        System.out.println(Double.parseDouble(String.format("%.2f", d)));
+
+        System.out.println(String.format(Locale.getDefault(),"%.2f", Double.valueOf("1.2467")));
     }
 }
