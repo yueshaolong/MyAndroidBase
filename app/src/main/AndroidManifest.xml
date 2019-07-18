@@ -91,6 +91,8 @@
         <activity android:name=".myview.PieChartActivity">
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
+        </activity>
+        <activity android:name=".myview.BannerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
