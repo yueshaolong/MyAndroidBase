@@ -93,6 +93,9 @@
         <activity android:name=".myview.BadgeViewActivity">
         </activity>
         <activity android:name=".myview.BannerActivity">
+        </activity>
+        <activity android:name=".myview.ToolbarActivity"
+            android:theme="@style/AppTheme1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
