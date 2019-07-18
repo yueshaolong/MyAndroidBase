@@ -4,7 +4,7 @@
               android:orientation="vertical"
     android:layout_height="match_parent">-->
 
-<com.ysl.myandroidbase.myview.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ysl.myandroidbase.myview.zidingyiview.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
@@ -191,7 +191,7 @@
         android:background="@color/RED"
         android:gravity="center"
         android:text="第6个vie对方被人给别v就w"/>
-</com.ysl.myandroidbase.myview.FlowLayout>
+</com.ysl.myandroidbase.myview.zidingyiview.FlowLayout>
 
 
 <!--</LinearLayout>-->

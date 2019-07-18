@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.fragmenttabhost;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTabHost;
 
 import com.ysl.myandroidbase.R;
 

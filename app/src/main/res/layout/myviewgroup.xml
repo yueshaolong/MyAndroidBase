@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ysl.myandroidbase.myview.MyViewGroup
+<com.ysl.myandroidbase.myview.zidingyiview.MyViewGroup
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/colorAccent"
     android:layout_width="match_parent"
@@ -52,4 +52,4 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
-</com.ysl.myandroidbase.myview.MyViewGroup>
+</com.ysl.myandroidbase.myview.zidingyiview.MyViewGroup>

@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.fragmenttabhost;
 
 import android.content.Context;
 import android.os.Bundle;

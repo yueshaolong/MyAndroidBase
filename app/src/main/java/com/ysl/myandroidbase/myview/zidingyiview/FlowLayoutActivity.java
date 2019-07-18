@@ -1,16 +1,16 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.zidingyiview;
 
 import android.os.Bundle;
-
-import com.ysl.myandroidbase.R;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class TextViewGroupActivity extends AppCompatActivity {
+import com.ysl.myandroidbase.R;
+
+public class FlowLayoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_textviewgroup);
+        setContentView(R.layout.activity_flowlayout);
     }
 }

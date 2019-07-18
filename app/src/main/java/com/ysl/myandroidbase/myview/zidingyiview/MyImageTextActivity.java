@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.zidingyiview;
 
 import android.os.Bundle;
 
@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.myandroidbase.R;
 
-public class FlowLayoutActivity extends AppCompatActivity {
+public class MyImageTextActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_flowlayout);
+        setContentView(R.layout.activity_myimagetext);
     }
 }

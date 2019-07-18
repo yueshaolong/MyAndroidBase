@@ -48,12 +48,12 @@
         <activity android:name=".handler.HandleActivity">
 
         </activity>
-        <activity android:name=".myview.MyViewActivity">
+        <activity android:name=".myview.zidingyiview.MyViewActivity">
         </activity>
-        <activity android:name=".myview.MyViewGroupActivity">
+        <activity android:name=".myview.zidingyiview.MyViewGroupActivity">
 
         </activity>
-        <activity android:name=".myview.MyDragViewActivity">
+        <activity android:name=".myview.zidingyiview.MyDragViewActivity">
         </activity>
         <activity android:name="com.ysl.eventbus.EventbusActivity">
 
@@ -77,14 +77,14 @@
         </activity>
         <activity android:name="com.ysl.windowmanager.WindowActivity">
         </activity>
-        <activity android:name=".myview.TextViewGroupActivity">
+        <activity android:name=".myview.zidingyiview.TextViewGroupActivity">
         </activity>
-        <activity android:name=".myview.FlowLayoutActivity">
+        <activity android:name=".myview.zidingyiview.FlowLayoutActivity">
 
         </activity>
-        <activity android:name=".myview.FragmentTabHostActivity">
+        <activity android:name=".myview.fragmenttabhost.FragmentTabHostActivity">
         </activity>
-        <activity android:name=".myview.MyImageTextActivity">
+        <activity android:name=".myview.zidingyiview.MyImageTextActivity">
         </activity>
         <activity android:name=".myview.SuperTextViewActivity">
         </activity>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<com.ysl.myandroidbase.myview.MyImageText
+    <!--<com.ysl.myandroidbase.myview.zidingyiview.MyImageText
         android:id="@+id/mtt"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -20,7 +20,7 @@
         ivtv:layout_constraintRight_toRightOf="parent"
         />-->
 
-    <com.ysl.myandroidbase.myview.MyImageText2
+    <com.ysl.myandroidbase.myview.zidingyiview.MyImageText2
         android:id="@+id/mtt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

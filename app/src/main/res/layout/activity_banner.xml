@@ -3,6 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Toolbar>
+
     <com.youth.banner.Banner
         android:id="@+id/ban1"
         android:layout_width="match_parent"
