@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardview"
+    android:layout_margin="@dimen/dp_10"
+    app:cardCornerRadius="@dimen/dp_10"
+    app:cardBackgroundColor="@color/white"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="false"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    >
+
+    <!--cardUseCompatPadding cardUseCompatPadding属性，设置为true（默认值为false），让CardView在不同系统中使用相同的padding值。
+    cardUseCompatPadding CardView不会裁剪内容元素以满足圆角需求，而是使用添加padding的替代方案，从而使内容元素不会覆盖CardView的圆角。
+    默认值为true,自动添加padding.-->
+    <!--foreground clickable focusable 实现点击时的涟漪效果-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:src="@mipmap/mm"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_16"
+            android:text="微信公众号：安卓笔记侠"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_16"
+            android:layout_alignBottom="@id/iv_cover"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_16"
+            android:layout_marginRight="@dimen/dp_16"
+            android:layout_marginTop="@dimen/dp_16"
+            android:lineSpacingMultiplier="1.2"
+            android:text="Android Developer's notes.\n和一个久经沙场的码农的喃喃自语。"
+            android:textColor="#757575"
+            android:textSize="@dimen/sp_14"
+            android:layout_below="@id/iv_cover"/>
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?borderlessButtonStyle"
+            android:text="SHARE"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#FF9800"
+            android:layout_below="@id/tv_content"
+            android:background="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_ex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="?borderlessButtonStyle"
+            android:text="EXPLORE"
+            android:textSize="@dimen/sp_16"
+            android:textColor="#FF9800"
+            android:layout_toRightOf="@id/btn_share"
+            android:layout_alignBaseline="@id/btn_share"
+            android:background="@color/white"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

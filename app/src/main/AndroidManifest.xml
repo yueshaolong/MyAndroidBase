@@ -96,6 +96,8 @@
         </activity>
         <activity android:name=".myview.ToolbarActivity"
             android:theme="@style/AppTheme1">
+        </activity>
+        <activity android:name=".myview.CardViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
