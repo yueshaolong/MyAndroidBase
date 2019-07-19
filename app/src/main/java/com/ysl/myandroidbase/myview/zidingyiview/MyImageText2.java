@@ -2,12 +2,7 @@ package com.ysl.myandroidbase.myview.zidingyiview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.ysl.myandroidbase.R;
-import com.ysl.myandroidbase.Util;
+import com.ysl.util.Util;
 
 public class MyImageText2 extends LinearLayout {
 

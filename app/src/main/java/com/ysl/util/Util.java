@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase;
+package com.ysl.util;
 
 import android.annotation.SuppressLint;
 import android.app.AppOpsManager;
