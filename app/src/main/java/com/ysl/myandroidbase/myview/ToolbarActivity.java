@@ -1,5 +1,7 @@
 package com.ysl.myandroidbase.myview;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -25,5 +27,14 @@ public class ToolbarActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(view -> {
             Toast.makeText(this, "返回", Toast.LENGTH_SHORT).show();
         });
+
+        //透明状态栏效果
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+            decorView.setSystemUiVisibility(option);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+
+        }
     }
 }
