@@ -195,4 +195,6 @@ TroubleFra	//施工报备
 
 
 </string>
+    <string name="refreshing">下拉刷新</string>
+	<string name="network_err">网络异常</string>
 </resources>

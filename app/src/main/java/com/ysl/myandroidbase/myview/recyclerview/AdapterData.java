@@ -6,4 +6,5 @@ public class AdapterData {
     public AdapterData(String url) {
         this.url = url;
     }
+
 }
