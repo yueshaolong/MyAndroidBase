@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.mpandroidchart;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,30 +32,32 @@ public class PieChartActivity extends AppCompatActivity {
 
     private void showRingPieChart() {
 //设置每份所占数量
-//        List<PieEntry> yvals = new ArrayList<>();
-//        yvals.add(new PieEntry(10.0f, "本科"));
-//        yvals.add(new PieEntry(7.0f, "硕士"));
-//        yvals.add(new PieEntry(4.0f, "博士"));
-//        yvals.add(new PieEntry(5.0f, "大专"));
-//        yvals.add(new PieEntry(1.0f, "其他"));
+        List<PieEntry> yvals = new ArrayList<>();
+        yvals.add(new PieEntry(10.0f, "本科"));
+        yvals.add(new PieEntry(7.0f, "硕士"));
+        yvals.add(new PieEntry(4.0f, "博士"));
+        yvals.add(new PieEntry(5.0f, "大专"));
+        yvals.add(new PieEntry(1.0f, "其他"));
 // 设置每份的颜色
-//        List<Integer> colors = new ArrayList<>();
-//        colors.add(Color.parseColor("#6785f2"));
-//        colors.add(Color.parseColor("#675cf2"));
-//        colors.add(Color.parseColor("#496cef"));
-//        colors.add(Color.parseColor("#aa63fa"));
-//        colors.add(Color.parseColor("#f5a658"));
-
-        //设置每份所占数量
-        List<PieEntry> signInfo = new ArrayList<>();
-        signInfo.add(new PieEntry(10, "已签到"));
-        signInfo.add(new PieEntry(7, "缺勤"));
-        // 设置每份的颜色
         List<Integer> colors = new ArrayList<>();
-        colors.add(getResources().getColor(R.color.RED));
-        colors.add(getResources().getColor(R.color.GREEN));
+        colors.add(Color.parseColor("#6785f2"));
+        colors.add(Color.parseColor("#675cf2"));
+        colors.add(Color.parseColor("#496cef"));
+        colors.add(Color.parseColor("#aa63fa"));
+        colors.add(Color.parseColor("#f5a658"));
+
+//        //设置每份所占数量
+//        List<PieEntry> signInfo = new ArrayList<>();
+//        signInfo.add(new PieEntry(10, "已签到"));
+//        signInfo.add(new PieEntry(7, "缺勤"));
+//        // 设置每份的颜色
+//        List<Integer> colors = new ArrayList<>();
+//        colors.add(getResources().getColor(R.color.RED));
+//        colors.add(getResources().getColor(R.color.GREEN));
+
+
         PieChartManagger pieChartManagger=new PieChartManagger(pie_chat2);
-        pieChartManagger.showRingPieChart(signInfo,colors);
+        pieChartManagger.showRingPieChart(yvals,colors);
     }
 
     private void showhodlePieChart() {

@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.myview;
+package com.ysl.myandroidbase.myview.mpandroidchart;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -8,7 +8,11 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
+import com.github.mikephil.charting.formatter.DefaultValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.StackedValueFormatter;
 
 import java.util.List;
 
@@ -52,7 +56,7 @@ public class PieChartManagger {
         pieChart.setEntryLabelTypeface(Typeface.DEFAULT_BOLD); //描述文字的样式
 
         //图相对于上下左右的偏移
-//        pieChart.setExtraOffsets(20, 8, 75, 8);
+        pieChart.setExtraOffsets(0, 0, 0, 0);
         //图标的背景色
         pieChart.setBackgroundColor(Color.TRANSPARENT);
 //        设置pieChart图表转动阻力摩擦系数[0,1]
@@ -136,7 +140,7 @@ public class PieChartManagger {
         //填充每个区域的颜色
         dataset.setColors(colors);
         //是否在图上显示数值
-        dataset.setDrawValues(false);
+        dataset.setDrawValues(true);
 //        文字的大小
         dataset.setValueTextSize(14);
 //        文字的颜色
@@ -145,19 +149,19 @@ public class PieChartManagger {
         dataset.setValueTypeface(Typeface.DEFAULT_BOLD);
 
 //      当值位置为外边线时，表示线的前半段长度。
-//        dataset.setValueLinePart1Length(0.3f);
+        dataset.setValueLinePart1Length(0.3f);
 //      当值位置为外边线时，表示线的后半段长度。
-//        dataset.setValueLinePart2Length(0.3f);
+        dataset.setValueLinePart2Length(0.3f);
 //      当ValuePosits为OutsiDice时，指示偏移为切片大小的百分比
-//        dataset.setValueLinePart1OffsetPercentage(80f);
+        dataset.setValueLinePart1OffsetPercentage(80f);
         // 当值位置为外边线时，表示线的颜色。
-//        dataset.setValueLineColor(Color.parseColor("#a1a1a1"));
+        dataset.setValueLineColor(Color.parseColor("#a1a1a1"));
 //        设置Y值的位置是在圆内还是圆外
-//        dataset.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
+        dataset.setYValuePosition(PieDataSet.ValuePosition.OUTSIDE_SLICE);
 //        设置Y轴描述线和填充区域的颜色一致
-//        dataset.setUsingSliceColorAsValueLineColor(false);
+        dataset.setUsingSliceColorAsValueLineColor(false);
 //        设置每条之前的间隙
-//        dataset.setSliceSpace(0);
+        dataset.setSliceSpace(0);
 
         //设置饼状Item被选中时变化的距离
         dataset.setSelectionShift(5f);
