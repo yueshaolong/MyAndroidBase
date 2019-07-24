@@ -7,12 +7,14 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.tencent.mmkv.MMKV;
 import com.ysl.myandroidbase.R;
+import com.example.base.LogUtil;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,7 +28,7 @@ import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
 public class MMKVActivity extends AppCompatActivity {
-
+    private static final String TAG = "MMKVActivity";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +86,7 @@ public class MMKVActivity extends AppCompatActivity {
                 editor.putStringSet("string-set", set);
                 // commit() is not needed any more
                 //editor.commit();
-                System.out.println("keys:"+ Arrays.toString(preferences.allKeys()));
+                LogUtil.d(TAG,"keys:"+ Arrays.toString(preferences.allKeys()));
             }
         });
     }

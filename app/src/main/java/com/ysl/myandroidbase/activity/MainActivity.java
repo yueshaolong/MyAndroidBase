@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+import com.example.base.LogUtil;
 import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
 import com.ysl.myandroidbase.receiver.MyReceiver;
@@ -17,12 +18,11 @@ import com.ysl.myandroidbase.receiver.MyReceiver;
 public class MainActivity extends AppCompatActivity implements FragmentListener {
     public static final String TAG = "MainActivity";
     private MyReceiver myReceiver;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate is invoke  ");
+        LogUtil.d(TAG, "onCreate is invoke  ");
 
         /*myReceiver = new MyReceiver();
         IntentFilter intentFilter = new IntentFilter();

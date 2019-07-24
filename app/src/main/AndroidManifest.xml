@@ -89,11 +89,6 @@
         <activity android:name=".myview.SuperTextViewActivity">
         </activity>
         <activity android:name=".myview.mpandroidchart.PieChartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
         </activity>
@@ -105,7 +100,13 @@
         <activity android:name=".myview.CardViewActivity">
         </activity>
         <activity android:name=".myview.recyclerview.RecyclerViewActivity">
+        </activity>
+        <activity android:name=".activity.LogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
