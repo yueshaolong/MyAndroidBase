@@ -1,4 +1,4 @@
-package com.ysl.arouter;
+package com.ysl.modulea;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.ysl.myandroidbase.R;
 
-@Route(path="/arouter/ArouterActivity2")
+@Route(path="/modulea/ArouterActivity2")
 public class ArouterActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

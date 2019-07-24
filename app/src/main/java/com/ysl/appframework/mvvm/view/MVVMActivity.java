@@ -29,10 +29,14 @@ public class MVVMActivity extends AppCompatActivity{
         mSampleViewModel = new SampleViewModel(binding);
         mSampleViewModel.mViewDataBinding.setMvvmActivity(this);
 
-        button = findViewById(R.id.btn);
-        editText = findViewById(R.id.edt);
-        tvName = findViewById(R.id.tv_name);
-        tvAge = findViewById(R.id.tv_age);
+//        button = findViewById(R.id.btn);
+//        editText = findViewById(R.id.edt);
+//        tvName = findViewById(R.id.tv_name);
+//        tvAge = findViewById(R.id.tv_age);
+        button = binding.btn;
+        editText = binding.edt;
+        tvName = binding.tvName;
+        tvAge = binding.tvAge;
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
 
