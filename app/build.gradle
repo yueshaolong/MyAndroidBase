@@ -10,6 +10,12 @@ android {
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
     buildTypes {
         release {
@@ -68,6 +74,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'//图片加载框架
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'//recyclerview的万能adapter适配器
 
-    implementation project(path: ':base')
     implementation 'log4j:log4j:1.2.17'
+
+
+//    implementation 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    api project(path: ':base')
 }

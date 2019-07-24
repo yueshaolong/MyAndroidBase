@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
 import com.example.base.LoggerUtil;
