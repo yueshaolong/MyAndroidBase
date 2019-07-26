@@ -19,26 +19,73 @@ ext {
     dependVersion = [
         support : "28.0.0",
         junit : "4.12",
+        appcompat : "1.0.0",
         constraint : "1.1.3",
-        runner : "1.0.2",
         espresso_core: "3.0.2",
+        runner:"1.1.0",
+        espresso:"3.1.0",
+
         okhttp3 : "3.10.0",
         retrofit2 : "2.4.0",
-        eventbus : "3.1.1"
+        eventbus : "3.1.1",
+        leakcanary : "1.6.3",
+        mmkv : "1.0.18",
+        permissionsdispatcher : "3.1.0",
+        butterknife : "10.1.0",
+        dagger : "2.22.1",
+        SuperTextView : "2.2.4",
+        MPAndroidChart : "v3.1.0",
+        badgeview : "1.1.3",
+        banner : "1.4.10",
+        glide : "4.9.0",
+        BaseRecyclerViewAdapterHelper : "2.9.46",
+        lottie : "3.0.7",
+        androidlogginglog4j : "1.0.3",
+        log4j : "1.2.17",
+        arouterapi : "1.5.0",
+        aroutercompiler:"1.2.2",
     ]
     dependencies = [
             // ------------- Android -------------
         supportV4 : "com.android.support:support-v4:${dependVersion.support}",
-        appcompatV7: 'androidx.appcompat:appcompat:1.0.0',
-        constraint : 'androidx.constraintlayout:constraintlayout:1.1.3',
+        appcompatV7: "androidx.appcompat:appcompat:${dependVersion.appcompat}",
+        constraint : "androidx.constraintlayout:constraintlayout:${dependVersion.constraint}",
         design : "com.android.support:design:${dependVersion.support}",
             //------------- 测试 -------------
         junit : "junit:junit:${dependVersion.junit}",
-        runner : 'androidx.test:runner:1.1.0',
-        espresso : 'androidx.test.espresso:espresso-core:3.1.0',
-            // ------------- 网络请求 -------------
+        runner : "androidx.test:runner:${dependVersion.runner}",
+        espresso : "androidx.test.espresso:espresso-core:${dependVersion.espresso}",
+            // ------------- 第三方 -------------
+        androidlogginglog4j :"de.mindpipe.android:android-logging-log4j:${dependVersion.androidlogginglog4j}",
+        log4j :"log4j:log4j:${dependVersion.log4j}",
+
+        debugleakcanary : "com.squareup.leakcanary:leakcanary-android:${dependVersion.leakcanary}",
+        releaseleakcanary : "com.squareup.leakcanary:leakcanary-android-no-op:${dependVersion.leakcanary}",
+        debugleakcanaryfragment : "com.squareup.leakcanary:leakcanary-support-fragment:${dependVersion.leakcanary}",// Optional, if you use support library fragments:
+
+        permissionsdispatcher : "com.github.hotchemi:permissionsdispatcher:${dependVersion.permissionsdispatcher}",
+        permissionsdispatcherprocessor : "com.github.hotchemi:permissionsdispatcher-processor:${dependVersion.permissionsdispatcher}",
+
+        butterknife : "com.jakewharton:butterknife:${dependVersion.butterknife}",
+        butterknifeProcessor : "com.jakewharton:butterknife-compiler:${dependVersion.butterknife}",
+
+        dagger : "com.google.dagger:dagger:${dependVersion.dagger}",
+        daggerProcessor : "com.google.dagger:dagger-compiler:${dependVersion.dagger}",
+
+        arouter : "com.alibaba:arouter-api:${dependVersion.arouterapi}",
+        arouterProcessor : "com.alibaba:arouter-compiler:${dependVersion.aroutercompiler}",
+
+        mmkv : "com.tencent:mmkv:${dependVersion.mmkv}",
         okhttp : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp3}",
-            retrofit : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit2}",
-            eventbus : "org.greenrobot:eventbus:${dependVersion.eventbus}"
+        retrofit : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit2}",
+        eventbus : "org.greenrobot:eventbus:${dependVersion.eventbus}",
+        SuperTextView :"com.github.lygttpod:SuperTextView:${dependVersion.SuperTextView}",//文字框架
+        MPAndroidChart : "com.github.PhilJay:MPAndroidChart:${dependVersion.MPAndroidChart}",//图标框架
+        badgeview :"q.rorbin:badgeview:${dependVersion.badgeview}",//未读消息图标框架
+        banner :"com.youth.banner:banner:${dependVersion.banner}",//轮播图框架
+        glide :"com.github.bumptech.glide:glide:${dependVersion.glide}",//图片加载框架
+        BaseRecyclerViewAdapterHelper : "com.github.CymChad:BaseRecyclerViewAdapterHelper:${dependVersion.BaseRecyclerViewAdapterHelper}",//recyclerview的万能adapter适配器
+        lottie :"com.airbnb.android:lottie:${dependVersion.lottie}",//动画框架
+
     ]
 }

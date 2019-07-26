@@ -1,22 +1,28 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
 
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName : project.getName()]
+//            }
+//        }
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled rootProject.android.minifyDisabled
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -26,14 +32,16 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.constraint
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.junit
+    implementation rootProject.ext.dependencies.runner
+    implementation rootProject.ext.dependencies.espresso
 
-    implementation 'de.mindpipe.android:android-logging-log4j:1.0.3'
-    implementation 'log4j:log4j:1.2.17'
+    implementation rootProject.ext.dependencies.androidlogginglog4j
+    implementation rootProject.ext.dependencies.log4j
 
-    implementation 'com.alibaba:arouter-api:1.5.0'
-//    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+//    implementation rootProject.ext.dependencies.arouter
+//    annotationProcessor rootProject.ext.dependencies.arouterProcessor
 }
