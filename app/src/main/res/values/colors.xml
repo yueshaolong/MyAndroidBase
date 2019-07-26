@@ -7,4 +7,11 @@
     <color name="GREEN">#00FF00</color>
     <color name="GRAY">#C0C3C0</color>
     <color name="font_color_sub">#091609</color>
+    <color name="blue">#1b37d8</color>
+    <color name="yellow">#f2e037</color>
+    <color name="red">#ef190d</color>
+    <color name="green">#0def27</color>
+    <color name="black">#000000</color>
+    <color name="gray">#478d8a8a</color>
+    <color name="white">#ffffff</color>
 </resources>

@@ -189,12 +189,13 @@ MsgReportFra分以下两种：
 SpicalWorkFra  //特殊作业
 有3个fab;目前只实现了两个：特种作业，三类人员；specialUserAdapter，sanLeiUserAdapter
 TroubleFra	//施工报备
-
-
-
-
-
 </string>
     <string name="refreshing">下拉刷新</string>
 	<string name="network_err">网络异常</string>
+
+	<string name="title_home">Home</string>
+	<string name="title_dashboard">Dashboard</string>
+	<string name="title_notifications">Notification</string>
+	<string name="title_person">Personal</string>
+	<string name="title_center">Center</string>
 </resources>

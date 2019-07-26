@@ -73,6 +73,6 @@ dependencies {
 
 
     implementation project(path: ':base')
-    implementation project(path: ':modulea')
-    implementation project(path: ':moduleb')
+//    implementation project(path: ':modulea')
+//    implementation project(path: ':moduleb')
 }

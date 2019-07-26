@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
 import com.example.base.LoggerUtil;
@@ -28,9 +27,9 @@ public class MyApp extends BaseApplication {
         super.onCreate();
 
         isDebug = BuildConfig.DEBUG;
-        if(isDebug){
+        if (isDebug) {
             LogUtil.LOG_LEVEL = 5;
-        }else {
+        } else {
             LogUtil.LOG_LEVEL = 7;
         }
 
@@ -45,7 +44,7 @@ public class MyApp extends BaseApplication {
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
     }
 
-    public static AppComponent getAppComponent(){
+    public static AppComponent getAppComponent() {
         return appComponent;
     }
 
