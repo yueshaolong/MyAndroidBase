@@ -68,6 +68,7 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'//轮播图框架
     implementation 'com.github.bumptech.glide:glide:4.9.0'//图片加载框架
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'//recyclerview的万能adapter适配器
+    implementation 'com.airbnb.android:lottie:3.0.7'//动画框架
 
     implementation 'log4j:log4j:1.2.17'
 

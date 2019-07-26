@@ -104,6 +104,8 @@
         <activity android:name=".activity.LogActivity">
         </activity>
         <activity android:name=".myview.bottomnavigation.BottomNavigationActivity">
+        </activity>
+        <activity android:name=".myview.LottieActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
