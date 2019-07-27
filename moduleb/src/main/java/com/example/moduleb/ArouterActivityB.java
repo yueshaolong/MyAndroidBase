@@ -15,7 +15,6 @@ public class ArouterActivityB extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arouterb);
-        TextView tv1 = findViewById(R.id.tv1);
-        tv1.setOnClickListener(v -> ARouter.getInstance().build("/modulea/ArouterActivityA").navigation());
+        findViewById(R.id.btnb).setOnClickListener(v -> ARouter.getInstance().build("/modulea/ArouterActivityA").navigation());
     }
 }

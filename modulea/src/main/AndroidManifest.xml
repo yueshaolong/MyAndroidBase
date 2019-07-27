@@ -1,2 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.ysl.modulea"/>
+          package="com.ysl.modulea">
+
+    <application>
+
+        <activity android:name=".ArouterActivityA"/>
+
+    </application>
+
+</manifest>

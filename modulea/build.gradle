@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [moduleName : project.getName()]
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
             }
         }
     }
@@ -35,12 +35,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.constraint
+    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.junit
+    implementation rootProject.ext.dependencies.runner
+    implementation rootProject.ext.dependencies.espresso
 
-    implementation 'com.alibaba:arouter-api:1.5.0'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation rootProject.ext.dependencies.arouter
+    annotationProcessor rootProject.ext.dependencies.arouterProcessor
+
     implementation project(path: ':base')
 }

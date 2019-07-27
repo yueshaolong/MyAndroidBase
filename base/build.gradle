@@ -13,11 +13,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments = [moduleName : project.getName()]
-//            }
-//        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -42,6 +42,6 @@ dependencies {
     implementation rootProject.ext.dependencies.androidlogginglog4j
     implementation rootProject.ext.dependencies.log4j
 
-//    implementation rootProject.ext.dependencies.arouter
-//    annotationProcessor rootProject.ext.dependencies.arouterProcessor
+    implementation rootProject.ext.dependencies.arouter
+    annotationProcessor rootProject.ext.dependencies.arouterProcessor
 }

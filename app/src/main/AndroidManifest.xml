@@ -106,6 +106,8 @@
         <activity android:name=".myview.bottomnavigation.BottomNavigationActivity">
         </activity>
         <activity android:name=".myview.LottieActivity">
+        </activity>
+        <activity android:name="com.ysl.arouter.ArouterMainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

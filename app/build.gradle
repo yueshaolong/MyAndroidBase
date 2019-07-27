@@ -12,6 +12,12 @@ android {
         versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME : project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -67,8 +73,10 @@ dependencies {
     implementation rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper//recyclerView的万能adapter适配器
     implementation rootProject.ext.dependencies.lottie//动画框架
 
+    implementation rootProject.ext.dependencies.arouter
+    annotationProcessor rootProject.ext.dependencies.arouterProcessor
 
     implementation project(path: ':base')
-//    implementation project(path: ':modulea')
-//    implementation project(path: ':moduleb')
+    implementation project(path: ':modulea')
+    implementation project(path: ':moduleb')
 }
