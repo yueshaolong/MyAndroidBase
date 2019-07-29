@@ -1,4 +1,6 @@
-apply plugin: 'com.android.application'
+ext.mainApp = true //标记为主app module
+apply from: rootProject.file('cc-settings-2.gradle')
+//apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -79,4 +81,6 @@ dependencies {
     implementation project(path: ':base')
     implementation project(path: ':modulea')
     implementation project(path: ':moduleb')
+
+    addComponent 'news' //会默认添加依赖：project(':news')
 }

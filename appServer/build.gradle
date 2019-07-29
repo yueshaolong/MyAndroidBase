@@ -1,9 +1,15 @@
-apply plugin: 'com.android.application'
+if (runAsApp.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 android {
     compileSdkVersion rootProject.COMPILE_SDK_VERSION
     defaultConfig {
-        applicationId rootProject.APPLICATIONID
+        if (runAsApp.toBoolean()) {
+            applicationId rootProject.APPLICATIONID
+        }
         minSdkVersion rootProject.MIN_SDK_VERSION
         targetSdkVersion rootProject.TARGET_SDK_VERSION
         versionCode rootProject.VERSION_CODE
@@ -14,6 +20,16 @@ android {
         release {
             minifyEnabled rootProject.MINIFYENABLED
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (runAsApp.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/lib/AndroidManifest.xml'
+            }
         }
     }
 }

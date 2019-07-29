@@ -21,5 +21,6 @@ public class BaseApplication extends Application {
         }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
 
+
     }
 }

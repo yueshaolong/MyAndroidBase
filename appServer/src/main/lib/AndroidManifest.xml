@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ysl.myandroidbaseserver">
+
+
+    <application>
+        <activity android:name="com.ysl.myandroidbaseserver.MainActivity"/>
+        <service android:name="com.ysl.myaidl.MyAIDLService" android:exported="true"/>
+    </application>
+
+</manifest>

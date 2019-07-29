@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.billy.cc.core.component.CC;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
 import com.example.base.LoggerUtil;
@@ -42,6 +43,10 @@ public class MyApp extends BaseApplication {
         LeakCanary.install(this);
 
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
+
+        CC.enableDebug(BuildConfig.DEBUG);
+        CC.enableVerboseLog(BuildConfig.DEBUG);
+        CC.enableRemoteCC(BuildConfig.DEBUG);
     }
 
     public static AppComponent getAppComponent() {

@@ -1,4 +1,4 @@
-apply plugin: 'com.android.library'
+apply from: rootProject.file('cc-settings-2.gradle')
 
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
@@ -6,17 +6,19 @@ android {
 
 
     defaultConfig {
+
+        //仅在以application方式编译时才添加applicationId属性
+        if (runAsApp.toBoolean()) {
+            applicationId 'com.example.news'
+        }
+
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME : project.getName()]
-            }
-        }
+
     }
 
     buildTypes {
@@ -25,9 +27,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+
+    sourceSets {
+        main {
+            if (runAsApp.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
     }
 
 }
@@ -42,8 +50,7 @@ dependencies {
     implementation rootProject.ext.dependencies.runner
     implementation rootProject.ext.dependencies.espresso
 
-    implementation rootProject.ext.dependencies.arouter
-    annotationProcessor rootProject.ext.dependencies.arouterProcessor
-
+    implementation rootProject.ext.dependencies.androidlogginglog4j
+    implementation rootProject.ext.dependencies.log4j
     implementation project(path: ':base')
 }

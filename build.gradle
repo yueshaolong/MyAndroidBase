@@ -2,6 +2,7 @@
 /**第一种统一版本号的做法*/
 apply from:"config.gradle"
 
+
 buildscript {
     
     repositories {
@@ -11,7 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
-
+        classpath 'com.billy.android:cc-register:1.1.1' //使用最新版
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -31,7 +32,7 @@ task clean(type: Delete) {
 
 //第二种统一版本号的方法
 ext {
-    APPLICATIONID = "com.ysl.myandroidbaseserver"
+    APPLICATIONID = "com.ysl.myandroidbaseserver2"
     COMPILE_SDK_VERSION = 28
     BUILD_TOOLS_VERSION = "28.0.3"
     MIN_SDK_VERSION = 21
