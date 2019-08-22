@@ -20,6 +20,16 @@ android {
                 arguments = [AROUTER_MODULE_NAME : project.getName()]
             }
         }
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
+        }
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -74,6 +84,8 @@ dependencies {
     implementation rootProject.ext.dependencies.glide//图片加载框架
     implementation rootProject.ext.dependencies.BaseRecyclerViewAdapterHelper//recyclerView的万能adapter适配器
     implementation rootProject.ext.dependencies.lottie//动画框架
+    implementation rootProject.ext.dependencies.JPush //极光推送
+    implementation rootProject.ext.dependencies.JCore//极光推送
 
     implementation rootProject.ext.dependencies.arouter
     annotationProcessor rootProject.ext.dependencies.arouterProcessor
@@ -83,4 +95,5 @@ dependencies {
     implementation project(path: ':moduleb')
 
     addComponent 'news' //会默认添加依赖：project(':news')
+
 }

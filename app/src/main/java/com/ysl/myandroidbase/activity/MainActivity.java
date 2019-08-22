@@ -13,18 +13,22 @@ import android.view.View.OnClickListener;
 import com.example.base.LogUtil;
 import com.ysl.myandroidbase.R;
 import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
-import com.ysl.myandroidbase.receiver.MyReceiver;
+import com.ysl.jpush.JPushReceiver;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {
     public static final String TAG = "MainActivity";
-    private MyReceiver myReceiver;
+    public static boolean isForeground = false;
+    public static final String MESSAGE_RECEIVED_ACTION = "com.ysl.myandroidbaseserver.MESSAGE_RECEIVED_ACTION";
+    public static final String KEY_MESSAGE = "message";
+    public static final String KEY_EXTRAS = "extras";
+    private JPushReceiver myReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LogUtil.d(TAG, "onCreate is invoke  ");
 
-        /*myReceiver = new MyReceiver();
+        /*myReceiver = new JPushReceiver();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("android.media.VOLUME_CHANGED_ACTION");
 //        intentFilter.addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED);

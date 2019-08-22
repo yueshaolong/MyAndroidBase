@@ -16,7 +16,7 @@ import com.ysl.dagger2.AppModule;
 import com.ysl.dagger2.DaggerAppComponent;
 import com.ysl.myandroidbase.BuildConfig;
 
-import org.apache.log4j.Level;
+import cn.jpush.android.api.JPushInterface;
 
 public class MyApp extends BaseApplication {
 
@@ -47,6 +47,9 @@ public class MyApp extends BaseApplication {
         CC.enableDebug(BuildConfig.DEBUG);
         CC.enableVerboseLog(BuildConfig.DEBUG);
         CC.enableRemoteCC(BuildConfig.DEBUG);
+
+        JPushInterface.setDebugMode(BuildConfig.DEBUG);
+        JPushInterface.init(this);
     }
 
     public static AppComponent getAppComponent() {
