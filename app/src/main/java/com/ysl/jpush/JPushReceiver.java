@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -41,7 +42,7 @@ public class JPushReceiver extends BroadcastReceiver {
 				//send the Registration Id to your server...
 
 			} else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
-				Logger.d(TAG, "[JPushReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+				Logger.e(TAG, "[JPushReceiver] 接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
 				processCustomMessage(context, bundle);
 
 			} else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
@@ -110,16 +111,17 @@ public class JPushReceiver extends BroadcastReceiver {
 	
 	//send msg to MainActivity
 	private void processCustomMessage(Context context, Bundle bundle) {
-		if (MainActivity.isForeground) {
+		if (JPushActivity.isForeground) {
 			String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
 			String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-			Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
-			msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
+			Log.e(TAG, "message: "+message+"    extras: "+extras);
+			Intent msgIntent = new Intent(JPushActivity.MESSAGE_RECEIVED_ACTION);
+			msgIntent.putExtra(JPushActivity.KEY_MESSAGE, message);
 			if (!Util.isEmpty(extras)) {
 				try {
 					JSONObject extraJson = new JSONObject(extras);
 					if (extraJson.length() > 0) {
-						msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
+						msgIntent.putExtra(JPushActivity.KEY_EXTRAS, extras);
 					}
 				} catch (JSONException e) {
 

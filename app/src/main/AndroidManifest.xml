@@ -110,6 +110,8 @@
         <activity android:name="com.ysl.arouter.ArouterMainActivity">
         </activity>
         <activity android:name="com.ysl.cc.CCActivity">
+        </activity>
+        <activity android:name="com.ysl.jpush.JPushActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -144,7 +146,7 @@
             android:exported="false" >
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="您应用的包名" />
+                <category android:name="${applicationId}" />
             </intent-filter>
         </receiver>
 
