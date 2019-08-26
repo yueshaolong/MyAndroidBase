@@ -1,0 +1,23 @@
+group 'com.ysl'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+//    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    mavenLocal()
+    mavenCentral()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    implementation rootProject.ext.dependencies.junit
+    implementation rootProject.ext.dependencies.log4j
+    implementation rootProject.ext.dependencies.netty
+    implementation rootProject.ext.dependencies.protobuf
+}

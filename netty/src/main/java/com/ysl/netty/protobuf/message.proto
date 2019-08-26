@@ -1,0 +1,20 @@
+// 指定使用proto3，如果不指定的话，编译器会使用proto2去编译
+syntax = "proto3"; //[proto2|proto3]
+
+//option java_package = "com.ysl.netty.protobuf";
+//option java_outer_classname = "Message";
+
+message SearchRequests {
+    // 定义SearchRequests的成员变量，需要指定：变量类型、变量名、变量Tag
+    string query = 1;
+    int32 page_number = 2;
+    int32 result_per_page = 3;
+}
+
+message SearchResponse {
+    message ResultDes {
+        string des = 3;
+    }
+    ResultDes result = 1;
+    int32 result_code = 2;
+}

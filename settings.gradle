@@ -1,1 +1,2 @@
-include ':app', ':base', ':modulea', ':moduleb', ':news','appServer'
+include ':app', ':base', ':modulea', ':moduleb', ':news','appServer','base-java',
+'netty','rxjava'
