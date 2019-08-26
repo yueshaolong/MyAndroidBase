@@ -45,7 +45,7 @@ public class NettyServer {
 
             // 服务器绑定端口监听
             logger.info("netty服务端启动完成！！！" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis()));
-            b.bind(9965).sync().channel().closeFuture().sync();
+            b.bind(9966).sync().channel().closeFuture().sync();
 
         }catch (Exception e){
             logger.error("", e);

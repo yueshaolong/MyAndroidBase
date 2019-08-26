@@ -41,7 +41,7 @@ public class NettyClient {
                             }
                         });
 
-                ChannelFuture future = bootstrap.connect("192.168.1.24", 9965);
+                ChannelFuture future = bootstrap.connect("192.168.1.24", 9966);
                 future.addListener(channelFutureListener);
             }
         };
