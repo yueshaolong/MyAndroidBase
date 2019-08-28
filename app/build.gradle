@@ -91,6 +91,8 @@ dependencies {
     implementation rootProject.ext.dependencies.bugly_crashreport //Bugly SDK
     implementation rootProject.ext.dependencies.bugly_nativecrashreport //Bugly NDK
 
+    implementation rootProject.ext.dependencies.disklrucache //磁盘缓存
+
     implementation rootProject.ext.dependencies.arouter
     annotationProcessor rootProject.ext.dependencies.arouterProcessor
 

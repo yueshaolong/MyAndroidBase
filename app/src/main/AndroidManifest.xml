@@ -124,6 +124,8 @@
         <activity android:name="com.ysl.jpush.JPushActivity">
         </activity>
         <activity android:name="com.ysl.bugly.BuglyActivity">
+        </activity>
+        <activity android:name="com.ysl.bitmap.BitmapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
