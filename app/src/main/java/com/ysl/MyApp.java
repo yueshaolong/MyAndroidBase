@@ -1,25 +1,23 @@
 package com.ysl;
 
-import android.Manifest;
 import android.app.Notification;
-import android.content.pm.PackageManager;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import android.os.Process;
+import android.text.TextUtils;
 
 import com.billy.cc.core.component.CC;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
-import com.example.base.LoggerUtil;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.ysl.dagger2.AppComponent;
 import com.ysl.dagger2.AppModule;
 import com.ysl.dagger2.DaggerAppComponent;
 import com.ysl.myandroidbase.BuildConfig;
 import com.ysl.myandroidbase.R;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
@@ -52,21 +50,53 @@ public class MyApp extends BaseApplication {
 
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
 
+        //CC组件化路由
         CC.enableDebug(BuildConfig.DEBUG);
         CC.enableVerboseLog(BuildConfig.DEBUG);
         CC.enableRemoteCC(BuildConfig.DEBUG);
 
+        //极光推送
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
         JPushInterface.init(this);
+        setPushNotificationBuilder();
 
-//        Set<String> tags = new HashSet<>();
-//        tags.add("le");
-//        JPushInterface.setTags(this, 0, tags);
-//        JPushInterface.checkTagBindState(this, 0, "le");
-//        JPushInterface.setAlias(this, 1, "le");
-//        JPushInterface.setMobileNumber(this, 2, "18203651402");
+        //腾讯bugly 设置上报进程为主进程
+        String packageName = getPackageName();
+        String processName = getProcessName(Process.myPid());
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
+        strategy.setUploadProcess(processName == null || processName.equals(packageName));
+        CrashReport.initCrashReport(this, "ea5f6fd324", BuildConfig.DEBUG, strategy);
+    }
 
+    /**
+     * 获取进程号对应的进程名
+     * @param pid 进程号
+     * @return 进程名
+     */
+    private static String getProcessName(int pid) {
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new FileReader("/proc/" + pid + "/cmdline"));
+            String processName = reader.readLine();
+            if (!TextUtils.isEmpty(processName)) {
+                processName = processName.trim();
+            }
+            return processName;
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
+        return null;
+    }
 
+    private void setPushNotificationBuilder() {
         BasicPushNotificationBuilder builder = new BasicPushNotificationBuilder(this);
         builder.statusBarDrawable = R.drawable.jpush_notification_icon;
         builder.notificationFlags = Notification.FLAG_AUTO_CANCEL
@@ -75,12 +105,14 @@ public class MyApp extends BaseApplication {
                 | Notification.DEFAULT_VIBRATE
                 | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);
+
         MultiActionsNotificationBuilder builder2 = new MultiActionsNotificationBuilder(this);
         //添加按钮，参数（按钮图片、按钮文字、扩展数据）
         builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "first", "my_extra1");
         builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "second", "my_extra2");
         builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "third", "my_extra3");
         JPushInterface.setPushNotificationBuilder(2, builder2);
+
         CustomPushNotificationBuilder builder3 = new
                 CustomPushNotificationBuilder(this,
                 R.layout.customer_notitfication_layout,

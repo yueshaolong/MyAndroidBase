@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
+    <!--腾讯bugly配置-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
     <application
         android:name="com.ysl.MyApp"
         android:allowBackup="true"
@@ -18,7 +24,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.MainActivity"> <!-- android:launchMode="singleTask" -->
-
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.SecondActivity" /> <!-- android:launchMode="singleTask" android:taskAffinity="com.app" -->
         <service android:name=".service.MyService" />
@@ -44,7 +52,9 @@
             android:exported="true"
             android:process=":remote" />-->
 
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity">
+
+        </activity>
         <activity android:name=".handler.HandleActivity">
 
         </activity>
@@ -112,6 +122,8 @@
         <activity android:name="com.ysl.cc.CCActivity">
         </activity>
         <activity android:name="com.ysl.jpush.JPushActivity">
+        </activity>
+        <activity android:name="com.ysl.bugly.BuglyActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

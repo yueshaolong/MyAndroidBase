@@ -51,6 +51,8 @@ ext {
         rxjava:"2.2.2",
         netty:"4.1.24.Final",
         protobuf:"3.9.1",
+
+        bugly:"latest.release",//其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
     ]
     dependencies = [
             // ------------- Android -------------
@@ -101,6 +103,8 @@ ext {
         netty: "io.netty:netty-all:${dependVersion.netty}", //netty
         protobuf: "com.google.protobuf:protobuf-java:${dependVersion.protobuf}", //protobuf
 
+        bugly_crashreport: "com.tencent.bugly:crashreport:${dependVersion.bugly}", //Bugly SDK
+        bugly_nativecrashreport: "com.tencent.bugly:nativecrashreport:${dependVersion.bugly}" //Bugly NDK
 
     ]
 }

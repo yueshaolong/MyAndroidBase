@@ -25,6 +25,7 @@ android {
             //选择要添加的对应 cpu 类型的 .so 库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64', 'mips', 'mips64'
         }
+
         manifestPlaceholders = [
                 JPUSH_PKGNAME : applicationId,
                 JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
@@ -86,6 +87,9 @@ dependencies {
     implementation rootProject.ext.dependencies.lottie//动画框架
     implementation rootProject.ext.dependencies.JPush //极光推送
     implementation rootProject.ext.dependencies.JCore//极光推送
+
+    implementation rootProject.ext.dependencies.bugly_crashreport //Bugly SDK
+    implementation rootProject.ext.dependencies.bugly_nativecrashreport //Bugly NDK
 
     implementation rootProject.ext.dependencies.arouter
     annotationProcessor rootProject.ext.dependencies.arouterProcessor
