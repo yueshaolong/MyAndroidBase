@@ -1,6 +1,7 @@
 package com.ysl;
 
 import android.app.Notification;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Process;
 import android.text.TextUtils;
 
@@ -12,6 +13,8 @@ import com.tencent.bugly.crashreport.CrashReport;
 import com.ysl.dagger2.AppComponent;
 import com.ysl.dagger2.AppModule;
 import com.ysl.dagger2.DaggerAppComponent;
+import com.ysl.greendao.DaoMaster;
+import com.ysl.greendao.DaoSession;
 import com.ysl.myandroidbase.BuildConfig;
 import com.ysl.myandroidbase.R;
 
@@ -66,6 +69,28 @@ public class MyApp extends BaseApplication {
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(this);
         strategy.setUploadProcess(processName == null || processName.equals(packageName));
         CrashReport.initCrashReport(this, "ea5f6fd324", BuildConfig.DEBUG, strategy);
+
+        //初始化greenDao
+        initGreenDao();
+    }
+
+    /**
+     * 初始化GreenDao,直接在Application中进行初始化操作
+     * */
+    private void initGreenDao() {
+        //数据库升级写法
+//        MyDaoMaster helper = new MyDaoMaster(this, "aserbaos.db");
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "aserbao.db");
+        SQLiteDatabase db = helper.getWritableDatabase();
+        //数据库加密密码为“aserbao"的写法
+//        Database db = helper.getEncryptedWritableDb("aserbao");
+        DaoMaster daoMaster = new DaoMaster(db);
+        daoSession = daoMaster.newSession();
+    }
+
+    private DaoSession daoSession;
+    public DaoSession getDaoSession() {
+        return daoSession;
     }
 
     /**

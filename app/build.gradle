@@ -2,6 +2,7 @@ ext.mainApp = true //标记为主app module
 apply from: rootProject.file('cc-settings-2.gradle')
 //apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'//数据库greenDao的使用
 
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
@@ -102,4 +103,14 @@ dependencies {
 
     addComponent 'news' //会默认添加依赖：project(':news')
 
+    implementation 'org.greenrobot:greendao:3.2.2' //greenDao
+    implementation 'net.zetetic:android-database-sqlcipher:3.5.6'
+}
+
+
+
+greendao {
+    schemaVersion 1 //数据库版本号
+    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录,请注意，这里路径用.不要用/
+    daoPackage 'com.ysl.greendao'// 设置DaoMaster、DaoSession、Dao 包名
 }
