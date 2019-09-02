@@ -9,20 +9,17 @@ public class CreditCard {
     Long id;
 
     Long studentId;
-    Long userId;
+    Long teacherId;
     String userName;//持有者名字
     String cardNum;//卡号
     String whichBank;//哪个银行的
     int cardType;//卡等级 0 ~ 5
-
-
-
-    @Generated(hash = 1764829424)
-    public CreditCard(Long id, Long studentId, Long userId, String userName,
+    @Generated(hash = 224468523)
+    public CreditCard(Long id, Long studentId, Long teacherId, String userName,
             String cardNum, String whichBank, int cardType) {
         this.id = id;
         this.studentId = studentId;
-        this.userId = userId;
+        this.teacherId = teacherId;
         this.userName = userName;
         this.cardNum = cardNum;
         this.whichBank = whichBank;
@@ -43,11 +40,11 @@ public class CreditCard {
     public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
-    public Long getUserId() {
-        return this.userId;
+    public Long getTeacherId() {
+        return this.teacherId;
     }
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setTeacherId(Long teacherId) {
+        this.teacherId = teacherId;
     }
     public String getUserName() {
         return this.userName;
@@ -74,5 +71,5 @@ public class CreditCard {
         this.cardType = cardType;
     }
 
-
+    
 }

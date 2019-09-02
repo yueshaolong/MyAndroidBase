@@ -38,11 +38,9 @@
         <service android:name=".service.CancelNoticeService" />
 
         <activity android:name="com.ysl.myaidl.bean.AIDLActivity">
-
         </activity>
 
         <activity android:name="com.ysl.dagger2.view.LoginActivity">
-
         </activity>
         <activity android:name="com.ysl.dagger2.view.SingletonTestActivity"/>
 
@@ -53,20 +51,16 @@
             android:process=":remote" />-->
 
         <activity android:name=".activity.WebViewActivity">
-
         </activity>
         <activity android:name=".handler.HandleActivity">
-
         </activity>
         <activity android:name=".myview.zidingyiview.MyViewActivity">
         </activity>
         <activity android:name=".myview.zidingyiview.MyViewGroupActivity">
-
         </activity>
         <activity android:name=".myview.zidingyiview.MyDragViewActivity">
         </activity>
         <activity android:name="com.ysl.eventbus.EventbusActivity">
-
         </activity>
         <activity android:name="com.ysl.eventbus.EventbusActivity2"/>
         <activity android:name=".leak.LeakActivity">
@@ -90,7 +84,6 @@
         <activity android:name=".myview.zidingyiview.TextViewGroupActivity">
         </activity>
         <activity android:name=".myview.zidingyiview.FlowLayoutActivity">
-
         </activity>
         <activity android:name=".myview.fragmenttabhost.FragmentTabHostActivity">
         </activity>
@@ -126,6 +119,8 @@
         <activity android:name="com.ysl.bugly.BuglyActivity">
         </activity>
         <activity android:name="com.ysl.bitmap.BitmapActivity">
+        </activity>
+        <activity android:name="com.ysl.greendao.GreenDaoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

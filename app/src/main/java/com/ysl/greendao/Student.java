@@ -209,12 +209,6 @@ public class Student {
         }
         myDao.update(this);
     }
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1701634981)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getStudentDao() : null;
-    }
     /** To-one relationship, resolved on first access. */
     @Generated(hash = 797242429)
     public IdCard getIdCard() {
@@ -241,5 +235,11 @@ public class Student {
             name = idCard == null ? null : idCard.getUserName();
             idCard__resolvedKey = name;
         }
+    }
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1701634981)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getStudentDao() : null;
     }
 }

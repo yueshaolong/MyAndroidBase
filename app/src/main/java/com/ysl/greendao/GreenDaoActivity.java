@@ -267,7 +267,7 @@ public class GreenDaoActivity extends AppCompatActivity {
         //插入对应的CreditCard数据
         for (int j = 0; j < mRandom.nextInt(5) + 1 ; j++) {
             CreditCard creditCard = new CreditCard();
-            creditCard.setUserId(123l);
+            creditCard.setStudentId(123l);
             creditCard.setUserName("addf");
             creditCard.setCardNum(String.valueOf(mRandom.nextInt(899999999)
                     + 100000000) + String.valueOf(mRandom.nextInt(899999999)
