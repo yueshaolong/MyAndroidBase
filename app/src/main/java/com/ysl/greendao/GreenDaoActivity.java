@@ -8,9 +8,11 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.MyApp;
+import com.ysl.greendao.StudentDao.Properties;
 import com.ysl.myandroidbase.R;
 
 import org.greenrobot.greendao.query.DeleteQuery;
+import org.greenrobot.greendao.query.Join;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
@@ -53,16 +55,16 @@ public class GreenDaoActivity extends AppCompatActivity {
                 break;
             case R.id.button7:
 //                queryRaw("1");
-                List<Student> students = queryAllList();
-                Log.d(TAG, "button: students="+students);
+//                List<Student> students = queryAllList();
+//                Log.d(TAG, "所有学生: students="+students);
 //                List<IdCard> idCards = queryAllIdCard();
-//                Log.d(TAG, "button: idCards="+idCards);
+//                Log.d(TAG, "所有身份证: idCards="+idCards);
 //                List<Student> students1 = queryS();
-//                Log.d(TAG, "button: students1="+students1);
+//                Log.d(TAG, "查询身份证: students1="+students1);
                 List<CreditCard> creditCards = queryAllCreditCard();
-                Log.d(TAG, "button: creditCards="+creditCards);
+                Log.d(TAG, "所有信用卡: creditCards="+creditCards);
                 List<Student> students2 = queryC();
-                Log.d(TAG, "button: students2="+students2);
+                Log.d(TAG, "查询信用卡: students2="+students2);
 
                 break;
             case R.id.button8:
@@ -166,10 +168,15 @@ public class GreenDaoActivity extends AppCompatActivity {
     }
     //查询某个人的CreditCard
     public List<Student> queryC(){
-        QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class)
-                .where(StudentDao.Properties.StudentNo.eq(67));
-//        queryBuilder.join(CreditCard.class, CreditCardDao.Properties.StudentNo)
-//                .where(CreditCardDao.Properties.StudentNo.eq(67));
+        QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class);
+        //此querybuilder的主实体的主键属性用于匹配给定的目标属性。参数为目标实体类和目标属性，不合适
+//        queryBuilder.join(CreditCard.class, CreditCardDao.Properties.No);
+        //给定的源属性用于匹配给定目标实体的主键属性。参数为源属性和目标实体类，不合适
+//        queryBuilder.join(StudentDao.Properties.StudentNo, CreditCard.class);
+        //给定的源属性用于匹配给定目标实体的给定目标属性。参数为源属性，目标实体类，目标属性
+        //TODO 刚好这里就是把student的StudentNo属性和CreditCard的no属性对应起来
+//        Join<Student, CreditCard> join = queryBuilder.join(Properties.StudentNo, CreditCard.class, CreditCardDao.Properties.No);
+//        queryBuilder.distinct();//去重
         return queryBuilder.list();
     }
 
@@ -320,7 +327,7 @@ public class GreenDaoActivity extends AppCompatActivity {
         //插入对应的CreditCard数据
         for (int j = 0; j < mRandom.nextInt(5) + 1 ; j++) {
             CreditCard creditCard = new CreditCard();
-            creditCard.setStudentNo(67);
+            creditCard.setNo(67);
             creditCard.setUserName("my"+j+"ka");
             creditCard.setCardNum(String.valueOf(mRandom.nextInt(899999999)
                     + 100000000) + String.valueOf(mRandom.nextInt(899999999)

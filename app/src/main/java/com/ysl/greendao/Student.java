@@ -6,6 +6,7 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.JoinEntity;
+import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
@@ -76,7 +77,7 @@ public class Student {
     //定义与多个实体对象的关系
     //一对多关联，一个学生关联多张信用卡
     // 这个studentId是对应在CreditCard中的studentId属性
-    @ToMany(referencedJoinProperty = "studentNo")//referencedJoinProperty 指定目标实体（CreditCard）的外键studentId
+    @ToMany(referencedJoinProperty = "no")//referencedJoinProperty 指定目标实体（CreditCard）的外键studentId
     List<CreditCard> creditCardsList;
 
     //对于更复杂的关系，可以指定一个@joinproperty注释列表，每个@joinproperty需要原始实体中的源属性和目标实体中的引用属性。
@@ -91,6 +92,35 @@ public class Student {
             targetProperty = "teacherId")//第三张关系表实体内，目标实体（Teacher）的属性
     List<Teacher> teacherList;
 
+/** Used to resolve relations */
+@Generated(hash = 2040040024)
+private transient DaoSession daoSession;
+
+/** Used for active entity operations. */
+@Generated(hash = 1943931642)
+private transient StudentDao myDao;
+
+@Generated(hash = 1042624483)
+public Student(Long id, int studentNo, int age, String telPhone, String sex, @NotNull String name,
+        String address, String schoolName, String grade) {
+    this.id = id;
+    this.studentNo = studentNo;
+    this.age = age;
+    this.telPhone = telPhone;
+    this.sex = sex;
+    this.name = name;
+    this.address = address;
+    this.schoolName = schoolName;
+    this.grade = grade;
+}
+
+@Generated(hash = 1556870573)
+public Student() {
+}
+
+@Generated(hash = 137173928)
+private transient String idCard__resolvedKey;
+
     //@Keep-- 注解的代码段在GreenDao下次运行时保持不变
     //1.注解实体类：默认禁止修改此类
     //2.注解其他代码段，默认禁止修改注解的代码段
@@ -98,209 +128,23 @@ public class Student {
     //@OrderBy-- 指定排序,若要指定排序, 需在列明以后添加 ASC(升序) 或者DESC(降序) ,
     // 例如 "propertyA DESC, propertyB ASC" 默认按升序排序 ,若不设置默认根据主键排序
 
-
     //@Convert-- 使用Converter将自定义类转换为相关的值
     //如enum类, 可以将其转换为String
 
-    // 表明此字段不存储到数据库中，用于不需要持久化的字段，比如临时状态
-    // 也可以使用Java中的transient关键字。
-    // 下面的代码是编译器自动生成的样式，也可以使用@Transient注解。
-    /*@Transient
-    int i;*/
-
-    //表示GreenDao自动生成的代码, 不要改动, 改动会报错
+    //@Generated--  表示GreenDao自动生成的代码, 不要改动, 改动会报错
     //如果希望恢复自动生成代码, 则删除改动后的代码, 下次构建会自动生成
     //如果希望保留改动的代码并不要报错, 可将@Generated改为@Keep
-    /** Used to resolve relations */
-    @Generated(hash = 2040040024)
-    private transient DaoSession daoSession;
 
-    /** Used for active entity operations. */
-    @Generated(hash = 1943931642)
-    private transient StudentDao myDao;
+    //@Transient--  表明此字段不存储到数据库中，用于不需要持久化的字段，比如临时状态
+    // 也可以使用Java中的transient关键字。
+    // 下面的代码是编译器自动生成的样式，也可以使用@Transient注解。
 
-    @Generated(hash = 137173928)
-    private transient String idCard__resolvedKey;
-
-
-    @Generated(hash = 1042624483)
-    public Student(Long id, int studentNo, int age, String telPhone, String sex, @NotNull String name,
-            String address, String schoolName, String grade) {
-        this.id = id;
-        this.studentNo = studentNo;
-        this.age = age;
-        this.telPhone = telPhone;
-        this.sex = sex;
-        this.name = name;
-        this.address = address;
-        this.schoolName = schoolName;
-        this.grade = grade;
-    }
-    @Generated(hash = 1556870573)
-    public Student() {
-    }
-    public Long getId() {
-        return this.id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public int getStudentNo() {
-        return this.studentNo;
-    }
-    public void setStudentNo(int studentNo) {
-        this.studentNo = studentNo;
-    }
-    public int getAge() {
-        return this.age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public String getTelPhone() {
-        return this.telPhone;
-    }
-    public void setTelPhone(String telPhone) {
-        this.telPhone = telPhone;
-    }
-    public String getSex() {
-        return this.sex;
-    }
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-    public String getName() {
-        return this.name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getAddress() {
-        return this.address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public String getSchoolName() {
-        return this.schoolName;
-    }
-    public void setSchoolName(String schoolName) {
-        this.schoolName = schoolName;
-    }
-    public String getGrade() {
-        return this.grade;
-    }
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
-    
-
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
-    @Generated(hash = 441911208)
-    public synchronized void resetCreditCardsList() {
-        creditCardsList = null;
-    }
-    /**
-     * To-many relationship, resolved on first access (and after reset).
-     * Changes to to-many relations are not persisted, make changes to the target entity.
-     */
-    @Generated(hash = 1986556941)
-    public List<Teacher> getTeacherList() {
-        if (teacherList == null) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            TeacherDao targetDao = daoSession.getTeacherDao();
-            List<Teacher> teacherListNew = targetDao._queryStudent_TeacherList(id);
-            synchronized (this) {
-                if (teacherList == null) {
-                    teacherList = teacherListNew;
-                }
-            }
-        }
-        return teacherList;
-    }
-    /** Resets a to-many relationship, making the next get call to query for a fresh result. */
-    @Generated(hash = 973821661)
-    public synchronized void resetTeacherList() {
-        teacherList = null;
-    }
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 128553479)
-    public void delete() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.delete(this);
-    }
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 1942392019)
-    public void refresh() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.refresh(this);
-    }
-    /**
-     * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
-     * Entity must attached to an entity context.
-     */
-    @Generated(hash = 713229351)
-    public void update() {
-        if (myDao == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        myDao.update(this);
-    }
-    /** To-one relationship, resolved on first access. */
-    @Generated(hash = 797242429)
-    public IdCard getIdCard() {
-        String __key = this.name;
-        if (idCard__resolvedKey == null || idCard__resolvedKey != __key) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            IdCardDao targetDao = daoSession.getIdCardDao();
-            IdCard idCardNew = targetDao.load(__key);
-            synchronized (this) {
-                idCard = idCardNew;
-                idCard__resolvedKey = __key;
-            }
-        }
-        return idCard;
-    }
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 33979033)
-    public void setIdCard(@NotNull IdCard idCard) {
-        if (idCard == null) {
-            throw new DaoException(
-                    "To-one property 'name' has not-null constraint; cannot set to-one to null");
-        }
-        synchronized (this) {
-            this.idCard = idCard;
-            name = idCard.getUserName();
-            idCard__resolvedKey = name;
-        }
-    }
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1701634981)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getStudentDao() : null;
-    }
 
     @Override
     public String toString() {
         return "Student{" +
-                "studentNo=" + studentNo +
+                "id=" + id +
+                ", studentNo=" + studentNo +
                 ", age=" + age +
                 ", telPhone='" + telPhone + '\'' +
                 ", sex='" + sex + '\'' +
@@ -310,30 +154,211 @@ public class Student {
                 ", grade='" + grade + '\'' +
                 ", idCard=" + getIdCard() +
                 ", creditCardsList=" + getCreditCardsList() +
+                ", teacherList=" + getTeacherList() +
                 '}';
     }
-    /**
-     * To-many relationship, resolved on first access (and after reset).
-     * Changes to to-many relations are not persisted, make changes to the target entity.
-     */
-    @Generated()
-    public List<CreditCard> getCreditCardsList() {
-        if (creditCardsList == null) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            CreditCardDao targetDao = daoSession.getCreditCardDao();
-            List<CreditCard> creditCardsListNew = targetDao._queryStudent_CreditCardsList(studentNo);
-            synchronized (this) {
-                if (creditCardsList == null) {
-                    creditCardsList = creditCardsListNew;
-                }
+
+public Long getId() {
+    return this.id;
+}
+
+public void setId(Long id) {
+    this.id = id;
+}
+
+public int getStudentNo() {
+    return this.studentNo;
+}
+
+public void setStudentNo(int studentNo) {
+    this.studentNo = studentNo;
+}
+
+public int getAge() {
+    return this.age;
+}
+
+public void setAge(int age) {
+    this.age = age;
+}
+
+public String getTelPhone() {
+    return this.telPhone;
+}
+
+public void setTelPhone(String telPhone) {
+    this.telPhone = telPhone;
+}
+
+public String getSex() {
+    return this.sex;
+}
+
+public void setSex(String sex) {
+    this.sex = sex;
+}
+
+public String getName() {
+    return this.name;
+}
+
+public void setName(String name) {
+    this.name = name;
+}
+
+public String getAddress() {
+    return this.address;
+}
+
+public void setAddress(String address) {
+    this.address = address;
+}
+
+public String getSchoolName() {
+    return this.schoolName;
+}
+
+public void setSchoolName(String schoolName) {
+    this.schoolName = schoolName;
+}
+
+public String getGrade() {
+    return this.grade;
+}
+
+public void setGrade(String grade) {
+    this.grade = grade;
+}
+
+/** To-one relationship, resolved on first access. */
+@Generated(hash = 797242429)
+public IdCard getIdCard() {
+    String __key = this.name;
+    if (idCard__resolvedKey == null || idCard__resolvedKey != __key) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        IdCardDao targetDao = daoSession.getIdCardDao();
+        IdCard idCardNew = targetDao.load(__key);
+        synchronized (this) {
+            idCard = idCardNew;
+            idCard__resolvedKey = __key;
+        }
+    }
+    return idCard;
+}
+
+/** called by internal mechanisms, do not call yourself. */
+@Generated(hash = 33979033)
+public void setIdCard(@NotNull IdCard idCard) {
+    if (idCard == null) {
+        throw new DaoException(
+                "To-one property 'name' has not-null constraint; cannot set to-one to null");
+    }
+    synchronized (this) {
+        this.idCard = idCard;
+        name = idCard.getUserName();
+        idCard__resolvedKey = name;
+    }
+}
+
+/**
+ * To-many relationship, resolved on first access (and after reset).
+ * Changes to to-many relations are not persisted, make changes to the target entity.
+ */
+@Keep
+public List<CreditCard> getCreditCardsList() {
+    if (creditCardsList == null) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        CreditCardDao targetDao = daoSession.getCreditCardDao();
+        List<CreditCard> creditCardsListNew = targetDao._queryStudent_CreditCardsList(studentNo);
+        synchronized (this) {
+            if (creditCardsList == null) {
+                creditCardsList = creditCardsListNew;
             }
         }
-        return creditCardsList;
     }
+    return creditCardsList;
+}
 
+/** Resets a to-many relationship, making the next get call to query for a fresh result. */
+@Generated(hash = 441911208)
+public synchronized void resetCreditCardsList() {
+    creditCardsList = null;
+}
 
+/**
+ * To-many relationship, resolved on first access (and after reset).
+ * Changes to to-many relations are not persisted, make changes to the target entity.
+ */
+@Generated(hash = 1986556941)
+public List<Teacher> getTeacherList() {
+    if (teacherList == null) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        TeacherDao targetDao = daoSession.getTeacherDao();
+        List<Teacher> teacherListNew = targetDao._queryStudent_TeacherList(id);
+        synchronized (this) {
+            if (teacherList == null) {
+                teacherList = teacherListNew;
+            }
+        }
+    }
+    return teacherList;
+}
 
+/** Resets a to-many relationship, making the next get call to query for a fresh result. */
+@Generated(hash = 973821661)
+public synchronized void resetTeacherList() {
+    teacherList = null;
+}
+
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#delete(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 128553479)
+public void delete() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
+    }
+    myDao.delete(this);
+}
+
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#refresh(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 1942392019)
+public void refresh() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
+    }
+    myDao.refresh(this);
+}
+
+/**
+ * Convenient call for {@link org.greenrobot.greendao.AbstractDao#update(Object)}.
+ * Entity must attached to an entity context.
+ */
+@Generated(hash = 713229351)
+public void update() {
+    if (myDao == null) {
+        throw new DaoException("Entity is detached from DAO context");
+    }
+    myDao.update(this);
+}
+
+/** called by internal mechanisms, do not call yourself. */
+@Generated(hash = 1701634981)
+public void __setDaoSession(DaoSession daoSession) {
+    this.daoSession = daoSession;
+    myDao = daoSession != null ? daoSession.getStudentDao() : null;
+}
 }
