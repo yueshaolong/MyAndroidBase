@@ -34,4 +34,11 @@ public class IdCard {
         this.idNo = idNo;
     }
 
+    @Override
+    public String toString() {
+        return "IdCard{" +
+                "userName='" + userName + '\'' +
+                ", idNo='" + idNo + '\'' +
+                '}';
+    }
 }
