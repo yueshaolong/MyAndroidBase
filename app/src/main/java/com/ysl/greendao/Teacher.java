@@ -5,7 +5,6 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.JoinEntity;
-import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.ToMany;
 import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Unique;
@@ -77,9 +76,9 @@ public class Teacher {
                 ", name='" + name + '\'' +
                 ", schoolName='" + schoolName + '\'' +
                 ", subject='" + subject + '\'' +
-                ", idCard=" + idCard +
-                ", creditCardList=" + creditCardList +
-                ", studentList=" + studentList +
+                ", idCard=" + getIdCard() +
+                ", creditCardList=" + getCreditCardList() +
+                ", studentList=" + getStudentList().size() +
                 '}';
     }
 
@@ -176,28 +175,6 @@ public class Teacher {
         }
     }
 
-    /**
-     * To-many relationship, resolved on first access (and after reset).
-     * Changes to to-many relations are not persisted, make changes to the target entity.
-     */
-    @Keep
-    public List<CreditCard> getCreditCardList() {
-        if (creditCardList == null) {
-            final DaoSession daoSession = this.daoSession;
-            if (daoSession == null) {
-                throw new DaoException("Entity is detached from DAO context");
-            }
-            CreditCardDao targetDao = daoSession.getCreditCardDao();
-            List<CreditCard> creditCardListNew = targetDao
-                    ._queryTeacher_CreditCardList(teacherNo);
-            synchronized (this) {
-                if (creditCardList == null) {
-                    creditCardList = creditCardListNew;
-                }
-            }
-        }
-        return creditCardList;
-    }
 
     /** Resets a to-many relationship, making the next get call to query for a fresh result. */
     @Generated(hash = 1713799559)
@@ -274,5 +251,27 @@ public class Teacher {
     public void __setDaoSession(DaoSession daoSession) {
         this.daoSession = daoSession;
         myDao = daoSession != null ? daoSession.getTeacherDao() : null;
+    }
+
+    /**
+     * To-many relationship, resolved on first access (and after reset).
+     * Changes to to-many relations are not persisted, make changes to the target entity.
+     */
+    @Generated(hash = 1443712161)
+    public List<CreditCard> getCreditCardList() {
+        if (creditCardList == null) {
+            final DaoSession daoSession = this.daoSession;
+            if (daoSession == null) {
+                throw new DaoException("Entity is detached from DAO context");
+            }
+            CreditCardDao targetDao = daoSession.getCreditCardDao();
+            List<CreditCard> creditCardListNew = targetDao._queryTeacher_CreditCardList(id);
+            synchronized (this) {
+                if (creditCardList == null) {
+                    creditCardList = creditCardListNew;
+                }
+            }
+        }
+        return creditCardList;
     }
 }

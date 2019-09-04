@@ -6,7 +6,6 @@ import org.greenrobot.greendao.annotation.Generated;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Index;
 import org.greenrobot.greendao.annotation.JoinEntity;
-import org.greenrobot.greendao.annotation.Keep;
 import org.greenrobot.greendao.annotation.NotNull;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.ToMany;
@@ -76,8 +75,8 @@ public class Student {
 
     //定义与多个实体对象的关系
     //一对多关联，一个学生关联多张信用卡
-    // 这个studentId是对应在CreditCard中的studentId属性
-    @ToMany(referencedJoinProperty = "no")//referencedJoinProperty 指定目标实体（CreditCard）的外键studentId
+    // 这个no是对应在CreditCard中的no属性
+    @ToMany(referencedJoinProperty = "no")//referencedJoinProperty 指定目标实体（CreditCard）的外键no
     List<CreditCard> creditCardsList;
 
     //对于更复杂的关系，可以指定一个@joinproperty注释列表，每个@joinproperty需要原始实体中的源属性和目标实体中的引用属性。
@@ -91,6 +90,27 @@ public class Student {
             sourceProperty = "studentId",//第三张关系表实体内，源实体（Student）的属性
             targetProperty = "teacherId")//第三张关系表实体内，目标实体（Teacher）的属性
     List<Teacher> teacherList;
+
+
+    //@Keep-- 注解的代码段在GreenDao下次运行时保持不变
+    //1.注解实体类：默认禁止修改此类
+    //2.注解其他代码段，默认禁止修改注解的代码段
+
+    //@OrderBy-- 指定排序,若要指定排序, 需在列明以后添加 ASC(升序) 或者DESC(降序) ,
+    // 例如 "propertyA DESC, propertyB ASC" 默认按升序排序 ,若不设置默认根据主键排序
+
+    //@Convert-- 使用Converter将自定义类转换为相关的值
+    //如enum类, 可以将其转换为String
+    //@Convert(converter = NoteTypeConverter.class, columnType = String.class)
+    //private NoteType type;//这是官方demo的例子
+
+    //@Generated--  表示GreenDao自动生成的代码, 不要改动, 改动会报错
+    //如果希望恢复自动生成代码, 则删除改动后的代码, 下次构建会自动生成
+    //如果希望保留改动的代码并不要报错, 可将@Generated改为@Keep
+
+    //@Transient--  表明此字段不存储到数据库中，用于不需要持久化的字段，比如临时状态
+    // 也可以使用Java中的transient关键字。
+    // 下面的代码是编译器自动生成的样式，也可以使用@Transient注解。
 
 /** Used to resolve relations */
 @Generated(hash = 2040040024)
@@ -121,24 +141,6 @@ public Student() {
 @Generated(hash = 137173928)
 private transient String idCard__resolvedKey;
 
-    //@Keep-- 注解的代码段在GreenDao下次运行时保持不变
-    //1.注解实体类：默认禁止修改此类
-    //2.注解其他代码段，默认禁止修改注解的代码段
-
-    //@OrderBy-- 指定排序,若要指定排序, 需在列明以后添加 ASC(升序) 或者DESC(降序) ,
-    // 例如 "propertyA DESC, propertyB ASC" 默认按升序排序 ,若不设置默认根据主键排序
-
-    //@Convert-- 使用Converter将自定义类转换为相关的值
-    //如enum类, 可以将其转换为String
-
-    //@Generated--  表示GreenDao自动生成的代码, 不要改动, 改动会报错
-    //如果希望恢复自动生成代码, 则删除改动后的代码, 下次构建会自动生成
-    //如果希望保留改动的代码并不要报错, 可将@Generated改为@Keep
-
-    //@Transient--  表明此字段不存储到数据库中，用于不需要持久化的字段，比如临时状态
-    // 也可以使用Java中的transient关键字。
-    // 下面的代码是编译器自动生成的样式，也可以使用@Transient注解。
-
 
     @Override
     public String toString() {
@@ -154,7 +156,7 @@ private transient String idCard__resolvedKey;
                 ", grade='" + grade + '\'' +
                 ", idCard=" + getIdCard() +
                 ", creditCardsList=" + getCreditCardsList() +
-                ", teacherList=" + getTeacherList() +
+                ", teacherList=" + getTeacherList().size() +
                 '}';
     }
 
@@ -263,27 +265,6 @@ public void setIdCard(@NotNull IdCard idCard) {
     }
 }
 
-/**
- * To-many relationship, resolved on first access (and after reset).
- * Changes to to-many relations are not persisted, make changes to the target entity.
- */
-@Keep
-public List<CreditCard> getCreditCardsList() {
-    if (creditCardsList == null) {
-        final DaoSession daoSession = this.daoSession;
-        if (daoSession == null) {
-            throw new DaoException("Entity is detached from DAO context");
-        }
-        CreditCardDao targetDao = daoSession.getCreditCardDao();
-        List<CreditCard> creditCardsListNew = targetDao._queryStudent_CreditCardsList(studentNo);
-        synchronized (this) {
-            if (creditCardsList == null) {
-                creditCardsList = creditCardsListNew;
-            }
-        }
-    }
-    return creditCardsList;
-}
 
 /** Resets a to-many relationship, making the next get call to query for a fresh result. */
 @Generated(hash = 441911208)
@@ -360,5 +341,27 @@ public void update() {
 public void __setDaoSession(DaoSession daoSession) {
     this.daoSession = daoSession;
     myDao = daoSession != null ? daoSession.getStudentDao() : null;
+}
+
+/**
+ * To-many relationship, resolved on first access (and after reset).
+ * Changes to to-many relations are not persisted, make changes to the target entity.
+ */
+@Generated(hash = 1268960764)
+public List<CreditCard> getCreditCardsList() {
+    if (creditCardsList == null) {
+        final DaoSession daoSession = this.daoSession;
+        if (daoSession == null) {
+            throw new DaoException("Entity is detached from DAO context");
+        }
+        CreditCardDao targetDao = daoSession.getCreditCardDao();
+        List<CreditCard> creditCardsListNew = targetDao._queryStudent_CreditCardsList(id);
+        synchronized (this) {
+            if (creditCardsList == null) {
+                creditCardsList = creditCardsListNew;
+            }
+        }
+    }
+    return creditCardsList;
 }
 }

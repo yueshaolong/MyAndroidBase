@@ -8,11 +8,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.MyApp;
-import com.ysl.greendao.StudentDao.Properties;
 import com.ysl.myandroidbase.R;
 
 import org.greenrobot.greendao.query.DeleteQuery;
-import org.greenrobot.greendao.query.Join;
 import org.greenrobot.greendao.query.Query;
 import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
@@ -55,23 +53,40 @@ public class GreenDaoActivity extends AppCompatActivity {
                 break;
             case R.id.button7:
 //                queryRaw("1");
-//                List<Student> students = queryAllList();
+//                List<Student> students = queryAllStudent();
 //                Log.d(TAG, "所有学生: students="+students);
+//                List<Teacher> teachers = queryAllTeacher();
+//                Log.d(TAG, "所有老师: teachers="+teachers);
+
+                List<Student> students1 = querySByT();
+                Log.d(TAG, "查学号200的学生信息: students1="+students1);
+                Log.d(TAG, "查学号200的学生信息: students1="+students1.get(0).getTeacherList());
+                List<Teacher> teachers1 = queryTByS();
+                Log.d(TAG, "查工号300的老师信息: teachers1="+teachers1);
+                Log.d(TAG, "查工号300的老师信息: teachers1="+teachers1.get(0).getStudentList());
+
+
+
 //                List<IdCard> idCards = queryAllIdCard();
 //                Log.d(TAG, "所有身份证: idCards="+idCards);
 //                List<Student> students1 = queryS();
 //                Log.d(TAG, "查询身份证: students1="+students1);
-                List<CreditCard> creditCards = queryAllCreditCard();
-                Log.d(TAG, "所有信用卡: creditCards="+creditCards);
-                List<Student> students2 = queryC();
-                Log.d(TAG, "查询信用卡: students2="+students2);
+//                List<Student> students1 = queryS2();
+//                Log.d(TAG, "查询身份证: students1="+students1);
+
+//                List<CreditCard> creditCards = queryAllCreditCard();
+//                Log.d(TAG, "所有信用卡: creditCards="+creditCards);
+//                List<Student> students2 = queryC();
+//                Log.d(TAG, "查询信用卡: students2="+students2);
+//                List<Student> students2 = queryC2();
+//                Log.d(TAG, "查询信用卡: students2="+students2);
 
                 break;
             case R.id.button8:
-                addStudent();
+                addIdCard();
                 break;
             case R.id.button9:
-                addStudent2();
+                addCreditCard();
                 break;
             case R.id.button10:
                 addData();
@@ -166,20 +181,54 @@ public class GreenDaoActivity extends AppCompatActivity {
     public List<CreditCard> queryAllCreditCard(){
         return daoSession.loadAll(CreditCard.class);
     }
-    //查询某个人的CreditCard
+
+
+    /**
+        //此queryBuilder的主实体的主键属性用于匹配给定的目标属性。参数为目标实体类和目标属性
+        public <J> Join<T, J> join(Class<J> destinationEntityClass, Property destinationProperty)
+     */
+    /**
+        //给定的源属性用于匹配给定目标实体的主键属性。参数为源属性和目标实体类
+        public <J> Join<T, J> join(Property sourceProperty, Class<J> destinationEntityClass)
+     */
+    /**
+        //给定的源属性用于匹配给定目标实体的给定目标属性。参数为源属性，目标实体类，目标属性
+        //public <J> Join<T, J> join(Property sourceProperty, Class<J> destinationEntityClass,
+                               Property destinationProperty)
+     */
+
+    //查学号为67的学生的信用卡列表信息；因为学生关联了信用卡，所以直接查
     public List<Student> queryC(){
         QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class);
-        //此querybuilder的主实体的主键属性用于匹配给定的目标属性。参数为目标实体类和目标属性，不合适
-//        queryBuilder.join(CreditCard.class, CreditCardDao.Properties.No);
-        //给定的源属性用于匹配给定目标实体的主键属性。参数为源属性和目标实体类，不合适
-//        queryBuilder.join(StudentDao.Properties.StudentNo, CreditCard.class);
-        //给定的源属性用于匹配给定目标实体的给定目标属性。参数为源属性，目标实体类，目标属性
-        //TODO 刚好这里就是把student的StudentNo属性和CreditCard的no属性对应起来
-//        Join<Student, CreditCard> join = queryBuilder.join(Properties.StudentNo, CreditCard.class, CreditCardDao.Properties.No);
+        queryBuilder.where(StudentDao.Properties.StudentNo.eq(67));
 //        queryBuilder.distinct();//去重
         return queryBuilder.list();
     }
 
+    //查信用卡号为 969853274429271584  的学生信息，因为信用卡没关联学生，所以用join查；
+    //学生的主键关联了身份证的no属性，即：主实体的主键属性用于匹配给定的目标属性。参数为目标实体类和目标属性
+    //public <J> Join<T, J> join(Class<J> destinationEntityClass, Property destinationProperty)
+    //这里就是student的主键id关联到信用卡的no属性
+    public List<Student> queryC2(){
+        QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class);
+        //此queryBuilder的主实体的主键属性用于匹配给定的目标属性。参数为目标实体类和目标属性
+        queryBuilder.join(CreditCard.class, CreditCardDao.Properties.No)
+                .where(CreditCardDao.Properties.CardNum.eq("969853274429271584"));
+        return queryBuilder.list();
+    }
+
+    //查学号200的学生信息
+    private List<Student> querySByT(){
+        QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class)
+                .where(StudentDao.Properties.StudentNo.eq(200));
+        return queryBuilder.list();
+    }
+    //查工号300的老师信息
+    private List<Teacher> queryTByS(){
+        QueryBuilder<Teacher> queryBuilder = daoSession.queryBuilder(Teacher.class)
+                .where(TeacherDao.Properties.TeacherNo.eq(300));
+        return queryBuilder.list();
+    }
     /*eq：==（等于）
     notEq：！=（不等于）
     gt：>（大于）
@@ -191,16 +240,32 @@ public class GreenDaoActivity extends AppCompatActivity {
     in：在某些值内
     notIn：不在某些值内*/
 
-    //查询关联好数据的对象
+    //查询学号66的学生的身份证信息，因为学生里面关联了身份证，所以直接查学生即可
     public List<Student> queryS(){
         QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class);
         queryBuilder.where(StudentDao.Properties.StudentNo.eq(66));
         return queryBuilder.list();
     }
+    //查身份证为 411024201511148153  的学生信息，因为身份证没有关联学生，所以不能直接查
+    //student和idcard是通过name关联的，所以使用join的方法为：
+    // public <J> Join<T, J> join(Property sourceProperty, Class<J> destinationEntityClass,
+    // Property destinationProperty)  参数：源属性，目标类，目标类关联的属性。
+    public List<Student> queryS2(){
+        QueryBuilder<Student> queryBuilder = daoSession.queryBuilder(Student.class);
+        queryBuilder.join(StudentDao.Properties.Name, IdCard.class, IdCardDao.Properties.UserName)
+                .where(IdCardDao.Properties.IdNo.eq("411024201511148153"));
+        return queryBuilder.list();
+    }
     //查询当前Student表的所有的数据
-    public List queryAllList(){
+    public List<Student> queryAllStudent(){
         QueryBuilder<Student> qb = daoSession.queryBuilder(Student.class);
         List<Student> list = qb.list(); // 查出所有的数据
+        return list;
+    }
+    //查询当前Student表的所有的数据
+    public List<Teacher> queryAllTeacher(){
+        QueryBuilder<Teacher> qb = daoSession.queryBuilder(Teacher.class);
+        List<Teacher> list = qb.list(); // 查出所有的数据
         return list;
     }
     //查询Name为“一”的所有Student
@@ -278,15 +343,49 @@ public class GreenDaoActivity extends AppCompatActivity {
     /**
      * 一对一关联身份证
      */
-    public void addStudent(){
+    public void addIdCard(){
+        Student student = addStudent(66);
+        addId(student.getName());
+
+        Teacher teacher = addTeacher(100);
+        addId(teacher.getName());
+    }
+
+    private void addId(String name) {
+        IdCard idCard = new IdCard();
+        idCard.setUserName(name);
+        idCard.setIdNo(RandomValue.getRandomID());
+        daoSession.insertOrReplace(idCard);
+    }
+
+    private Teacher addTeacher(int teacherNo) {
+        Teacher teacher = new Teacher();
+        teacher.setTeacherNo(teacherNo);
+        int age1 = mRandom.nextInt(20) + 18;
+        teacher.setAge(age1);
+        String chineseName1 = RandomValue.getChineseName();
+        teacher.setName(chineseName1);
+        teacher.setSchoolName(RandomValue.getSchoolName());
+        if (teacherNo % 2 == 0) {
+            teacher.setSex("男");
+        } else {
+            teacher.setSex("女");
+        }
+        teacher.setTelPhone(RandomValue.getTel());
+        teacher.setSubject(RandomValue.getRandomSubject());
+        daoSession.insertOrReplace(teacher);
+        return teacher;
+    }
+
+    private Student addStudent(int studentNo) {
         Student student = new Student();
-        student.setStudentNo(66);
+        student.setStudentNo(studentNo);
         int age = mRandom.nextInt(10) + 10;
         student.setAge(age);
         student.setTelPhone(RandomValue.getTel());
         String chineseName = RandomValue.getChineseName();
         student.setName(chineseName);
-        if (1000 % 2 == 0) {
+        if (studentNo % 2 == 0) {
             student.setSex("男");
         } else {
             student.setSex("女");
@@ -295,43 +394,27 @@ public class GreenDaoActivity extends AppCompatActivity {
         student.setGrade(String.valueOf(age % 10) + "年纪");
         student.setSchoolName(RandomValue.getSchoolName());
         daoSession.insertOrReplace(student);
-
-        //插入对应的IdCard数据
-        IdCard idCard = new IdCard();
-        idCard.setUserName(chineseName);
-        idCard.setIdNo(RandomValue.getRandomID());
-        daoSession.insertOrReplace(idCard);
+        return student;
     }
 
     /**
      * 一对多关联信用卡
      */
-    public void addStudent2(){
-        Student student = new Student();
-        student.setStudentNo(67);
-        int age = mRandom.nextInt(10) + 10;
-        student.setAge(age);
-        student.setTelPhone(RandomValue.getTel());
-        String chineseName = RandomValue.getChineseName();
-        student.setName(chineseName);
-        if (1000 % 2 == 0) {
-            student.setSex("男");
-        } else {
-            student.setSex("女");
-        }
-        student.setAddress(RandomValue.getRoad());
-        student.setGrade(String.valueOf(age % 10) + "年纪");
-        student.setSchoolName(RandomValue.getSchoolName());
-        daoSession.insertOrReplace(student);
+    public void addCreditCard(){
+        Student student = addStudent(67);
+        addCreditCard(student.getId(), "student");
 
-        //插入对应的CreditCard数据
-        for (int j = 0; j < mRandom.nextInt(5) + 1 ; j++) {
+        Teacher teacher = addTeacher(101);
+        addCreditCard(teacher.getId(), "teacher");
+    }
+
+    private void addCreditCard(Long id, String name) {
+        for (int j = 0; j < mRandom.nextInt(5) + 1; j++) {
             CreditCard creditCard = new CreditCard();
-            creditCard.setNo(67);
-            creditCard.setUserName("my"+j+"ka");
-            creditCard.setCardNum(String.valueOf(mRandom.nextInt(899999999)
-                    + 100000000) + String.valueOf(mRandom.nextInt(899999999)
-                    + 100000000));
+            creditCard.setNo(id);
+            creditCard.setUserName(name+"_"+j);
+            creditCard.setCardNum(String.valueOf(mRandom.nextInt(899999999) + 100000000)
+                    + String.valueOf(mRandom.nextInt(899999999) + 100000000));
             creditCard.setWhichBank(RandomValue.getBankName());
             creditCard.setCardType(mRandom.nextInt(10));
             daoSession.insertOrReplace(creditCard);
@@ -342,51 +425,26 @@ public class GreenDaoActivity extends AppCompatActivity {
      * 多对多关联
      */
     public void addData(){
-        //添加一个学生
-        Student  student = new Student();
-        student.setStudentNo(68);
-        int age = mRandom.nextInt(10) + 10;
-        student.setAge(age);
-        student.setTelPhone(RandomValue.getTel());
-        String chineseName = RandomValue.getChineseName();
-        student.setName(chineseName);
-        if (3 % 2 == 0) {
-            student.setSex("男");
-        } else {
-            student.setSex("女");
+        //添加2个学生
+        for (int i = 0; i < 4; i++) {
+            addStudent(200+i);
         }
-        student.setAddress(RandomValue.getRoad());
-        student.setGrade(String.valueOf(age % 10) + "年纪");
-        student.setSchoolName(RandomValue.getSchoolName());
-        daoSession.insertOrReplace(student);
-        //添加至少四个老师
-        for (int i =0; i < mRandom.nextInt(8) + 4; i++) {
-            Teacher teacher = new Teacher();
-            teacher.setTeacherNo(i);
-            int age1 = mRandom.nextInt(20) + 18;
-            teacher.setAge(age1);
-            String chineseName1 = RandomValue.getChineseName();
-            teacher.setName(chineseName1);
-            teacher.setSchoolName(RandomValue.getSchoolName());
-            if (i % 2 == 0) {
-                teacher.setSex("男");
-            } else {
-                teacher.setSex("女");
-            }
-            teacher.setTelPhone(RandomValue.getTel());
-            teacher.setSubject(RandomValue.getRandomSubject());
-            daoSession.insertOrReplace(teacher);
+        //添加两个个老师
+        for (int i = 0; i < 2; i++) {
+            addTeacher(300+i);
         }
 
-        //把这个学生和每一个老师关联起来
+        //把学生和每一个老师关联起来
         List<Teacher> teacherList = daoSession.loadAll(Teacher.class);
         Collections.shuffle(teacherList);
-        for (int j = 0; j < mRandom.nextInt(8) + 1; j++) {
-            if(j < teacherList.size()){
-                Teacher teacher = teacherList.get(j);
-                StudentAndTeacherBean teacherBean = new StudentAndTeacherBean(0l,
-                        student.getId(), teacher.getId());
-                daoSession.insertOrReplace(teacherBean);
+        List<Student> students = daoSession.loadAll(Student.class);
+        Collections.shuffle(students);
+        for (Teacher t : teacherList) {
+            for (Student s : students) {
+                StudentAndTeacherBean bean = new StudentAndTeacherBean();
+                bean.setStudentId(s.getId());
+                bean.setTeacherId(t.getId());
+                daoSession.insertOrReplace(bean);
             }
         }
     }
