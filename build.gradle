@@ -16,6 +16,7 @@ buildscript {
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
         classpath 'com.billy.android:cc-register:1.1.1' //使用最新版
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // 数据库处理greenDao
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'//protobuf插件
     }
 }
 
