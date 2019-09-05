@@ -1,3 +1,4 @@
+//runAsApp为在项目的根目录的gradle.properties文件中定义的值
 if (runAsApp.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {

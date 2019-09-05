@@ -1,8 +1,5 @@
 package com.ysl.lambda;
 
-import java.time.temporal.Temporal;
-import java.util.Comparator;
-
 public class Person {
     private String name;
     private int age;

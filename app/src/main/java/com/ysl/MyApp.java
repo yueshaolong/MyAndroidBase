@@ -54,9 +54,9 @@ public class MyApp extends BaseApplication {
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).build();
 
         //CC组件化路由
-        CC.enableDebug(BuildConfig.DEBUG);
-        CC.enableVerboseLog(BuildConfig.DEBUG);
-        CC.enableRemoteCC(BuildConfig.DEBUG);
+        CC.enableDebug(BuildConfig.DEBUG);//debug模式下，会在Logcat中输出一些CC框架内部的执行日志
+        CC.enableVerboseLog(BuildConfig.DEBUG);//开启日志跟踪后，会在Logcat中输出CC调用的详细流程，将打印出每一个执行时的CC对象或CCResult对象的详细信息
+        CC.enableRemoteCC(BuildConfig.DEBUG);//开启跨app组件调用
 
         //极光推送
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
