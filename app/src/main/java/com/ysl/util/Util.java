@@ -9,9 +9,20 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Util {
+    //官方文档中dp转换为px的公式
     public static int dp2px(Context context, float dipValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dipValue * scale + 0.5f);
+    }
+
+    //手势阈值转换工具，把16dp转换为对应的像素
+    public static int dp2px4gesture(Context context) {
+        // 手势阈值以dp表示
+        float GESTURE_THRESHOLD_DP = 16.0f;
+        // 获取屏幕的密度范围
+        float scale = context.getResources().getDisplayMetrics().density;
+        // 根据密度比例将dps转换为像素
+        return  (int) (GESTURE_THRESHOLD_DP * scale + 0.5f);
     }
 
     public static String printTrack(){
