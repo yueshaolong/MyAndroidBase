@@ -59,26 +59,32 @@ dependencies {
     implementation rootProject.ext.dependencies.runner
     implementation rootProject.ext.dependencies.espresso
 
-    implementation rootProject.ext.dependencies.androidlogginglog4j
+    implementation rootProject.ext.dependencies.androidlogginglog4j//log日志
     implementation rootProject.ext.dependencies.log4j
 
-    debugImplementation rootProject.ext.dependencies.debugleakcanary
+    debugImplementation rootProject.ext.dependencies.debugleakcanary//内存分析Canary
     releaseImplementation rootProject.ext.dependencies.releaseleakcanary
     debugImplementation rootProject.ext.dependencies.debugleakcanaryfragment
 
-    implementation rootProject.ext.dependencies.permissionsdispatcher
+    implementation rootProject.ext.dependencies.permissionsdispatcher//运行时权限
     annotationProcessor rootProject.ext.dependencies.permissionsdispatcherprocessor
 
-    implementation rootProject.ext.dependencies.butterknife
+    implementation rootProject.ext.dependencies.butterknife//黄油刀
     annotationProcessor rootProject.ext.dependencies.butterknifeProcessor
 
-    implementation rootProject.ext.dependencies.dagger
+    implementation rootProject.ext.dependencies.dagger//注解使用
     annotationProcessor rootProject.ext.dependencies.daggerProcessor
 
-    implementation rootProject.ext.dependencies.okhttp
-    implementation rootProject.ext.dependencies.retrofit
-    implementation rootProject.ext.dependencies.eventbus
-    implementation rootProject.ext.dependencies.mmkv
+    implementation rootProject.ext.dependencies.bugly_crashreport //Bugly SDK
+    implementation rootProject.ext.dependencies.bugly_nativecrashreport //Bugly NDK
+
+    implementation rootProject.ext.dependencies.arouter//阿里路由框架arouter
+    annotationProcessor rootProject.ext.dependencies.arouterProcessor
+
+    implementation rootProject.ext.dependencies.okhttp//网络请求
+    implementation rootProject.ext.dependencies.retrofit//网络参数
+    implementation rootProject.ext.dependencies.eventbus//线程总线
+    implementation rootProject.ext.dependencies.mmkv//腾讯mmkv
     implementation rootProject.ext.dependencies.SuperTextView//文字框架
     implementation rootProject.ext.dependencies.MPAndroidChart//图标框架
     implementation rootProject.ext.dependencies.badgeview//未读消息图标框架
@@ -88,14 +94,10 @@ dependencies {
     implementation rootProject.ext.dependencies.lottie//动画框架
     implementation rootProject.ext.dependencies.JPush //极光推送
     implementation rootProject.ext.dependencies.JCore//极光推送
-
-    implementation rootProject.ext.dependencies.bugly_crashreport //Bugly SDK
-    implementation rootProject.ext.dependencies.bugly_nativecrashreport //Bugly NDK
-
     implementation rootProject.ext.dependencies.disklrucache //磁盘缓存
+    implementation rootProject.ext.dependencies.greendao //greenDao数据库工具
+    implementation rootProject.ext.dependencies.sqlcipher//数据库加密解密工具
 
-    implementation rootProject.ext.dependencies.arouter
-    annotationProcessor rootProject.ext.dependencies.arouterProcessor
 
     implementation project(path: ':base')
     implementation project(path: ':modulea')
@@ -103,8 +105,6 @@ dependencies {
 
     addComponent 'news' //会默认添加依赖：project(':news')
 
-    implementation 'org.greenrobot:greendao:3.2.2' //greenDao
-    implementation 'net.zetetic:android-database-sqlcipher:3.5.6'
 }
 
 
