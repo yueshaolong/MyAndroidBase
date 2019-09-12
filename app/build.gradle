@@ -1,12 +1,12 @@
 ext.mainApp = true //标记为主app module
 apply from: rootProject.file('cc-settings-2.gradle')
-//apply plugin: 'com.android.application'
+//apply plugin: 'com.android.application'// 引入 android gradle 插件
 apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'org.greenrobot.greendao'//数据库greenDao的使用
 
-android {
+android {// 配置 android gradle plugin 需要的内容
     compileSdkVersion rootProject.android.compileSdkVersion
-    defaultConfig {
+    defaultConfig {// 版本，applicationId 等配置
         applicationId rootProject.android.applicationId
 
         minSdkVersion rootProject.android.minSdkVersion
@@ -33,7 +33,7 @@ android {
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
     }
-    buildTypes {
+    buildTypes {// 一些编译属性可以在这里配置
         release {
             minifyEnabled rootProject.android.minifyDisabled
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -43,7 +43,7 @@ android {
     dataBinding{
         enabled true
     }
-    compileOptions {
+    compileOptions {// 指定 java 版本
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }

@@ -3,14 +3,14 @@
 apply from:"config.gradle"
 
 
-buildscript {
+buildscript {// 配置项目的 classpath
     
-    repositories {
+    repositories {// 项目的仓库地址，会按顺序依次查找
         google()
         jcenter()
         mavenCentral()
     }
-    dependencies {
+    dependencies {// 项目的依赖
         classpath 'com.android.tools.build:gradle:3.2.0'
 
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
@@ -20,8 +20,8 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
+allprojects {// 子项目的配置
+    repositories {// 子项目引用的仓库
         google()
         jcenter()
         mavenCentral()
