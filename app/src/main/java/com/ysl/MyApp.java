@@ -4,12 +4,15 @@ import android.app.Notification;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.billy.cc.core.component.CC;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.tencent.smtt.sdk.QbSdk;
+import com.tencent.smtt.sdk.TbsListener;
 import com.ysl.dagger2.AppComponent;
 import com.ysl.dagger2.AppModule;
 import com.ysl.dagger2.DaggerAppComponent;
@@ -29,7 +32,7 @@ import cn.jpush.android.api.MultiActionsNotificationBuilder;
 
 public class MyApp extends BaseApplication {
 
-
+    public static final String TAG = "MyApp";
     private static AppComponent appComponent;
 
     @Override
@@ -72,6 +75,40 @@ public class MyApp extends BaseApplication {
 
         //初始化greenDao
         initGreenDao();
+
+        QbSdk.initX5Environment(this,new QbSdk.PreInitCallback() {
+            @Override
+            public void onCoreInitFinished() {
+                Log.d(TAG, "onCoreInitFinished: ");
+            }
+
+            @Override
+            public void onViewInitFinished(boolean b) {
+                //这里被回调，并且b=true说明内核初始化并可以使用
+                //如果b=false,内核会尝试安装，你可以通过下面监听接口获知
+                Log.d(TAG, "onViewInitFinished: b="+b);
+            }
+        });
+
+        QbSdk.setTbsListener(new TbsListener() {
+            @Override
+            public void onDownloadFinish(int i) {
+                //tbs内核下载完成回调
+                Log.d(TAG, "onDownloadFinish: i="+i);
+            }
+
+            @Override
+            public void onInstallFinish(int i) {
+                //内核安装完成回调，
+                Log.d(TAG, "onInstallFinish: i="+i);
+            }
+
+            @Override
+            public void onDownloadProgress(int i) {
+                //下载进度监听
+                Log.d(TAG, "onDownloadProgress: i="+i);
+            }
+        });
     }
 
     /**

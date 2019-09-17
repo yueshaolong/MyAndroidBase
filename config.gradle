@@ -57,6 +57,7 @@ ext {
         disklrucache:"2.0.2",//磁盘缓存
         greendao:"3.2.2",//greendao数据库工具
         sqlcipher:"3.5.6",//数据库加解密工具
+        pdfview: "2.8.2",//pdf加载器
 
     ]
     dependencies = [
@@ -116,5 +117,7 @@ ext {
         disklrucache: "com.jakewharton:disklrucache:${dependVersion.disklrucache}", //磁盘缓存
         greendao: "org.greenrobot:greendao:${dependVersion.greendao}",//数据库工具greendao
         sqlcipher: "net.zetetic:android-database-sqlcipher:${dependVersion.sqlcipher}",//数据库加解密工具
+
+        pdfview: "com.github.barteksc:android-pdf-viewer:${dependVersion.pdfview}",//pdf加载器
     ]
 }

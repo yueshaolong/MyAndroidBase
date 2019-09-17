@@ -26,7 +26,7 @@ public class PermissionUtils {
         switch (romType) {
             case EMUI: // 华为
                 intent.putExtra("packageName", activity.getPackageName());
-                intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.MainActivity"));
+                intent.setComponent(new ComponentName("com.huawei.systemmanager", "com.huawei.permissionmanager.ui.TBSActivity"));
                 break;
             case Flyme: // 魅族
                 intent.setAction("com.meizu.safe.security.SHOW_APPSEC");

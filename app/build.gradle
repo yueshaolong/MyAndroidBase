@@ -24,7 +24,7 @@ android {// 配置 android gradle plugin 需要的内容
 
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
-            abiFilters 'armeabi-v7a', 'x86'//, 'armeabi', 'arm64-v8a', 'x86_64', 'mips', 'mips64'
+            abiFilters 'armeabi-v7a',  'armeabi'//, 'x86','arm64-v8a', 'x86_64', 'mips', 'mips64'
         }
 
         manifestPlaceholders = [
@@ -47,11 +47,12 @@ android {// 配置 android gradle plugin 需要的内容
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/tbs_sdk_thirdapp_v4.3.0.1148_43697_' +
+            'sharewithdownloadwithfile_withoutGame_obfs_20190805_175505.jar')
     implementation rootProject.ext.dependencies.appcompatV7
     implementation rootProject.ext.dependencies.constraint
     implementation rootProject.ext.dependencies.design
@@ -82,7 +83,13 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies.arouterProcessor
 
     implementation rootProject.ext.dependencies.okhttp//网络请求
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     implementation rootProject.ext.dependencies.retrofit//网络参数
+    implementation rootProject.ext.dependencies.rxjava
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
+
     implementation rootProject.ext.dependencies.eventbus//线程总线
     implementation rootProject.ext.dependencies.mmkv//腾讯mmkv
     implementation rootProject.ext.dependencies.SuperTextView//文字框架
@@ -97,6 +104,8 @@ dependencies {
     implementation rootProject.ext.dependencies.disklrucache //磁盘缓存
     implementation rootProject.ext.dependencies.greendao //greenDao数据库工具
     implementation rootProject.ext.dependencies.sqlcipher//数据库加密解密工具
+    implementation rootProject.ext.dependencies.pdfview//pdf加载器
+    api 'com.tencent.tbs.tbssdk:sdk:43697'
 
 
     implementation project(path: ':base')

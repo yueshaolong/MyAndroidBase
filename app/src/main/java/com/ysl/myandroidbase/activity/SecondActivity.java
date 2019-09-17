@@ -23,7 +23,7 @@ public class SecondActivity extends AppCompatActivity {
         /*findViewById(R.id.tv2).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, MainActivity.class);
+                Intent intent = new Intent(SecondActivity.this, TBSActivity.class);
                 startActivity(intent);
             }
         });*/

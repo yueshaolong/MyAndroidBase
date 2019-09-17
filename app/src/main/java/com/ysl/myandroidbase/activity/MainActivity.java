@@ -16,7 +16,7 @@ import com.ysl.myandroidbase.activity.MyFragment.FragmentListener;
 import com.ysl.myandroidbase.receiver.MyReceiver;
 
 public class MainActivity extends AppCompatActivity implements FragmentListener {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "TBSActivity";
     private MyReceiver myReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

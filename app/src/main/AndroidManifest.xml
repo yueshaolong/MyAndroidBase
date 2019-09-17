@@ -121,6 +121,11 @@
         <activity android:name="com.ysl.bitmap.BitmapActivity">
         </activity>
         <activity android:name="com.ysl.greendao.GreenDaoActivity">
+        </activity>
+        <activity android:name="com.ysl.tencent_tbs.PDFActivity">
+        </activity>
+        <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
+        <activity android:name="com.ysl.tencent_tbs.TBSActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
