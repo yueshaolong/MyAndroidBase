@@ -29,6 +29,8 @@ import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.MultiActionsNotificationBuilder;
+import io.reactivex.functions.Consumer;
+import io.reactivex.plugins.RxJavaPlugins;
 
 public class MyApp extends BaseApplication {
 
@@ -76,6 +78,19 @@ public class MyApp extends BaseApplication {
         //初始化greenDao
         initGreenDao();
 
+        //使用腾讯文件系统TBS
+        initTbs();
+
+        //处理RxJava的异常
+        RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                CrashReport.postCatchedException(throwable);
+            }
+        });
+    }
+
+    private void initTbs() {
         QbSdk.initX5Environment(this,new QbSdk.PreInitCallback() {
             @Override
             public void onCoreInitFinished() {

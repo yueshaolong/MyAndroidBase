@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ysl.http.ApiClient;
+import com.ysl.http.ApiUrl;
 import com.ysl.myandroidbase.R;
 
 import java.io.File;
@@ -18,9 +19,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 
 
 public class FileDisplayActivity extends AppCompatActivity {
@@ -70,7 +74,6 @@ public class FileDisplayActivity extends AppCompatActivity {
             } catch (IOException e) {
                 Log.e(TAG, "getFilePathAndShowFile: ", e);
             }
-
         }
     }
 
@@ -125,7 +128,7 @@ public class FileDisplayActivity extends AppCompatActivity {
 
     private void downLoadFromNet(final String url, final SuperFileView mSuperFileView2) {
         //1.网络下载、存储路径、
-        File cacheFile = new File(getCacheDir() + getFileName(url));
+        File cacheFile = new File(getCacheDir(), getFileName(ApiUrl.URL_DOC));
         Log.d(TAG, "缓存文件 = " + cacheFile.toString());
         if (cacheFile.exists()) {
             if (cacheFile.length() <= 0) {
@@ -135,20 +138,80 @@ public class FileDisplayActivity extends AppCompatActivity {
             }
         }
 
-        Disposable subscribe = ApiClient.initService(DownloadFile.class, url)
+        ApiClient.initService(DownloadFile.class, url)
                 .getDocFile()
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .subscribe(new Consumer<File>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Response<ResponseBody>>() {
                     @Override
-                    public void accept(File file) throws Exception {
-                        mSuperFileView.displayFile(file);
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<ResponseBody> response) {
+                        Log.d(TAG, "下载文件-->onResponse");
+                        boolean flag;
+                        InputStream is = null;
+                        byte[] buf = new byte[2048];
+                        int len = 0;
+                        FileOutputStream fos = null;
+                        try {
+                            ResponseBody responseBody = response.body();
+                            is = responseBody.byteStream();
+                            long total = responseBody.contentLength();
+
+                            File fileN = new File(getCacheDir(), getFileName(ApiUrl.URL_DOC));
+                            Log.d(TAG, "创建缓存文件： " + fileN.toString());
+                            if (!fileN.exists()) {
+                                fileN.createNewFile();
+                            }
+                            fos = new FileOutputStream(fileN);
+                            long sum = 0;
+                            while ((len = is.read(buf)) != -1) {
+                                fos.write(buf, 0, len);
+                                sum += len;
+                                int progress = (int) (sum * 1.0f / total * 100);
+                                Log.d(TAG, "写入缓存文件" + fileN.getName() + "进度: " + progress);
+                            }
+                            fos.flush();
+                            Log.d(TAG, "文件下载成功,准备展示文件。");
+                            mSuperFileView2.displayFile(fileN);
+                        } catch (Exception e) {
+                            Log.d(TAG, "文件下载异常 = " + e.toString());
+                        } finally {
+                            try {
+                                if (is != null)
+                                    is.close();
+                            } catch (IOException e) {
+                            }
+                            try {
+                                if (fos != null)
+                                    fos.close();
+                            } catch (IOException e) {
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "文件下载失败"+e);
+                        File file = new File(getCacheDir(), getFileName(ApiUrl.URL_DOC));
+                        if (!file.exists()) {
+                            Log.d(TAG, "删除下载失败文件");
+                            file.delete();
+                        }
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }
 
     private String getFileName(String url) {
-        return Md5Tool.hashKey(url) + "." + getFileType(url);
+        return Md5Tool.hashKey(url) + "."+ getFileType(url);
     }
 
     private String getFileType(String paramString) {

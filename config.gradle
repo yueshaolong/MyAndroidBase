@@ -25,8 +25,6 @@ ext {
         runner:"1.1.0",
         espresso:"3.1.0",
 
-        okhttp3 : "3.10.0",
-        retrofit2 : "2.4.0",
         eventbus : "3.1.1",
         leakcanary : "1.6.3",
         mmkv : "1.0.18",
@@ -48,7 +46,14 @@ ext {
         JPush:"3.3.4",
         JCore:"2.1.2",
 
+        okhttp3 : "3.10.0",
+        logging_interceptor : "3.11.0",
+        retrofit2 : "2.4.0",
+        converter_gson : "2.4.0",
+        adapter_rxjava2 : "2.4.0",
         rxjava:"2.2.2",
+        rxandroid:"2.1.0",
+
         netty:"4.1.24.Final",
         protobuf:"3.9.1",
         protoc:"3.5.1",
@@ -91,8 +96,6 @@ ext {
         arouterProcessor : "com.alibaba:arouter-compiler:${dependVersion.aroutercompiler}",
 
         mmkv : "com.tencent:mmkv:${dependVersion.mmkv}",
-        okhttp : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp3}",
-        retrofit : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit2}",
         eventbus : "org.greenrobot:eventbus:${dependVersion.eventbus}",
         SuperTextView :"com.github.lygttpod:SuperTextView:${dependVersion.SuperTextView}",//文字框架
         MPAndroidChart : "com.github.PhilJay:MPAndroidChart:${dependVersion.MPAndroidChart}",//图标框架
@@ -105,11 +108,17 @@ ext {
         JPush :"cn.jiguang.sdk:jpush:${dependVersion.JPush}",  // 此处以JPush
         JCore :"cn.jiguang.sdk:jcore:${dependVersion.JCore}",  // 此处以JCore
 
+        okhttp : "com.squareup.okhttp3:okhttp:${dependVersion.okhttp3}",
+        logging_interceptor : "com.squareup.okhttp3:logging-interceptor:${dependVersion.logging_interceptor}",
+        retrofit : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit2}",
+        converter_gson : "com.squareup.retrofit2:converter-gson:${dependVersion.converter_gson}",
+        adapter_rxjava2 : "com.squareup.retrofit2:adapter-rxjava2:${dependVersion.adapter_rxjava2}",
         rxjava: "io.reactivex.rxjava2:rxjava:${dependVersion.rxjava}", //rxjava2
+        rxandroid  :  "io.reactivex.rxjava2:rxandroid:${dependVersion.rxandroid}",
+
         netty: "io.netty:netty-all:${dependVersion.netty}", //netty
         protobuf: "com.google.protobuf:protobuf-java:${dependVersion.protobuf}", //protobuf
         protoc: "com.google.protobuf:protoc:${dependVersion.protoc}",//protoc
-
 
         bugly_crashreport: "com.tencent.bugly:crashreport:${dependVersion.bugly}", //Bugly SDK
         bugly_nativecrashreport: "com.tencent.bugly:nativecrashreport:${dependVersion.bugly}", //Bugly NDK

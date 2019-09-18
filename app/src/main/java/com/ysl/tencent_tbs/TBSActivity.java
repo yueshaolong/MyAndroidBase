@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,15 @@ import com.ysl.myandroidbase.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.OnNeverAskAgain;
+import permissions.dispatcher.OnPermissionDenied;
+import permissions.dispatcher.OnShowRationale;
+import permissions.dispatcher.PermissionRequest;
+import permissions.dispatcher.RuntimePermissions;
 
+
+@RuntimePermissions
 public class TBSActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
@@ -30,6 +39,7 @@ public class TBSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tbs);
         initDatas();
         initPaths();
+        TBSActivityPermissionsDispatcher.needWithPermissionCheck(this);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -51,10 +61,6 @@ public class TBSActivity extends AppCompatActivity {
                         String[] perms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                                 Manifest.permission.WRITE_EXTERNAL_STORAGE};
                         filePath = getFilePath(position);
-//                        if (!EasyPermissions.hasPermissions(TBSActivity.this, perms)) {
-//                            EasyPermissions.requestPermissions(TBSActivity.this, "需要访问手机存储权限！", 10086, perms);
-//                        } else {
-//                        }
                         FileDisplayActivity.show(TBSActivity.this, filePath);
                     }
                 });
@@ -74,16 +80,9 @@ public class TBSActivity extends AppCompatActivity {
     private void initDatas() {
         datas.add("网络获取并打开doc文件");
         datas.add("打开本地doc文件");
-
-
         datas.add("打开本地txt文件");
-
         datas.add("打开本地excel文件");
-
-
         datas.add("打开本地ppt文件");
-
-
         datas.add("打开本地pdf文件");
     }
 
@@ -122,5 +121,27 @@ public class TBSActivity extends AppCompatActivity {
                 break;
         }
         return path;
+    }
+
+    @NeedsPermission({Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void need() {
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        TBSActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+    }
+
+    @OnShowRationale({Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void rationale(final PermissionRequest request) {
+    }
+
+    @OnPermissionDenied({Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void denied() {
+    }
+
+    @OnNeverAskAgain({Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    void askAgain() {
     }
 }

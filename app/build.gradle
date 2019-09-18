@@ -83,11 +83,12 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies.arouterProcessor
 
     implementation rootProject.ext.dependencies.okhttp//网络请求
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation rootProject.ext.dependencies.logging_interceptor
     implementation rootProject.ext.dependencies.retrofit//网络参数
-    implementation rootProject.ext.dependencies.rxjava
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation rootProject.ext.dependencies.converter_gson
+    implementation rootProject.ext.dependencies.adapter_rxjava2
+    implementation rootProject.ext.dependencies.rxjava//rxJava
+    implementation rootProject.ext.dependencies.rxandroid
 
 
     implementation rootProject.ext.dependencies.eventbus//线程总线
@@ -105,7 +106,7 @@ dependencies {
     implementation rootProject.ext.dependencies.greendao //greenDao数据库工具
     implementation rootProject.ext.dependencies.sqlcipher//数据库加密解密工具
     implementation rootProject.ext.dependencies.pdfview//pdf加载器
-    api 'com.tencent.tbs.tbssdk:sdk:43697'
+//    api 'com.tencent.tbs.tbssdk:sdk:43697'
 
 
     implementation project(path: ':base')

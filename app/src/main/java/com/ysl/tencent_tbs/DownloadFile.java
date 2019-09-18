@@ -1,11 +1,13 @@
 package com.ysl.tencent_tbs;
 
-import java.io.File;
+import com.ysl.http.ApiUrl;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.Response;
 import retrofit2.http.GET;
 
 public interface DownloadFile {
-    @GET("bgxz/sydwrybgxz/201101/P020110110748901718161.doc")
-    Observable<File> getDocFile();
+    @GET(ApiUrl.URL_DOC)
+    Observable<Response<ResponseBody>> getDocFile();
 }
