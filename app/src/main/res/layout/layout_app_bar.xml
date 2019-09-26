@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        app:contentInsetStart="0dp"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize">
+
+<!--        <RelativeLayout-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content">-->
+
+            <com.allen.library.SuperTextView
+                android:id="@+id/stv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                app:sCenterTextString="首页"
+                app:sCenterTextColor="@color/white"
+                app:sLeftTextString="工地名称"
+                app:sLeftTextColor="@color/white"
+                app:sRightIconRes="@android:drawable/ic_menu_add"
+                app:sRightIconHeight="@dimen/dp_30"
+                app:sRightIconWidth="@dimen/dp_30"
+                app:sBackgroundDrawableRes="@color/red"
+                />
+
+<!--        </RelativeLayout>-->
+
+
+        <!--<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <RelativeLayout
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_50">
+
+                <ImageView
+                    android:id="@+id/iv_zwf"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/saoyisao"
+                    android:layout_alignParentLeft="true"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_saoyisao"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp_10"
+                >
+                <ImageView
+                    android:id="@+id/iv_saoyisao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/saoyisao"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    />
+                <com.sundyn.uilibrary.superTextView.SuperTextView
+                    android:id="@+id/stv_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    app:sCenterTextString="编辑"
+                    app:sCenterTextColor="@color/white"
+                    app:sUseShape="true"
+                    app:sShapeStrokeWidth="@dimen/dp_1"
+                    app:sShapeCornersRadius="@dimen/dp_3"
+                    app:sShapeSelectorNormalColor="@color/blue"
+                    app:sShapeSelectorPressedColor="@color/blue"
+                    />
+            </RelativeLayout>
+
+            <com.sundyn.uilibrary.weiget.FocusedTextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:ellipsize="marquee"
+                android:singleLine="true"
+                android:textColor="#FF666666"
+                android:textSize="18sp"
+                android:layout_toRightOf="@id/iv_zwf"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_toLeftOf="@id/rl_saoyisao"
+                android:layout_marginLeft="@dimen/dp_10"/>
+
+
+        </RelativeLayout>-->
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>

@@ -58,7 +58,8 @@ ext {
         protobuf:"3.9.1",
         protoc:"3.5.1",
 
-        bugly:"latest.release",//其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+        bugly:"3.1.0",//其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
+        bugly_ndk:"3.7.1",//其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
         disklrucache:"2.0.2",//磁盘缓存
         greendao:"3.2.2",//greendao数据库工具
         sqlcipher:"3.5.6",//数据库加解密工具
@@ -121,7 +122,7 @@ ext {
         protoc: "com.google.protobuf:protoc:${dependVersion.protoc}",//protoc
 
         bugly_crashreport: "com.tencent.bugly:crashreport:${dependVersion.bugly}", //Bugly SDK
-        bugly_nativecrashreport: "com.tencent.bugly:nativecrashreport:${dependVersion.bugly}", //Bugly NDK
+        bugly_nativecrashreport: "com.tencent.bugly:nativecrashreport:${dependVersion.bugly_ndk}", //Bugly NDK
 
         disklrucache: "com.jakewharton:disklrucache:${dependVersion.disklrucache}", //磁盘缓存
         greendao: "org.greenrobot:greendao:${dependVersion.greendao}",//数据库工具greendao

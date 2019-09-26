@@ -126,6 +126,8 @@
         </activity>
         <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
         <activity android:name="com.ysl.tencent_tbs.TBSActivity">
+        </activity>
+        <activity android:name=".myview.ToolbarActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
