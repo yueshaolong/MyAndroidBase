@@ -28,4 +28,14 @@
         <!--isSupport=true标识当前控件支持换肤-->
         <attr name="isSupport" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="SwitchMultiButton">
+        <attr name="strokeRadius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="switchTextSize" format="dimension" />
+        <attr name="selectedTab" format="integer" />
+        <attr name="selectedColor" format="color|reference" />
+        <attr name="switchTabs" format="reference" />
+        <attr name="typeface" format="string" />
+    </declare-styleable>
 </resources>

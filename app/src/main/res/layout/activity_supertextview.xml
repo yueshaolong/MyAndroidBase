@@ -60,10 +60,11 @@
         app:sCenterTextColor="@color/RED"
 
         app:sUseShape="true"
-        app:sShapeStrokeWidth="2dp"
-        app:sShapeSolidColor="@color/GREEN"
-        app:sShapeStrokeColor="@color/GREEN"
         app:sShapeCornersRadius="8dp"
+        app:sShapeStrokeWidth="2dp"
+        app:sShapeSolidColor="@color/RED"
+        app:sShapeStrokeColor="@color/GREEN"
+        app:sShapeSelectorNormalColor="@color/green"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/stv2"

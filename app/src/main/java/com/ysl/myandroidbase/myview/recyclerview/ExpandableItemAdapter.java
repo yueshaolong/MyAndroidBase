@@ -1,9 +1,6 @@
 package com.ysl.myandroidbase.myview.recyclerview;
 
 import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

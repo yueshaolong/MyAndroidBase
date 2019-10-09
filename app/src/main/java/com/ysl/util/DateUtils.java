@@ -1,21 +1,18 @@
 package com.ysl.util;
 
-import android.text.format.DateFormat;
+import android.annotation.SuppressLint;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class DateUtils {
     public static final String formatPattern = "yyyy-MM-dd";
-
+    public static final String formatPattern_1 = "yyyy/MM/dd";
+    public static final String formatPattern_p = "yyyy_MM_dd_HHmmss";
     public static final String formatPattern_all = "yyyy-MM-dd HH:mm:ss";
+    public static final String formatPattern_2 = "HH:mm";
 
     public static final String format_hm = "HH:mm:ss";
     public static final String format_md = "MM-dd";
@@ -36,6 +33,8 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat(pattern);
         return format.format(date);
     }
+
+
 
     public static String parseTime(String time, String parsePattern, String formatPattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(parsePattern);
@@ -196,7 +195,7 @@ public class DateUtils {
         return temp;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
 //        System.out.println(get7DayAgoTime());
 
 //        System.out.println(Arrays.toString(IntToByteArray(2345)));
@@ -222,6 +221,81 @@ public class DateUtils {
 
 //        System.out.println(Double.parseDouble(String.format("%.2f", d)));
 
-        System.out.println(String.format(Locale.getDefault(),"%.2f", Double.valueOf("1.2467")));
+//        System.out.println(String.format(Locale.getDefault(),"%.2f", Double.valueOf("1.2467")));
+
+//        String s = dateToString(new Date(), formatPattern_p);
+//        System.out.println(s);
+
+//        getWeek("20190928");
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            Date date = sdf.parse("20191001");
+            long time = date.getTime();
+            System.out.println(time);
+            System.out.println(sdf.parse("20191007").getTime());
+            System.out.println(sdf.parse("20191008").getTime());
+
+            System.out.println(sdf.parse("20191208").getTime());
+            System.out.println(sdf.parse("20191108").getTime());
+            System.out.println(sdf.parse("20190908").getTime());
+            System.out.println(sdf.parse("20190808").getTime());
+            System.out.println(sdf.parse("20190708").getTime());
+            System.out.println(sdf.parse("20190608").getTime());
+            System.out.println(sdf.parse("20190508").getTime());
+            System.out.println(sdf.parse("20190408").getTime());
+            System.out.println(sdf.parse("20190308").getTime());
+            System.out.println(sdf.parse("20190208").getTime());
+            System.out.println(sdf.parse("20190108").getTime());
+            System.out.println(sdf.parse("20170508").getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+//        List<String> date = new ArrayList<>();
+//        date.add("2017/10/01");
+//        date.add("2017/08/01");
+//        date.add("2013/10/01");
+//        date.add("2019/10/06");
+//        date.add("2019/10/03");
+//        date.add("2018/10/03");
+//        date.add("2018/01/03");
+//        date.add("2018/11/03");
+//        Collections.reverse(date);
+//        System.out.println(date);
+//        Collections.sort(date);
+//        System.out.println(date);
+//        Collections.reverse(date);
+//        System.out.println(date);
+    }
+
+    public static String getWeek(String date) {
+        try {
+            Calendar cal = Calendar.getInstance();
+            @SuppressLint("SimpleDateFormat")
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            cal.setTime(new Date(1569600000000l));
+            // 设置一个星期的第一天，按中国的习惯一个星期的第一天是星期一  
+            cal.setFirstDayOfWeek(Calendar.MONDAY);
+            // 判断要计算的日期是否是周日，如果是则减一天计算周六的，否则会出问题，计算到下一周去了  
+            int dayWeek = cal.get(Calendar.DAY_OF_WEEK);// 获得当前日期是一个星期的第几天  
+            if (1 == dayWeek) {
+                cal.add(Calendar.DAY_OF_MONTH, -1);
+            }
+            // 获得当前日期是一个星期的第几天  
+            int day = cal.get(Calendar.DAY_OF_WEEK);
+            // 获取该周第一天
+            cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+            String beginDate = sdf.format(cal.getTime());
+            System.out.println(beginDate);
+            // 获取该周最后一天
+            cal.add(Calendar.DATE, 6);
+            String endDate = sdf.format(cal.getTime());
+            System.out.println(endDate);
+            return beginDate+"_"+endDate;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 }

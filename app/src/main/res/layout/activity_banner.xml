@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Toolbar
@@ -10,9 +12,17 @@
     <com.youth.banner.Banner
         android:id="@+id/ban1"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="100dp"/>
     <com.youth.banner.Banner
         android:id="@+id/ban2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="100dp"/>
+
+    <com.superluo.textbannerlibrary.TextBannerView
+        android:id="@+id/tv_banner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:setGravity="center"
+        app:setDirection="bottom_to_top"
+        app:setTextColor="@color/red"/>
 </LinearLayout>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -47,11 +46,14 @@ public class RecyclerViewActivity extends AppCompatActivity {
         //加载多种类型的布局
 //        initMultiData();
         //加载分组布局
-//        initFenZuData();
+        initFenZuData();
         //拖拽排序和滑动删除
 //        dragDelete();
         //加载树形结构列表
-        loadTreeList();
+//        loadTreeList();
+        //分组多类型布局
+//        initSMAdapter();
+
     }
 
     private ExpandableItemAdapter loadTreeList() {
@@ -284,4 +286,31 @@ public class RecyclerViewActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         return adapter;
     }
+
+    private SMAdapter initSMAdapter(){
+        List<SMData> data = new ArrayList<>();
+//        data.add(new SMData(true, "我的代办任务", "", -1));
+//        data.add(new SMData(false, "", "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1974166254,1619566506&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "nihaonihao", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1974166254,1619566506&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1974166254,1619566506&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "nihaonihao", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "nihaonihao", SMData.TEXT_TYPE));
+//
+//        data.add(new SMData(true, "已完成任务", "", -1));
+//        data.add(new SMData(false, "", "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1974166254,1619566506&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=657651020,1259448861&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=657651020,1259448861&fm=26&gp=0.jpg", SMData.IMAGE_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+//        data.add(new SMData(false, "", "哈哈哈哈哈", SMData.TEXT_TYPE));
+
+        SMAdapter smAdapter = new SMAdapter(R.layout.header,data);
+        rv.setAdapter(smAdapter);
+        return smAdapter;
+    }
+
 }
