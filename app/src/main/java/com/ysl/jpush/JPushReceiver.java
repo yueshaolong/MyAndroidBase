@@ -9,7 +9,6 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.ysl.myandroidbase.activity.MainActivity;
 import com.ysl.util.Util;
 
 import org.json.JSONException;

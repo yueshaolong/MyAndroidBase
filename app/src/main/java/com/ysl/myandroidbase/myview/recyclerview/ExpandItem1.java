@@ -19,4 +19,5 @@ public class ExpandItem1 extends AbstractExpandableItem<ExpandItem2> implements 
     public int getItemType() {
         return ExpandableItemAdapter.TYPE_LEVEL_0;
     }
+
 }

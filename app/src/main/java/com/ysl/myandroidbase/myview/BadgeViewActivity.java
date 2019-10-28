@@ -1,7 +1,6 @@
 package com.ysl.myandroidbase.myview;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,13 +25,13 @@ public class BadgeViewActivity extends AppCompatActivity {
         Button btn2 = findViewById(R.id.btn_hide);
 
         Badge badge = new QBadgeView(this).bindTarget(iv);
-        badge.setExactMode(false);
+        badge.setExactMode(false);//设置是否显示精确值
 
         btn1.setOnClickListener(view -> {
-            badge.setBadgeNumber(12);
+            badge.setBadgeText("");
         });
         btn2.setOnClickListener(view -> {
-            badge.hide(true);
+            badge.hide(false);
         });
     }
 }

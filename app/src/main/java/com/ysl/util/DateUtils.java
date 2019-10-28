@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class DateUtils {
     public static final String formatPattern = "yyyy-MM-dd";
@@ -209,7 +210,7 @@ public class DateUtils {
 
 //        double d = 1.239;
 //        double d = 1.2345;
-        double d = 1.2355;
+//        double d = 1.2355;
 //        BigDecimal bg = new BigDecimal(d).setScale(2, BigDecimal.ROUND_HALF_EVEN);
 //        System.out.println(bg);
 
@@ -227,29 +228,29 @@ public class DateUtils {
 //        System.out.println(s);
 
 //        getWeek("20190928");
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            Date date = sdf.parse("20191001");
-            long time = date.getTime();
-            System.out.println(time);
-            System.out.println(sdf.parse("20191007").getTime());
-            System.out.println(sdf.parse("20191008").getTime());
-
-            System.out.println(sdf.parse("20191208").getTime());
-            System.out.println(sdf.parse("20191108").getTime());
-            System.out.println(sdf.parse("20190908").getTime());
-            System.out.println(sdf.parse("20190808").getTime());
-            System.out.println(sdf.parse("20190708").getTime());
-            System.out.println(sdf.parse("20190608").getTime());
-            System.out.println(sdf.parse("20190508").getTime());
-            System.out.println(sdf.parse("20190408").getTime());
-            System.out.println(sdf.parse("20190308").getTime());
-            System.out.println(sdf.parse("20190208").getTime());
-            System.out.println(sdf.parse("20190108").getTime());
-            System.out.println(sdf.parse("20170508").getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//            Date date = sdf.parse("20191001");
+//            long time = date.getTime();
+//            System.out.println(time);
+//            System.out.println(sdf.parse("20191007").getTime());
+//            System.out.println(sdf.parse("20191008").getTime());
+//
+//            System.out.println(sdf.parse("20191208").getTime());
+//            System.out.println(sdf.parse("20191108").getTime());
+//            System.out.println(sdf.parse("20190908").getTime());
+//            System.out.println(sdf.parse("20190808").getTime());
+//            System.out.println(sdf.parse("20190708").getTime());
+//            System.out.println(sdf.parse("20190608").getTime());
+//            System.out.println(sdf.parse("20190508").getTime());
+//            System.out.println(sdf.parse("20190408").getTime());
+//            System.out.println(sdf.parse("20190308").getTime());
+//            System.out.println(sdf.parse("20190208").getTime());
+//            System.out.println(sdf.parse("20190108").getTime());
+//            System.out.println(sdf.parse("20170508").getTime());
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        List<String> date = new ArrayList<>();
@@ -267,6 +268,17 @@ public class DateUtils {
 //        System.out.println(date);
 //        Collections.reverse(date);
 //        System.out.println(date);
+
+//        System.out.println(0 % 15 == 0 ? 0 / 15 : 0 / 15 + 1);
+//        System.out.println(2 % 15 == 0 ? 2 / 15 : 2 / 15 + 1);
+//        System.out.println(12 % 15 == 0 ? 12 / 15 : 12 / 15 + 1);
+//        System.out.println(15 % 15 == 0 ? 15 / 15 : 15 / 15 + 1);
+//        System.out.println(20 % 15 == 0 ? 20 / 15 : 20 / 15 + 1);
+//        System.out.println(30 % 15 == 0 ? 30 / 15 : 30 / 15 + 1);
+
+        List<String> d = null;
+        System.out.println(d.isEmpty());
+
     }
 
     public static String getWeek(String date) {

@@ -94,13 +94,10 @@
         <activity android:name=".myview.mpandroidchart.PieChartActivity">
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
+
         </activity>
         <activity android:name=".myview.BannerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".myview.ToolbarActivity"
             android:theme="@style/AppTheme1">
@@ -121,6 +118,7 @@
         <activity android:name="com.ysl.cc.CCActivity">
         </activity>
         <activity android:name="com.ysl.jpush.JPushActivity">
+
         </activity>
         <activity android:name="com.ysl.bugly.BuglyActivity">
         </activity>
@@ -132,6 +130,11 @@
         </activity>
         <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
         <activity android:name="com.ysl.tencent_tbs.TBSActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.ysl.pikerview.PickerActivity">
         </activity>

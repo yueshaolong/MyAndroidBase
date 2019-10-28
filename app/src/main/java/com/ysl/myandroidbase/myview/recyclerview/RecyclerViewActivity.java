@@ -46,11 +46,11 @@ public class RecyclerViewActivity extends AppCompatActivity {
         //加载多种类型的布局
 //        initMultiData();
         //加载分组布局
-        initFenZuData();
+//        initFenZuData();
         //拖拽排序和滑动删除
 //        dragDelete();
         //加载树形结构列表
-//        loadTreeList();
+        loadTreeList();
         //分组多类型布局
 //        initSMAdapter();
 

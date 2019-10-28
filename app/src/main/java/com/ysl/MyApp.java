@@ -90,21 +90,20 @@ public class MyApp extends BaseApplication {
         });
     }
 
-    private void initTbs() {
-        QbSdk.initX5Environment(this,new QbSdk.PreInitCallback() {
+    public void initTbs() {
+        QbSdk.initX5Environment(application, new QbSdk.PreInitCallback() {
             @Override
             public void onCoreInitFinished() {
-                Log.d(TAG, "onCoreInitFinished: ");
+                Log.d(TAG, "onCoreInitFinished");
             }
 
             @Override
             public void onViewInitFinished(boolean b) {
                 //这里被回调，并且b=true说明内核初始化并可以使用
                 //如果b=false,内核会尝试安装，你可以通过下面监听接口获知
-                Log.d(TAG, "onViewInitFinished: b="+b);
+                Log.d(TAG, "onViewInitFinished：" + b);
             }
         });
-
         QbSdk.setTbsListener(new TbsListener() {
             @Override
             public void onDownloadFinish(int i) {
@@ -121,10 +120,11 @@ public class MyApp extends BaseApplication {
             @Override
             public void onDownloadProgress(int i) {
                 //下载进度监听
-                Log.d(TAG, "onDownloadProgress: i="+i);
+//                Log.d(TAG, "onDownloadProgress: i="+i);
             }
         });
     }
+
 
     /**
      * 初始化GreenDao,直接在Application中进行初始化操作

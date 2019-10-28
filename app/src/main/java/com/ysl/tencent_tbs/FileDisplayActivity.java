@@ -9,6 +9,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.ysl.MyApp;
 import com.ysl.http.ApiClient;
 import com.ysl.http.ApiUrl;
 import com.ysl.myandroidbase.R;
@@ -36,6 +37,7 @@ public class FileDisplayActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_display);
+        ((MyApp)getApplication()).initTbs();
         init();
     }
 
