@@ -130,11 +130,7 @@
         </activity>
         <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
         <activity android:name="com.ysl.tencent_tbs.TBSActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.ysl.pikerview.PickerActivity">
         </activity>
@@ -143,6 +139,13 @@
         </activity>
         <activity android:name=".myview.recyclerview.RecyclerViewActivity2">
 
+        </activity>
+        <activity android:name="com.ysl.daojishi.DaoJiShiActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
 
@@ -183,6 +186,7 @@
                 <category android:name="jpush.testCategory" />
             </intent-filter>
         </activity>
+
 
         <!-- User defined. 用户自定义的广播接收器-->
         <!-- 这是3.3.0之前版本的接收方式，3.3.0开始是通过继承 JPushMessageReceiver并配置来接收所有事件回调。-->

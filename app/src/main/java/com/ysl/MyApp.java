@@ -26,9 +26,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import cn.jpush.android.api.BasicPushNotificationBuilder;
-import cn.jpush.android.api.CustomPushNotificationBuilder;
 import cn.jpush.android.api.JPushInterface;
-import cn.jpush.android.api.MultiActionsNotificationBuilder;
 import io.reactivex.functions.Consumer;
 import io.reactivex.plugins.RxJavaPlugins;
 
@@ -183,26 +181,26 @@ public class MyApp extends BaseApplication {
                 | Notification.DEFAULT_LIGHTS;  // 设置为铃声、震动、呼吸灯闪烁都要
         JPushInterface.setPushNotificationBuilder(1, builder);
 
-        MultiActionsNotificationBuilder builder2 = new MultiActionsNotificationBuilder(this);
-        //添加按钮，参数（按钮图片、按钮文字、扩展数据）
-        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "first", "my_extra1");
-        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "second", "my_extra2");
-        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "third", "my_extra3");
-        JPushInterface.setPushNotificationBuilder(2, builder2);
-
-        CustomPushNotificationBuilder builder3 = new
-                CustomPushNotificationBuilder(this,
-                R.layout.customer_notitfication_layout,
-                R.id.icon,
-                R.id.title,
-                R.id.text,
-                R.id.time);
-        // 指定定制的 Notification Layout
-        builder3.statusBarDrawable = R.drawable.news1;
-        // 指定最顶层状态栏小图标
-        builder3.layoutIconDrawable = R.drawable.news2;
-        // 指定下拉状态栏时显示的通知图标
-        JPushInterface.setPushNotificationBuilder(3, builder3);
+//        MultiActionsNotificationBuilder builder2 = new MultiActionsNotificationBuilder(this);
+//        //添加按钮，参数（按钮图片、按钮文字、扩展数据）
+//        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "first", "my_extra1");
+//        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "second", "my_extra2");
+//        builder2.addJPushAction(R.drawable.jpush_ic_richpush_actionbar_back, "third", "my_extra3");
+//        JPushInterface.setPushNotificationBuilder(2, builder2);
+//
+//        CustomPushNotificationBuilder builder3 = new
+//                CustomPushNotificationBuilder(this,
+//                R.layout.customer_notitfication_layout,
+//                R.id.icon,
+//                R.id.title,
+//                R.id.text,
+//                R.id.time);
+//        // 指定定制的 Notification Layout
+//        builder3.statusBarDrawable = R.drawable.news1;
+//        // 指定最顶层状态栏小图标
+//        builder3.layoutIconDrawable = R.drawable.news2;
+//        // 指定下拉状态栏时显示的通知图标
+//        JPushInterface.setPushNotificationBuilder(3, builder3);
     }
 
     public static AppComponent getAppComponent() {

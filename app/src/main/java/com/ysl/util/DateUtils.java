@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class DateUtils {
     public static final String formatPattern = "yyyy-MM-dd";
@@ -276,8 +275,24 @@ public class DateUtils {
 //        System.out.println(20 % 15 == 0 ? 20 / 15 : 20 / 15 + 1);
 //        System.out.println(30 % 15 == 0 ? 30 / 15 : 30 / 15 + 1);
 
-        List<String> d = null;
-        System.out.println(d.isEmpty());
+//        List<String> d = null;
+//        System.out.println(d.isEmpty());
+
+//        System.out.println(formatDuring(23493567));
+
+//        Date date = null;
+//        try {
+//            String s = dateToString(new Date(), formatPattern);
+//            System.out.println(s);
+//            date = new SimpleDateFormat(formatPattern_all).parse(s+" 18:00:00");
+//            System.out.println(date.getTime());
+//            System.out.println(DateUtils.dateToString(date, formatPattern_all));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
+        System.out.println("2019/11/02".replace("/", "-"));
+
 
     }
 
@@ -309,5 +324,36 @@ public class DateUtils {
             e.printStackTrace();
             return "";
         }
+    }
+
+    /**
+     * @param mss 要转换的毫秒数
+     * @return 该毫秒数转换为 * days * hours * minutes * seconds 后的格式
+     * @author fy.zhang
+     */
+    public static String formatDuring(long mss) {
+        long days = mss / (1000 * 60 * 60 * 24);
+        long hours = (mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
+        long minutes = (mss % (1000 * 60 * 60)) / (1000 * 60);
+        long seconds = (mss % (1000 * 60)) / 1000;
+        return days + " 天 " + getTv(hours) + " 时 " + getTv(minutes) + " 分 "
+                + getTv(seconds) + " 秒 ";
+    }
+    private static String getTv(long l){
+        if(l>=10){
+            return l+"";
+        }else{
+            return "0"+l;//小于10,,前面补位一个"0"
+        }
+    }
+    /**
+     *
+     * @param begin 时间段的开始
+     * @param end   时间段的结束
+     * @return  输入的两个Date类型数据之间的时间间格用* days * hours * minutes * seconds的格式展示
+     * @author fy.zhang
+     */
+    public static String formatDuring(Date begin, Date end) {
+        return formatDuring(end.getTime() - begin.getTime());
     }
 }
