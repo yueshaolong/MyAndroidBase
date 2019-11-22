@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -102,11 +103,20 @@ public class TakePhotoActivity extends AppCompatActivity {
         }
 
         //发送广播给系统，刷新数据库
-        Uri uri = Uri.fromFile(file);
-        System.out.println("imageUri------>"+uri);
-        //imageUri------>file:///storage/emulated/0/MyAndroidBase/mybase/1574394370534.jpg
-        Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-        sendBroadcast(localIntent);
+//        Uri uri = Uri.fromFile(file);
+//        System.out.println("imageUri------>"+uri);
+//        //imageUri------>file:///storage/emulated/0/MyAndroidBase/mybase/1574394370534.jpg
+//        Intent localIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+//        sendBroadcast(localIntent);
+
+        //下面这种扫描的方法也可以刷新数据库
+        new SingleMediaScanner(this.getApplicationContext(),
+                getPictureDirPath().getAbsolutePath(),
+                new SingleMediaScanner.ScanListener() {
+                    @Override public void onScanFinish() {
+                        Log.i("SingleMediaScanner", "scan finish!");
+                    }
+                });
     }
     public static File getPictureDirPath() {
         File mIVMSFolder = null;
