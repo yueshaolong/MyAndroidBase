@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyAndroidBase</string>
+<!--    <string name="app_name">MyAndroidBase</string>-->
     <string name="home">主页</string>
     <string name="large_text">RxAppCompatActivity   重写activity的生命周期，并在各个生命周期内调用lifecycleSubject.onNext(***);
 

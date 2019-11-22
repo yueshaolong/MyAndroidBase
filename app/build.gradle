@@ -7,7 +7,7 @@ apply plugin: 'org.greenrobot.greendao'//数据库greenDao的使用
 android {// 配置 android gradle plugin 需要的内容
     compileSdkVersion rootProject.android.compileSdkVersion
     defaultConfig {// 版本，applicationId 等配置
-        applicationId rootProject.android.applicationId
+//        applicationId rootProject.android.applicationId
 
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
@@ -27,11 +27,15 @@ android {// 配置 android gradle plugin 需要的内容
             abiFilters 'armeabi-v7a'//,  'armeabi', 'x86','arm64-v8a', 'x86_64', 'mips', 'mips64'
         }
 
-        manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
-        ]
+        //必须要保证所有的flavor 都属于同一个维度
+        flavorDimensions "default"
+
+        //在下面的多环境打包配置中设置
+//        manifestPlaceholders = [
+//                JPUSH_PKGNAME : applicationId,
+//                JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
+//                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+//        ]
     }
     buildTypes {// 一些编译属性可以在这里配置
         release {
@@ -39,7 +43,44 @@ android {// 配置 android gradle plugin 需要的内容
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    productFlavors {
+        //开发环境
+        develop {
+            applicationId 'com.ysl.myandroidbase.develop'
+            buildConfigField "int", "ENV_TYPE", "1"
+            resValue "string", "app_name", "开发-my"
+            manifestPlaceholders = [
+                    app_icon: "@mipmap/w",
+                    JPUSH_PKGNAME : applicationId,
+                    JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
+                    JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+            ]
+        }
+        //测试环境
+        check {
+            applicationId 'com.ysl.myandroidbase.test'
+            buildConfigField "int", "ENV_TYPE", "2"
+            resValue "string", "app_name", "测试-my"
+            manifestPlaceholders = [
+                    app_icon: "@mipmap/take_phones",
+                    JPUSH_PKGNAME : applicationId,
+                    JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
+                    JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+            ]
+        }
+        //生产环境
+        product {
+            applicationId 'com.ysl.myandroidbase'
+            buildConfigField "int", "ENV_TYPE", "3"
+            resValue "string", "app_name", "产品-my"
+            manifestPlaceholders = [
+                    app_icon: "@mipmap/mm",
+                    JPUSH_PKGNAME : applicationId,
+                    JPUSH_APPKEY : "0abd9bce7e0eda4ef697c0cf", //JPush 上注册的包名对应的 Appkey.
+                    JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+            ]
+        }
+    }
     dataBinding{
         enabled true
     }
@@ -125,6 +166,6 @@ dependencies {
 
 greendao {
     schemaVersion 1 //数据库版本号
-    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录
+//    targetGenDir 'src/main/java'//设置DaoMaster、DaoSession、Dao目录，这里不配做会在build文件夹下自动生成
     daoPackage 'com.ysl.greendao'// 设置DaoMaster、DaoSession、Dao 包名
 }

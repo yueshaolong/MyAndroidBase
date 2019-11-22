@@ -246,13 +246,6 @@ public class Teacher {
         myDao.update(this);
     }
 
-    /** called by internal mechanisms, do not call yourself. */
-    @Generated(hash = 1349174479)
-    public void __setDaoSession(DaoSession daoSession) {
-        this.daoSession = daoSession;
-        myDao = daoSession != null ? daoSession.getTeacherDao() : null;
-    }
-
     /**
      * To-many relationship, resolved on first access (and after reset).
      * Changes to to-many relations are not persisted, make changes to the target entity.
@@ -273,5 +266,12 @@ public class Teacher {
             }
         }
         return creditCardList;
+    }
+
+    /** called by internal mechanisms, do not call yourself. */
+    @Generated(hash = 1349174479)
+    public void __setDaoSession(DaoSession daoSession) {
+        this.daoSession = daoSession;
+        myDao = daoSession != null ? daoSession.getTeacherDao() : null;
     }
 }

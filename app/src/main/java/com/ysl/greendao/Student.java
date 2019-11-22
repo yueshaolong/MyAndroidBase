@@ -336,13 +336,6 @@ public void update() {
     myDao.update(this);
 }
 
-/** called by internal mechanisms, do not call yourself. */
-@Generated(hash = 1701634981)
-public void __setDaoSession(DaoSession daoSession) {
-    this.daoSession = daoSession;
-    myDao = daoSession != null ? daoSession.getStudentDao() : null;
-}
-
 /**
  * To-many relationship, resolved on first access (and after reset).
  * Changes to to-many relations are not persisted, make changes to the target entity.
@@ -363,5 +356,12 @@ public List<CreditCard> getCreditCardsList() {
         }
     }
     return creditCardsList;
+}
+
+/** called by internal mechanisms, do not call yourself. */
+@Generated(hash = 1701634981)
+public void __setDaoSession(DaoSession daoSession) {
+    this.daoSession = daoSession;
+    myDao = daoSession != null ? daoSession.getStudentDao() : null;
 }
 }

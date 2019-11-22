@@ -1,4 +1,4 @@
-package com.ysl.myandroidbase.activity;
+package com.ysl.photo;
 
 import android.Manifest;
 import android.content.Context;
@@ -19,6 +19,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.tbruyelle.rxpermissions2.RxPermissions;
@@ -47,7 +48,8 @@ public class PhotoActivity extends AppCompatActivity {
         photo = findViewById(R.id.photo);
         iv = findViewById(R.id.iv_photo);
 
-        Disposable subscribe = new RxPermissions(this).request(Manifest.permission.CAMERA)
+        Disposable subscribe = new RxPermissions(this).request(Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
                     if (granted) {
                         photo.setOnClickListener(v -> {
@@ -55,7 +57,8 @@ public class PhotoActivity extends AppCompatActivity {
                             File file = new File(getPictureDirPath().getAbsolutePath(),
                                     System.currentTimeMillis() + ".jpg");
                             path = file.getPath();
-                            Uri imageUri = Uri.fromFile(file);
+                            Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
+                                    "com.ysl.myandroidbase.fileprovider", file);
                             openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                             PhotoActivity.this.startActivityForResult(openCameraIntent, 0);
                         });
