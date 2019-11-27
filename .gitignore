@@ -5,3 +5,5 @@
 /build
 /captures
 .externalNativeBuild
+screenMatch.properties
+screenMatch_example_dimens.xml
