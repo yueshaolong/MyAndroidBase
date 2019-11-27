@@ -1,1 +1,3 @@
-现在是master主分支
+#现在是master主分支
+##增加通知判断工具类
+NotificationsUtils, DialogUtil
