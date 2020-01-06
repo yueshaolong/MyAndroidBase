@@ -35,7 +35,7 @@ public class RecyclerViewActivity2 extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
         rv.setLayoutManager(gridLayoutManager);
         //GridView分组
-        imgPath = PicUtil.getDayData();
+        imgPath = PicUtil.getDayData(this);
         adapterDataList = new ArrayList<>();
         initFenZuData2(imgPath);
 
@@ -44,13 +44,13 @@ public class RecyclerViewActivity2 extends AppCompatActivity {
             public void onSwitch(int position, String tabText) {
                 switch (position) {
                     case 0:
-                        imgPath = PicUtil.getDayData();
+                        imgPath = PicUtil.getDayData(RecyclerViewActivity2.this);
                         break;
                     case 1:
-                        imgPath = PicUtil.getWeekData();
+                        imgPath = PicUtil.getWeekData(RecyclerViewActivity2.this);
                         break;
                     case 2:
-                        imgPath = PicUtil.getMonthData();
+                        imgPath = PicUtil.getMonthData(RecyclerViewActivity2.this);
                         break;
                     default:
 

@@ -1,13 +1,15 @@
 package com.ysl.myandroidbase.myview.zidingyiview;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.customview.widget.ViewDragHelper.Callback;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.customview.widget.ViewDragHelper;
+import androidx.customview.widget.ViewDragHelper.Callback;
 
 public class MyDragView extends ViewGroup {
 
@@ -147,5 +149,37 @@ public class MyDragView extends ViewGroup {
     public boolean onTouchEvent(MotionEvent event) {
         dragHelper.processTouchEvent(event);
         return true;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+
+        //ysl 目标版本在AndroidP以上的适配工作
+        //当目标版本从Android P开始，Canvas.clipPath(@NonNull Path path, @NonNull Region.Op op) ; 已经被废弃，
+        // 而且是包含异常风险的废弃API，只有 Region.Op.INTERSECT 和 Region.Op.DIFFERENCE 得到兼容，
+        // 目前不清楚google此举目的如何，仅仅如此简单就抛出异常提示开发者适配，几乎所有的博客解决方案都是如下简单粗暴：
+        /*Path path = new Path();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            canvas.clipPath(path);
+        } else {
+            canvas.clipPath(path, Region.Op.XOR);// REPLACE、UNION 等
+        }
+        //但我们一定需要一些高级逻辑运算效果怎么办？如小说的仿真翻页阅读效果，解决方案如下，用Path.op代替，
+        // 先运算Path，再给canvas.clipPath使用：
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            Path mPathXOR = new Path();
+            mPathXOR.moveTo(0,0);
+            mPathXOR.lineTo(getWidth(),0);
+            mPathXOR.lineTo(getWidth(),getHeight());
+            mPathXOR.lineTo(0,getHeight());
+            mPathXOR.close();
+            //以上根据实际的Canvas或View的大小，画出相同大小的Path即可
+            mPathXOR.op(path, Path.Op.XOR);
+            canvas.clipPath(mPathXOR);
+        }else {
+            canvas.clipPath(path, Region.Op.XOR);
+        }*/
     }
 }

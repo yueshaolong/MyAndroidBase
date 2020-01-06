@@ -36,7 +36,8 @@ public class TakePhotoActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_takephoto);
-        Disposable subscribe = new RxPermissions(this).request(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        Disposable subscribe = new RxPermissions(this).request(Manifest.permission.CAMERA,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(aBoolean -> {
                     if (aBoolean) {
                         findViewById(R.id.take_photo).setOnClickListener(v -> takePhoto());
