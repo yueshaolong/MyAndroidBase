@@ -1,7 +1,6 @@
 package com.ysl.cc;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -12,6 +11,9 @@ import com.billy.cc.core.component.CCResult;
 import com.billy.cc.core.component.IComponentCallback;
 import com.ysl.myandroidbase.R;
 
+/**
+ * cc组件化工具
+ */
 public class CCActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

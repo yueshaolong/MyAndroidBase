@@ -4,7 +4,9 @@ import com.billy.cc.core.component.CC;
 import com.billy.cc.core.component.CCResult;
 import com.billy.cc.core.component.CCUtil;
 import com.billy.cc.core.component.IComponent;
-
+/**
+ * cc组件化工具
+ */
 public class CCActivityComponent implements IComponent {
     @Override
     public String getName() {

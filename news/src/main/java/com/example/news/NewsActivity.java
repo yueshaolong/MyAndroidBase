@@ -7,8 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.billy.cc.core.component.CC;
-import com.billy.cc.core.component.CCResult;
-
+/**
+ * cc组件化工具
+ */
 public class NewsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

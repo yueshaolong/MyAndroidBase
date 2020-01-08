@@ -1,16 +1,17 @@
 package com.ysl.arouter;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.ysl.myandroidbase.R;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
+/**
+ * 阿里的组件化工具
+ */
 @Route(path = "/main/ArouterMainActivity")
 public class ArouterMainActivity extends AppCompatActivity {
     @Override
