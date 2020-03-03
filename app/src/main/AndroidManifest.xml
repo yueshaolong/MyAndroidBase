@@ -119,11 +119,7 @@
         <activity android:name="com.ysl.arouter.ArouterMainActivity">
         </activity>
         <activity android:name="com.ysl.cc.CCActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.ysl.jpush.JPushActivity">
 
@@ -143,7 +139,11 @@
         <activity android:name="com.ysl.pikerview.PickerActivity">
         </activity>
         <activity android:name="com.ysl.dialog.DialogActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".myview.recyclerview.RecyclerViewActivity2">
 

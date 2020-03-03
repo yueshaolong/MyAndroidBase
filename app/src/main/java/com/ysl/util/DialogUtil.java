@@ -10,7 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.allen.library.SuperButton;
 import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.GridHolder;
 import com.orhanobut.dialogplus.ListHolder;
 import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.OnItemClickListener;
@@ -189,4 +191,107 @@ public class DialogUtil {
             return convertView;
         }
     }
+
+
+    public static void showGridDialog(Context context, OnConfirmListener onConfirmListener, String title,
+                                      List<ICheckType> checkType, ICheckType checked){
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_header, null, false);
+        ((TextView)view.findViewById(R.id.title)).setText(title);
+        GridDialogAdapter gridDialogAdapter = new GridDialogAdapter(context, checkType, checked);
+        DialogPlus dialogPlus = DialogPlus.newDialog(context)
+                .setContentHolder(new GridHolder(3))
+                .setHeader(view)
+                .setAdapter(gridDialogAdapter)
+                .setOnItemClickListener((dialog, item, view12, position) ->{
+                    System.out.println("-------->点击了"+position);
+                    gridDialogAdapter.notifyChecked(checkType.get(position));
+                })
+                .setCancelable(true)
+                .setGravity(Gravity.BOTTOM)
+                .create();
+        dialogPlus.show();
+        dialogPlus.getHeaderView().findViewById(R.id.cancel).setOnClickListener(view1 -> {
+            if(dialogPlus.isShowing()){
+                dialogPlus.dismiss();
+            }
+        });
+        dialogPlus.getHeaderView().findViewById(R.id.confirm).setOnClickListener(view1 -> {
+            onConfirmListener.onConfirm(gridDialogAdapter.checked);
+            if(dialogPlus.isShowing()){
+                dialogPlus.dismiss();
+            }
+        });
+    }
+    public static class GridDialogAdapter extends BaseAdapter {
+        private List<ICheckType> checkType;
+        private Context context;
+        private ICheckType checked;
+
+        public GridDialogAdapter(Context context, List<ICheckType> checkType, ICheckType checked) {
+            this.checkType = checkType;
+            this.context = context;
+            this.checked = checked;
+        }
+
+        @Override
+        public int getCount() {
+            return checkType.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return checkType.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolderGrid viewHolder;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(context).inflate(R.layout.dialog_grid_item,
+                        null, false);
+                viewHolder = new ViewHolderGrid(convertView);
+                convertView.setTag(viewHolder);
+            }else{
+                viewHolder = (ViewHolderGrid) convertView.getTag();
+            }
+
+            viewHolder.sb.setText(checkType.get(position).getValue());
+            if (checked != null) {
+                System.out.println(checked.getKey()+"========>刷新时："+checked.getValue());
+            }
+            if(checked != null && checked.equals(checkType.get(position))){
+                viewHolder.sb.setShapeSolidColor(R.color.blue);
+                viewHolder.sb.setTextColor(context.getResources().getColor(R.color.white));
+            }else {
+                viewHolder.sb.setShapeSolidColor(R.color.white);
+                viewHolder.sb.setTextColor(context.getResources().getColor(R.color.black));
+            }
+            viewHolder.sb.setUseShape();
+
+            return convertView;
+        }
+
+        public void notifyChecked(ICheckType iCheckType) {
+            checked = iCheckType;
+            notifyDataSetChanged();
+        }
+    }
+    public static class ViewHolderGrid{
+        @BindView(R.id.sb)
+        SuperButton sb;
+        public ViewHolderGrid(View view){
+            ButterKnife.bind(this, view);
+        }
+    }
+
+    private OnConfirmListener onConfirmListener;
+    public interface OnConfirmListener{
+        void onConfirm(ICheckType checked);
+    }
+
 }

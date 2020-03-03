@@ -11,6 +11,7 @@ import com.orhanobut.dialogplus.OnClickListener;
 import com.orhanobut.dialogplus.OnItemClickListener;
 import com.ysl.myandroidbase.R;
 import com.ysl.util.DialogUtil;
+import com.ysl.util.ICheckType;
 import com.ysl.util.ToastUtils;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import butterknife.OnClick;
 public class DialogActivity extends AppCompatActivity {
 
     private String type = "日常班中巡检";
-
+    ICheckType tp;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +31,7 @@ public class DialogActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.button14, R.id.button15})
+    @OnClick({R.id.button14, R.id.button15, R.id.button16})
     public void c(View view) {
         switch (view.getId()) {
             case R.id.button14:
@@ -90,6 +91,61 @@ public class DialogActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 }, "选择排查类型", checkType, type);
+                break;
+            case R.id.button16:
+                List<ICheckType> checkType2 = new ArrayList<>();
+                ICheckType c1 = new ICheckType() {
+                    @Override
+                    public String getValue() {
+                        return "所有人";
+                    }
+
+                    @Override
+                    public String getKey() {
+                        return "syr";
+                    }
+
+
+                };
+                ICheckType c2 = new ICheckType() {
+                    @Override
+                    public String getValue() {
+                        return "hhh";
+                    }
+
+                    @Override
+                    public String getKey() {
+                        return "jj";
+                    }
+
+
+                };
+                ICheckType c3 = new ICheckType() {
+                    @Override
+                    public String getValue() {
+                        return "算电费";
+                    }
+
+                    @Override
+                    public String getKey() {
+                        return "shd";
+                    }
+
+
+                };
+                checkType2.add(c1);
+                checkType2.add(c2);
+                checkType2.add(c3);
+                checkType2.add(c1);
+                checkType2.add(c2);
+                checkType2.add(c3);
+                DialogUtil.showGridDialog(this, new DialogUtil.OnConfirmListener() {
+                    @Override
+                    public void onConfirm(ICheckType checked) {
+                        System.out.println(checked.getKey() + "=======选择的============" + checked.getValue());
+                    }
+                }, "选择排查类型", checkType2, tp);
+
                 break;
             default:
         }
