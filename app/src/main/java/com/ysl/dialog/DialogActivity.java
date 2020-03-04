@@ -110,7 +110,7 @@ public class DialogActivity extends AppCompatActivity {
                 ICheckType c2 = new ICheckType() {
                     @Override
                     public String getValue() {
-                        return "hhh";
+                        return "王守业";
                     }
 
                     @Override
@@ -123,7 +123,7 @@ public class DialogActivity extends AppCompatActivity {
                 ICheckType c3 = new ICheckType() {
                     @Override
                     public String getValue() {
-                        return "算电费";
+                        return "莎库时莎库时";
                     }
 
                     @Override
@@ -133,18 +133,20 @@ public class DialogActivity extends AppCompatActivity {
 
 
                 };
-                checkType2.add(c1);
-                checkType2.add(c2);
-                checkType2.add(c3);
+//                for (int i = 0; i < 10; i++) {
+//                    checkType2.add(c1);
+//                    checkType2.add(c2);
+//                    checkType2.add(c3);
+//                }
                 checkType2.add(c1);
                 checkType2.add(c2);
                 checkType2.add(c3);
                 DialogUtil.showGridDialog(this, new DialogUtil.OnConfirmListener() {
                     @Override
                     public void onConfirm(ICheckType checked) {
-                        System.out.println(checked.getKey() + "=======选择的============" + checked.getValue());
+                        System.out.println(checked.getKey() + "=======选择的activity============" + checked.getValue());
                     }
-                }, "选择排查类型", checkType2, tp);
+                }, "选择责任人", checkType2, tp=c1);
 
                 break;
             default:

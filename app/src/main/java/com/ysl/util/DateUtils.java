@@ -16,6 +16,8 @@ public class DateUtils {
 
     public static final String format_hm = "HH:mm:ss";
     public static final String format_md = "MM-dd";
+    public static final String format_ym = "yyyy-MM";
+    public static final String format_y = "yyyy";
 
     // mysql 常用的日期转换
     public static final String formatMysqlByDay = "%Y-%c-%d"; // 按天

@@ -4,10 +4,18 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.allen.library.SuperButton;
@@ -200,11 +208,15 @@ public class DialogUtil {
         GridDialogAdapter gridDialogAdapter = new GridDialogAdapter(context, checkType, checked);
         DialogPlus dialogPlus = DialogPlus.newDialog(context)
                 .setContentHolder(new GridHolder(3))
+                .setContentHeight(Util.dp2px(context,300))
                 .setHeader(view)
                 .setAdapter(gridDialogAdapter)
-                .setOnItemClickListener((dialog, item, view12, position) ->{
-                    System.out.println("-------->点击了"+position);
-                    gridDialogAdapter.notifyChecked(checkType.get(position));
+                .setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                        System.out.println("-------->点击了"+position);
+                        gridDialogAdapter.notifyChecked(checkType.get(position));
+                    }
                 })
                 .setCancelable(true)
                 .setGravity(Gravity.BOTTOM)
@@ -221,6 +233,12 @@ public class DialogUtil {
                 dialogPlus.dismiss();
             }
         });
+        GridView gridView = (GridView)dialogPlus.getHolderView();
+        gridView.setGravity(Gravity.CENTER);
+        gridView.setVerticalSpacing(Util.dp2px(context, 10));
+        LinearLayout.LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        params.setMargins(0,0, 0, Util.dp2px(context, 10));
+        gridView.setLayoutParams(params);
     }
     public static class GridDialogAdapter extends BaseAdapter {
         private List<ICheckType> checkType;
@@ -253,7 +271,7 @@ public class DialogUtil {
             ViewHolderGrid viewHolder;
             if (convertView == null) {
                 convertView = LayoutInflater.from(context).inflate(R.layout.dialog_grid_item,
-                        null, false);
+                        parent, false);
                 viewHolder = new ViewHolderGrid(convertView);
                 convertView.setTag(viewHolder);
             }else{
@@ -261,17 +279,17 @@ public class DialogUtil {
             }
 
             viewHolder.sb.setText(checkType.get(position).getValue());
+            System.out.println("=================="+checked);
             if (checked != null) {
                 System.out.println(checked.getKey()+"========>刷新时："+checked.getValue());
             }
             if(checked != null && checked.equals(checkType.get(position))){
-                viewHolder.sb.setShapeSolidColor(R.color.blue);
+                viewHolder.sb.setBackground(context.getResources().getDrawable(R.drawable.shape_circle_blue));
                 viewHolder.sb.setTextColor(context.getResources().getColor(R.color.white));
             }else {
-                viewHolder.sb.setShapeSolidColor(R.color.white);
+                viewHolder.sb.setBackground(context.getResources().getDrawable(R.drawable.shape_circle_white));
                 viewHolder.sb.setTextColor(context.getResources().getColor(R.color.black));
             }
-            viewHolder.sb.setUseShape();
 
             return convertView;
         }
@@ -283,7 +301,7 @@ public class DialogUtil {
     }
     public static class ViewHolderGrid{
         @BindView(R.id.sb)
-        SuperButton sb;
+        TextView sb;
         public ViewHolderGrid(View view){
             ButterKnife.bind(this, view);
         }
