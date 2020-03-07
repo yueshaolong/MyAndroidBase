@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_50"
+        android:textSize="@dimen/sp_12"
+        android:text="TextView" />
+
+    <com.allen.library.SuperTextView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/stv_risk_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sLeftTopTextString="脚手架防护设施"
+        app:sLeftTopTextSize="@dimen/sp_18"
+        app:sRightTopTextString="班组级-王XX"
+        app:sRightTopTextSize="@dimen/sp_12"
+        app:sLeftTextString="所属类别：设备设施类-脚手架工程"
+        app:sLeftTextSize="@dimen/sp_12"
+        app:sLeftBottomTextString="标准要求：根据防护目的，防护架顶面
+        及侧面设置密目防护网，根据防护架实际功能，完善防护网规格，
+        不得使散碎建筑材料标准要求根据防护目的，防护架顶面
+        及侧面设置密目防护网，根据防护架实际功能，完善防护网规格"
+        app:sLeftBottomTextSize="@dimen/sp_12"
+        app:sLeftViewGravity="left_center"
+        app:sRightTextString=" "
+        app:sRightBottomTextString=" "
+        app:sLeftIconRes="@mipmap/mm"
+        app:sLeftIconHeight="@dimen/dp_80"
+        app:sLeftIconWidth="@dimen/dp_5"
+        app:sLeftIconMarginLeft="@dimen/dp_0"
+        app:sBackgroundDrawableRes="@drawable/shape_circle_white"
+        app:sUseRipple="false" />
+
+</LinearLayout>
