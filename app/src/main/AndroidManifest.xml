@@ -97,7 +97,11 @@
         <activity android:name=".myview.mpandroidchart.PieChartActivity">
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".myview.BannerActivity">
 
@@ -137,11 +141,7 @@
 
         </activity>
         <activity android:name="com.ysl.pikerview.PickerActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.ysl.dialog.DialogActivity">
         </activity>
