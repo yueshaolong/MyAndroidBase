@@ -4,7 +4,6 @@ import com.ysl.netty.common.ByteMessage;
 import com.ysl.netty.common.ByteMessageType;
 import com.ysl.netty.common.MessageData;
 import com.ysl.netty.protobuf.Message;
-import com.ysl.netty.protobuf.MyMessage;
 
 import org.apache.log4j.Logger;
 
@@ -56,7 +55,7 @@ public class ClientHandler extends ChannelInboundHandlerAdapter {
                 logger.info("netty客户端，WRITER_IDLE");
                 sendHeartbeat(ctx);
             } else if (event.state().equals(IdleState.ALL_IDLE)) {
-                MyMessage.SearchRequests.Builder builder = MyMessage.SearchRequests.newBuilder();
+                Message.SearchRequests.Builder builder = Message.SearchRequests.newBuilder();
             }
         }
     }

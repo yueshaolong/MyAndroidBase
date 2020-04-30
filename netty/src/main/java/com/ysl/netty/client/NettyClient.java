@@ -50,6 +50,7 @@ public class NettyClient {
     }
 
     private static ChannelFutureListener channelFutureListener = new ChannelFutureListener() {
+        @Override
         public void operationComplete(ChannelFuture f) throws Exception {
             if (f.isSuccess()) {
                 logger.info("连接服务器成功");
