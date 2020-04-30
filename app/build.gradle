@@ -157,6 +157,7 @@ dependencies {
     implementation project(path: ':base')
     implementation project(path: ':modulea')
     implementation project(path: ':moduleb')
+    implementation project(path: ':netty')
 
     addComponent 'news' //会默认添加依赖：project(':news')
 

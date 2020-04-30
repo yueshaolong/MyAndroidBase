@@ -97,11 +97,6 @@
         <activity android:name=".myview.mpandroidchart.PieChartActivity">
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".myview.BannerActivity">
 
@@ -154,6 +149,16 @@
         <activity android:name="com.ysl.photo.TakePhotoActivity">
 
         </activity>
+        <activity android:name=".myview.ExpandableTextViewAct">
+
+        </activity>
+        <activity android:name=".activity.UDPActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -202,13 +207,6 @@
             <intent-filter>
                 <action android:name="jpush.testAction" />
                 <category android:name="jpush.testCategory" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".myview.ExpandableTextViewAct">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
