@@ -152,7 +152,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.superluo:textbannerview:1.0.5'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-
+    implementation rootProject.ext.dependencies.netty
 
     implementation project(path: ':base')
     implementation project(path: ':modulea')

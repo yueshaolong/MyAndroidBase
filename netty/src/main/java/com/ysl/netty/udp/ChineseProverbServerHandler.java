@@ -1,6 +1,5 @@
 package com.ysl.netty.udp;
 
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
@@ -22,11 +21,11 @@ public class ChineseProverbServerHandler extends SimpleChannelInboundHandler<Dat
         //利用ByteBuf的toString()方法获取请求消息
         String req = packet.content().toString(CharsetUtil.UTF_8);
         System.out.println(req);
-        if ("谚语字典查询?".equals(req)) {
-            //创建新的DatagramPacket对象，传入返回消息和目的地址（IP和端口）
-            ctx.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(
-                    "谚语查询结果：" + nextQuote(), CharsetUtil.UTF_8), packet.sender()));
-        }
+//        if ("谚语字典查询?".equals(req)) {
+//            //创建新的DatagramPacket对象，传入返回消息和目的地址（IP和端口）
+//            ctx.writeAndFlush(new DatagramPacket(Unpooled.copiedBuffer(
+//                    "谚语查询结果：" + nextQuote(), CharsetUtil.UTF_8), packet.sender()));
+//        }
     }
 
     @Override

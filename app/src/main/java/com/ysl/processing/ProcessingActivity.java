@@ -2,10 +2,14 @@ package com.ysl.processing;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.ysl.myandroidbase.R;
+import com.ysl.netty.udp.ChineseProverbClient;
 
 import processing.android.CompatUtils;
 import processing.android.PFragment;
@@ -17,14 +21,29 @@ public class ProcessingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FrameLayout frame = new FrameLayout(this);
-        frame.setId(CompatUtils.getUniqueViewId());
-        setContentView(frame, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT));
+//        FrameLayout frame = new FrameLayout(this);
+//        frame.setId(CompatUtils.getUniqueViewId());
+//        setContentView(frame, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT));
 
-        sketch = new ProcessingRun();
-        PFragment fragment = new PFragment(sketch);
-        fragment.setView(frame, this);
+        setContentView(R.layout.act_pos);
+        findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sketch = new ProcessingRun();
+                PFragment fragment = new PFragment(sketch);
+                fragment.setView(findViewById(R.id.fl), ProcessingActivity.this);
+            }
+        });
+
+        findViewById(R.id.stop).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChineseProverbClient.stop();
+                sketch.noLoop();
+            }
+        });
+
     }
 
     @Override
@@ -52,7 +71,7 @@ public class ProcessingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (sketch != null) {
-            sketch.onBackPressed();
+            sketch.exit();
         }
     }
 }
