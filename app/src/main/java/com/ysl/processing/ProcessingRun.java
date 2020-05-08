@@ -19,7 +19,7 @@ public class ProcessingRun extends PApplet{
 
     public void setup(){
         strokeWeight(20);
-        stroke(Color.parseColor("red"));
+        stroke(Color.parseColor("black"));
         background(Color.parseColor("white"));
         client = new ChineseProverbClient();
         sendPosition();
