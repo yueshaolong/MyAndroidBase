@@ -147,7 +147,7 @@ dependencies {
     implementation rootProject.ext.dependencies.greendao //greenDao数据库工具
     implementation rootProject.ext.dependencies.sqlcipher//数据库加密解密工具
     implementation rootProject.ext.dependencies.pdfview//pdf加载器
-    implementation 'com.contrarywind:Android-PickerView:4.1.8'
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
     implementation 'com.orhanobut:dialogplus:1.11@aar'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.superluo:textbannerview:1.0.5'

@@ -11,11 +11,11 @@ buildscript {// 配置项目的 classpath
         mavenCentral()
     }
     dependencies {// 项目的依赖
-        classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath 'com.android.tools.build:gradle:4.0.0'
 
         classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
         classpath 'com.billy.android:cc-register:1.1.1' //使用最新版
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2' // 数据库处理greenDao
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.3.0' // 数据库处理greenDao
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.10'//protobuf插件
     }
 }
