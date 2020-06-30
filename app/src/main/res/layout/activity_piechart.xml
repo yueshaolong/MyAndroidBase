@@ -6,8 +6,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="13dp"
+                android:background="#4a6def"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="线性数据"
+                android:textColor="#222222"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+
         <com.ysl.myandroidbase.myview.mpandroidchart.SwitchMultiButton
             android:id="@+id/id_smb_chart_date"
             android:layout_width="96dp"
