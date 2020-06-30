@@ -6,7 +6,10 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.PieEntry;
 import com.ysl.myandroidbase.R;
 
@@ -14,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PieChartActivity extends AppCompatActivity {
+
+    private BarChart barChart;
+    private SwitchMultiButton switchMultiButton;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +32,45 @@ public class PieChartActivity extends AppCompatActivity {
     private void initView() {
         pieChart = (PieChart) findViewById(R.id.pie_chat1);
         pie_chat2= (PieChart) findViewById(R.id.pie_chat2);
+        barChart = (BarChart) findViewById(R.id.id_lChart_PM);
+        switchMultiButton = (SwitchMultiButton) findViewById(R.id.id_smb_chart_date);
         showhodlePieChart();
-
         showRingPieChart();
+        showChart();
+    }
+
+    private void showChart() {
+        List<String> xLabels = new ArrayList<>();
+        xLabels.add("11时");
+        xLabels.add("12时");
+        xLabels.add("13时");
+        xLabels.add("14时");
+        xLabels.add("15时");
+        xLabels.add("16时");
+        xLabels.add("17时");
+        xLabels.add("18时");
+        MPChartUtils.configBarChart(barChart, xLabels);
+        List<Float> data = new ArrayList<>();
+        data.add(67f);
+        data.add(58f);
+        data.add(55f);
+        data.add(46f);
+        data.add(4f);
+        data.add(69f);
+        data.add(92f);
+        data.add(200f);
+        List<BarEntry> entries = formatChartData(data);
+        MPChartUtils.initBarChart(barChart, entries, "PM柱状图", Color.parseColor("#FF9DAAC4"), colors);
+    }
+    List<Integer> colors = new ArrayList<>();
+    private List<BarEntry> formatChartData(List<Float> datas) {
+        List<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < datas.size(); i++) {
+            BarEntry tmpEntry = new BarEntry((float) i, datas.get(i));
+            entries.add(tmpEntry);
+            colors.add(getResources().getColor(PmUtil.getPMColor(String.valueOf(datas.get(i)))));
+        }
+        return entries;
     }
 
     private void showRingPieChart() {

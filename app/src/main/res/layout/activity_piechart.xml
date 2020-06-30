@@ -1,84 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+        <com.ysl.myandroidbase.myview.mpandroidchart.SwitchMultiButton
+            android:id="@+id/id_smb_chart_date"
+            android:layout_width="96dp"
+            android:layout_height="22dp"
+            android:layout_gravity="center_horizontal"
+            android:padding="18dp"
+            android:layout_margin="@dimen/dp_10"
+            app:selectedColor="@color/blue"
+            app:strokeRadius="3dp"
+            app:strokeWidth="1dp"
+            app:switchTabs="@array/switch_time"
+            app:textSize="12sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="13dp"
+                android:background="#4a6def"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp">
-
-                <TextView
-                    android:layout_width="2dp"
-                    android:layout_height="13dp"
-                    android:background="#4a6def"
-                    android:paddingLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="11dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text="民族分布"
-                    android:textColor="#222222"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pie_chat1"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                />
+                android:layout_marginLeft="11dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="历史数据"
+                android:textColor="#222222"
+                android:textSize="14sp" />
         </LinearLayout>
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/id_lChart_PM"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingHorizontal="6dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="13dp"
+                android:background="#4a6def"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="民族分布"
+                android:textColor="#222222"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chat1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="2dp"
+                android:layout_height="13dp"
+                android:background="#4a6def"
+                android:paddingLeft="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#ffffff"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp">
-
-                <TextView
-                    android:layout_width="2dp"
-                    android:layout_height="13dp"
-                    android:background="#4a6def"
-                    android:paddingLeft="10dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="11dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text="学历分布"
-                    android:textColor="#222222"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pie_chat2"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                />
+                android:layout_marginLeft="11dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="学历分布"
+                android:textColor="#222222"
+                android:textSize="14sp" />
         </LinearLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chat2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            />
+
+
     </LinearLayout>
 </ScrollView>

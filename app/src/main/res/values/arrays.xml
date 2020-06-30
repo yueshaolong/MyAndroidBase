@@ -13,4 +13,10 @@
         <item>周视图</item>
         <item>月视图</item>
     </string-array>
+
+    <string-array name="switch_time">
+        <item>日</item>
+        <item>周</item>
+        <item>月</item>
+    </string-array>
 </resources>

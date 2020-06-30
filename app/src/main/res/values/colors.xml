@@ -16,4 +16,13 @@
     <color name="gray">#478d8a8a</color>
     <color name="white">#ffffff</color>
     <color name="white1">#F3F0F0</color>
+    <!--pm color -->
+    <color name="pm_noline">#FF999999</color>
+    <color name="pm_zero">#FF32A6FD</color>
+    <color name="pm_you">#FF6ACD06</color>
+    <color name="pm_liang">#FFFBD12A</color>
+    <color name="pm_qing">#FFFE8800</color>
+    <color name="pm_center">#FFFF0000</color>
+    <color name="pm_zhong">#FFCC0000</color>
+    <color name="pm_zhongplus">#FF960453</color>
 </resources>
