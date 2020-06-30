@@ -10,6 +10,7 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.components.YAxis.YAxisLabelPosition;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -258,17 +259,19 @@ public class MPChartUtils {
         barChart.setScaleEnabled(false);
         barChart.setDragEnabled(true);
         barChart.setNoDataText(""); // 没有数据时的提示文案
+
         //x坐标轴设置
-        // IAxisValueFormatter xAxisFormatter = new StringAxisValueFormatter(xAxisValue);//设置自定义的x轴值格式化器
         XAxis xAxis = barChart.getXAxis();//获取x轴
+        xAxis.setEnabled(true);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);//设置X轴标签显示位置
-        xAxis.setDrawGridLines(false);//不绘制格网线
+        xAxis.setDrawGridLines(false);//是否绘制网格线
+        xAxis.setDrawLabels(true);//是否绘制标签
+        xAxis.setDrawAxisLine(false);//是否绘制轴线
         xAxis.setGranularity(1f);//设置最小间隔，防止当放大时，出现重复标签。
         // 显示x轴标签
         ValueFormatter formatter = new ValueFormatter() {
             @Override
             public String getFormattedValue(float value) {
-//                return xLabels.get(Math.min(Math.max((int) value, 0), xLabels.size() - 1));
                 return xLabels.get((int)value);
             }
         };
@@ -280,38 +283,37 @@ public class MPChartUtils {
 
         //y轴设置
         YAxis leftAxis = barChart.getAxisLeft();//获取左侧y轴
-        leftAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);//设置y轴标签显示在外侧
+        leftAxis.setEnabled(false);
+        leftAxis.setPosition(YAxisLabelPosition.OUTSIDE_CHART);//设置y轴标签显示在外侧
         leftAxis.setAxisMinimum(0f);//设置Y轴最小值
-        leftAxis.setDrawGridLines(false);
-        leftAxis.setDrawLabels(false);//禁止绘制y轴标签
-        leftAxis.setDrawAxisLine(false);//禁止绘制y轴
+        leftAxis.setDrawGridLines(false);//是否要网格线
+        leftAxis.setDrawLabels(false);//是否绘制标签
+        leftAxis.setDrawAxisLine(false);//是否绘制轴线
         leftAxis.setAxisLineColor(Color.parseColor("#4cffffff"));
         leftAxis.setTextColor(Color.parseColor("#FF999999"));
         leftAxis.setValueFormatter(new ValueFormatter() {
             @Override
-            public String getFormattedValue(float value, AxisBase axis) {
-                return ((int) (value * 100)) + "%";
+            public String getFormattedValue(float value) {
+                return value+"";
             }
         });
-
         barChart.getAxisRight().setEnabled(false);//禁用右侧y轴
-        barChart.getLegend().setEnabled(false);
+
         //图例设置
-       /* Legend legend = barChart.getLegend();
+        Legend legend = barChart.getLegend();
+        legend.setEnabled(true);
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);//图例水平居中
         legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);//图例在图表上方
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);//图例的方向为水平
         legend.setDrawInside(false);//绘制在chart的外侧
         legend.setDirection(Legend.LegendDirection.LEFT_TO_RIGHT);//图例中的文字方向
-
         legend.setForm(Legend.LegendForm.SQUARE);//图例窗体的形状
         legend.setFormSize(0f);//图例窗体的大小
-        legend.setTextSize(16f);//图例文字的大小*/
+        legend.setTextSize(16f);//图例文字的大小
         //legend.setYOffset(-2f);
 
-
-        Matrix matrix = new Matrix();
         // 根据数据量来确定 x轴缩放大倍
+        Matrix matrix = new Matrix();
         if (xLabels.size() <= 10) {
             matrix.postScale(1.0f, 1.0f);
         } else if (xLabels.size() <= 15) {
@@ -322,10 +324,12 @@ public class MPChartUtils {
             matrix.postScale(3.0f, 1.0f);
         }
         barChart.getViewPortHandler().refresh(matrix, barChart, false);
+
         barChart.setExtraBottomOffset(10);//距视图窗口底部的偏移，类似与paddingbottom
         barChart.setExtraTopOffset(30);//距视图窗口顶部的偏移，类似与paddingtop
         barChart.setFitBars(true);//使两侧的柱图完全显示
         barChart.animateX(1500);//数据显示动画，从左往右依次显示
+//        barChart.animateY(1500);
     }
 
     /**
@@ -356,11 +360,10 @@ public class MPChartUtils {
         //设置y轴显示的标签
         data.setValueFormatter(new ValueFormatter() {
             @Override
-            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+            public String getFormattedValue(float value) {
                 return (int) value + "";
             }
         });
-
 
         chart.setData(data);
         chart.invalidate();
