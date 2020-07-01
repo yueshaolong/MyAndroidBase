@@ -8,18 +8,14 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.DefaultAxisValueFormatter;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.formatter.StackedValueFormatter;
 
 import java.util.List;
 
-public class PieChartManagger {
+public class PieChartManager {
     public PieChart pieChart;
 
-    public PieChartManagger(PieChart pieChart) {
+    public PieChartManager(PieChart pieChart) {
         this.pieChart = pieChart;
         initPieChart();
     }

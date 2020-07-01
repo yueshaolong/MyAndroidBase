@@ -1,7 +1,10 @@
 package com.ysl.myandroidbase.myview.mpandroidchart;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Matrix;
+
+import androidx.annotation.ColorInt;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.Chart;
@@ -18,19 +21,15 @@ import com.github.mikephil.charting.data.CombinedData;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ViewPortHandler;
-import com.ysl.myandroidbase.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.ColorInt;
+public class BarChartManager {
 
-public class MPChartUtils {
+
     /**
      * 不显示无数据的提示
      *
@@ -340,7 +339,7 @@ public class MPChartUtils {
      * @param title
      * @param barColor
      */
-    public static void initBarChart(BarChart chart, List<BarEntry> entries, String title, @ColorInt int barColor, List<Integer> barColors) {
+    public static void setBarChart(BarChart chart, List<BarEntry> entries, String title, @ColorInt int barColor, List<Integer> barColors) {
         BarDataSet set1 = new BarDataSet(entries, title);
         set1.setValueTextColor(Color.WHITE);
         if (barColors != null) {
@@ -367,5 +366,15 @@ public class MPChartUtils {
 
         chart.setData(data);
         chart.invalidate();
+    }
+
+    public static List<BarEntry> formatChartData(Context context, List<Float> datas, List<Integer> colors) {
+        List<BarEntry> entries = new ArrayList<>();
+        for (int i = 0; i < datas.size(); i++) {
+            BarEntry tmpEntry = new BarEntry((float) i, datas.get(i));
+            entries.add(tmpEntry);
+            colors.add(context.getResources().getColor(PmUtil.getPMColor(String.valueOf(datas.get(i)))));
+        }
+        return entries;
     }
 }

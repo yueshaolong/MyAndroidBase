@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="60dp"
     android:layout_height="40dp"
-    android:background="@mipmap/marker2"
+    android:background="@mipmap/marker"
     tools:ignore="Overdraw">
 
     <TextView
@@ -11,12 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="7dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:text=""
+        android:layout_marginTop="10dp"
+        android:text="12"
         android:textSize="12sp"
-        android:textColor="@android:color/white"
+        android:textColor="#FBD12A"
         android:ellipsize="end"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceSmall" />
