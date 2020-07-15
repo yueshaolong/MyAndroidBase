@@ -160,7 +160,7 @@ dependencies {
     implementation project(path: ':netty')
 
     addComponent 'news' //会默认添加依赖：project(':news')
-
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.4'
 }
 
 

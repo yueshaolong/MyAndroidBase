@@ -365,6 +365,9 @@ public class BarChartManager {
         });
 
         chart.setData(data);
+        //设置手机屏幕里最多显示10个柱条，最少显示10个柱条；
+        // 就是固定显示10个柱条，否则会由于数据量不同，使得柱条宽窄不一
+        chart.setVisibleXRange(10,10);
         chart.invalidate();
     }
 

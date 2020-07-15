@@ -101,6 +101,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.ysl.player.SimplePlayer"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity android:name=".myview.BadgeViewActivity">
         </activity>
         <activity android:name=".myview.BannerActivity">

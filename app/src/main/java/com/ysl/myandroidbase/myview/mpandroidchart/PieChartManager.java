@@ -130,6 +130,9 @@ public class PieChartManager {
         //显示为圆环
         pieChart.setDrawHoleEnabled(true);
         pieChart.setHoleRadius(60f);//设置中间洞的大小
+        pieChart.setTransparentCircleRadius(65f);
+        pieChart.setTransparentCircleColor(Color.parseColor("#FFEAEEF2"));//#FFEAEEF2
+        pieChart.setTransparentCircleAlpha(255);
 
         //数据集合
         PieDataSet dataset = new PieDataSet(yvals, "");
