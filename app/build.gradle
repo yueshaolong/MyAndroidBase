@@ -92,11 +92,9 @@ android {// 配置 android gradle plugin 需要的内容
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/tbs_sdk_thirdapp_v4.3.0.1148_43697_' +
-            'sharewithdownloadwithfile_withoutGame_obfs_20190805_175505.jar')
-    implementation rootProject.ext.dependencies.appcompatV7
+    implementation rootProject.ext.dependencies.appcompat
     implementation rootProject.ext.dependencies.constraint
-    implementation rootProject.ext.dependencies.design
+    implementation rootProject.ext.dependencies.material
     implementation rootProject.ext.dependencies.junit
     implementation rootProject.ext.dependencies.runner
     implementation rootProject.ext.dependencies.espresso
@@ -147,12 +145,13 @@ dependencies {
     implementation rootProject.ext.dependencies.greendao //greenDao数据库工具
     implementation rootProject.ext.dependencies.sqlcipher//数据库加密解密工具
     implementation rootProject.ext.dependencies.pdfview//pdf加载器
+    implementation rootProject.ext.dependencies.netty
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
     implementation 'com.orhanobut:dialogplus:1.11@aar'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation 'com.superluo:textbannerview:1.0.5'
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
-    implementation rootProject.ext.dependencies.netty
+    implementation 'com.blankj:utilcode:1.25.0'
 
     implementation project(path: ':base')
     implementation project(path: ':modulea')

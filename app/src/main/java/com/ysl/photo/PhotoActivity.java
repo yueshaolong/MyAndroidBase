@@ -58,7 +58,7 @@ public class PhotoActivity extends AppCompatActivity {
                                     System.currentTimeMillis() + ".jpg");
                             path = file.getPath();
                             Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
-                                    "com.ysl.myandroidbase.fileprovider", file);
+                                    "com.ysl.myandroidbase.provider", file);
                             openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
                             PhotoActivity.this.startActivityForResult(openCameraIntent, 0);
                         });

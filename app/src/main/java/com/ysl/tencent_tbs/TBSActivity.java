@@ -1,19 +1,24 @@
 package com.ysl.tencent_tbs;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ysl.myandroidbase.R;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,42 +34,63 @@ import permissions.dispatcher.RuntimePermissions;
 public class TBSActivity extends AppCompatActivity {
 
     RecyclerView mRecyclerView;
-    private String filePath;
     private List<String> datas = new ArrayList<>();
     private List<String> paths = new ArrayList<>();
-
+    private boolean isOpenInside;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tbs);
-        initDatas();
-        initPaths();
         TBSActivityPermissionsDispatcher.needWithPermissionCheck(this);
+        initDatas();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.mRecyclerView);
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rg_open_way);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.rb_openFile) {
+                    isOpenInside = true;
+                } else if (checkedId == R.id.rb_openFileReader) {
+                    isOpenInside = false;
+                }
+            }
+        });
+        mRecyclerView = findViewById(R.id.mRecyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(new RecyclerView.Adapter() {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
                 return new RecyclerView.ViewHolder(LayoutInflater.from(TBSActivity.this)
                         .inflate(R.layout.item_tbs, parent, false)) {
                 };
 
             }
-
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
+                ((TextView) holder.itemView.findViewById(R.id.item_tv)).setText(getDatas().get(position));
                 holder.itemView.findViewById(R.id.item_root).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String[] perms = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
-                                Manifest.permission.WRITE_EXTERNAL_STORAGE};
-                        filePath = getFilePath(position);
-                        FileDisplayActivity.show(TBSActivity.this, filePath);
+                        String filePath = getFilePath(position);
+                        if (TextUtils.isEmpty(filePath)) return;
+                        if("http://debugtbs.qq.com".equals(filePath)){
+                            //打开调试页面
+                            Intent intent = new Intent(TBSActivity.this, BrowserActivity.class);
+                            TBSActivity.this.startActivity(intent);
+                            return;
+                        }
+                        if (isOpenInside) {
+                            FileDisplayActivity.show(TBSActivity.this, filePath);
+                        } else {
+                            if (filePath.toLowerCase().startsWith("http")) {
+                                TBSUtils.downLoadFromNet(TBSActivity.this, filePath);
+                            } else {
+                                TBSUtils.openFile(TBSActivity.this, new File(filePath));
+                            }
+                        }
                     }
                 });
-                ((TextView) holder.itemView.findViewById(R.id.item_tv)).setText(getDatas().get(position));
             }
 
             @Override
@@ -74,9 +100,6 @@ public class TBSActivity extends AppCompatActivity {
         });
     }
 
-    private void initPaths() {
-    }
-
     private void initDatas() {
         datas.add("网络获取并打开doc文件");
         datas.add("打开本地doc文件");
@@ -84,10 +107,10 @@ public class TBSActivity extends AppCompatActivity {
         datas.add("打开本地excel文件");
         datas.add("打开本地ppt文件");
         datas.add("打开本地pdf文件");
+        datas.add("内核调试");
     }
 
     private List<String> getDatas() {
-
         if (datas != null && datas.size() > 0) {
             return datas;
         } else {
@@ -102,22 +125,25 @@ public class TBSActivity extends AppCompatActivity {
         String path = null;
         switch (position) {
             case 0:
-                path = "http://www.hrssgz.gov.cn/";
+                path = "http://rsj.gz.gov.cn/attachment/0/101/101466/6485013.docx";
                 break;
             case 1:
-                path =  "test.docx";
+                path =  "/storage/emulated/0/test.docx";
                 break;
             case 2:
-                path = "test.txt";
+                path = "/storage/emulated/0/test.txt";
                 break;
             case 3:
-                path = "test.xlsx";
+                path = "/storage/emulated/0/test.xlsx";
                 break;
             case 4:
-                path = "test.pptx";
+                path = "/storage/emulated/0/test.pptx";
                 break;
             case 5:
-                path = "test.pdf";
+                path = "/storage/emulated/0/test.pdf";
+                break;
+            case 6:
+                path = "http://debugtbs.qq.com";
                 break;
         }
         return path;
@@ -145,4 +171,5 @@ public class TBSActivity extends AppCompatActivity {
     @OnNeverAskAgain({Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void askAgain() {
     }
+
 }

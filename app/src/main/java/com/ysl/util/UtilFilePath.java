@@ -4,12 +4,12 @@ package com.ysl.util;
 import android.content.Context;
 import android.os.Environment;
 
+import com.blankj.utilcode.util.AppUtils;
+
 import java.io.File;
-import java.io.IOException;
 
 /**
- * 获取抓拍、录像路径类
- *
+ * 创建文件类
  */
 public class UtilFilePath {
 
@@ -39,25 +39,16 @@ public class UtilFilePath {
         return mIVMSFolder;
     }
 
-
-
-    /**
-     * 获取录像目录
-     *
-     * @return Video dir path.
-     * @since V1.0
-     */
-    public static File getVideoDirPath() {
-        File SDFile = null;
+    public static File getLogDirPath() {
         File mIVMSFolder = null;
         try {
-            SDFile = Environment.getExternalStorageDirectory();
-            mIVMSFolder = new File(SDFile.getAbsolutePath() + File.separator + "BlueSky");
-            if ((null != mIVMSFolder) && (!mIVMSFolder.exists())) {
-                mIVMSFolder.mkdir();
-                mIVMSFolder.createNewFile();
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+                    .getAbsolutePath() + File.separator + AppUtils.getAppName();
+            mIVMSFolder = new File(path);
+            if (!mIVMSFolder.exists()) {
+                mIVMSFolder.mkdirs();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return mIVMSFolder;

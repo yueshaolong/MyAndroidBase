@@ -4,15 +4,12 @@ import android.app.Notification;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Process;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.billy.cc.core.component.CC;
 import com.example.base.BaseApplication;
 import com.example.base.LogUtil;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
-import com.tencent.smtt.sdk.QbSdk;
-import com.tencent.smtt.sdk.TbsListener;
 import com.ysl.dagger2.AppComponent;
 import com.ysl.dagger2.AppModule;
 import com.ysl.dagger2.DaggerAppComponent;
@@ -20,6 +17,7 @@ import com.ysl.greendao.DaoMaster;
 import com.ysl.greendao.DaoSession;
 import com.ysl.myandroidbase.BuildConfig;
 import com.ysl.myandroidbase.R;
+import com.ysl.tencent_tbs.TBSUtils;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -77,7 +75,7 @@ public class MyApp extends BaseApplication {
         initGreenDao();
 
         //使用腾讯文件系统TBS
-        initTbs();
+        TBSUtils.initTbs(this);
 
         //处理RxJava的异常
         RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
@@ -87,42 +85,6 @@ public class MyApp extends BaseApplication {
             }
         });
     }
-
-    public void initTbs() {
-        QbSdk.initX5Environment(application, new QbSdk.PreInitCallback() {
-            @Override
-            public void onCoreInitFinished() {
-                Log.d(TAG, "onCoreInitFinished");
-            }
-
-            @Override
-            public void onViewInitFinished(boolean b) {
-                //这里被回调，并且b=true说明内核初始化并可以使用
-                //如果b=false,内核会尝试安装，你可以通过下面监听接口获知
-                Log.d(TAG, "onViewInitFinished：" + b);
-            }
-        });
-        QbSdk.setTbsListener(new TbsListener() {
-            @Override
-            public void onDownloadFinish(int i) {
-                //tbs内核下载完成回调
-                Log.d(TAG, "onDownloadFinish: i="+i);
-            }
-
-            @Override
-            public void onInstallFinish(int i) {
-                //内核安装完成回调，
-                Log.d(TAG, "onInstallFinish: i="+i);
-            }
-
-            @Override
-            public void onDownloadProgress(int i) {
-                //下载进度监听
-//                Log.d(TAG, "onDownloadProgress: i="+i);
-            }
-        });
-    }
-
 
     /**
      * 初始化GreenDao,直接在Application中进行初始化操作

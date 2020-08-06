@@ -52,9 +52,9 @@ public class TakePhotoActivity extends AppCompatActivity {
                 System.currentTimeMillis() + ".jpg");
         path = file.getAbsolutePath();
         Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
-                "com.ysl.myandroidbase.fileprovider", file);
+                "com.ysl.myandroidbase.provider", file);
         System.out.println("-------->"+imageUri);
-        //-------->content://com.ysl.myandroidbase.fileprovider/m/MyAndroidBase/mybase/1574394370534.jpg
+        //-------->content://com.ysl.myandroidbase.provider/m/MyAndroidBase/mybase/1574394370534.jpg
         System.out.println("-------->"+path);
         //-------->/storage/emulated/0/MyAndroidBase/mybase/1574394370534.jpg
         openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);

@@ -95,22 +95,17 @@
         <activity android:name=".myview.SuperTextViewActivity">
         </activity>
         <activity android:name=".myview.mpandroidchart.PieChartActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        </activity>
+        <activity android:name=".myview.recyclerview.XiDingActivity">
         </activity>
         <activity
             android:name="com.ysl.player.SimplePlayer"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
             android:screenOrientation="portrait" >
-
         </activity>
         <activity android:name=".myview.BadgeViewActivity">
         </activity>
         <activity android:name=".myview.BannerActivity">
-
         </activity>
         <activity android:name=".myview.ToolbarActivity"
             android:theme="@style/AppTheme1">
@@ -118,7 +113,6 @@
         <activity android:name=".myview.CardViewActivity">
         </activity>
         <activity android:name=".myview.recyclerview.RecyclerViewActivity">
-
         </activity>
         <activity android:name=".activity.LogActivity">
         </activity>
@@ -129,10 +123,8 @@
         <activity android:name="com.ysl.arouter.ArouterMainActivity">
         </activity>
         <activity android:name="com.ysl.cc.CCActivity">
-
         </activity>
         <activity android:name="com.ysl.jpush.JPushActivity">
-
         </activity>
         <activity android:name="com.ysl.bugly.BuglyActivity">
         </activity>
@@ -143,35 +135,36 @@
         <activity android:name="com.ysl.tencent_tbs.PDFActivity">
         </activity>
         <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
+        <activity android:name="com.ysl.tencent_tbs.BrowserActivity"/>
         <activity android:name="com.ysl.tencent_tbs.TBSActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.ysl.pikerview.PickerActivity">
-
         </activity>
         <activity android:name="com.ysl.dialog.DialogActivity">
         </activity>
         <activity android:name=".myview.recyclerview.RecyclerViewActivity2">
-
         </activity>
         <activity android:name="com.ysl.daojishi.DaoJiShiActivity">
         </activity>
-        <activity android:name="com.ysl.photo.PhotoActivity"/>
+        <activity android:name="com.ysl.photo.PhotoActivity">
+        </activity>
         <activity android:name="com.ysl.photo.TakePhotoActivity">
-
         </activity>
         <activity android:name=".myview.ExpandableTextViewAct">
-
         </activity>
         <activity android:name=".activity.UDPActivity">
         </activity>
         <activity android:name="com.ysl.processing.ProcessingActivity">
-
         </activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.ysl.myandroidbase.fileprovider"
+            android:authorities="com.ysl.myandroidbase.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
