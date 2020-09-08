@@ -137,11 +137,7 @@
         <activity android:name="com.ysl.tencent_tbs.FileDisplayActivity"/>
         <activity android:name="com.ysl.tencent_tbs.BrowserActivity"/>
         <activity android:name="com.ysl.tencent_tbs.TBSActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name="com.ysl.pikerview.PickerActivity">
         </activity>
@@ -152,8 +148,14 @@
         <activity android:name="com.ysl.daojishi.DaoJiShiActivity">
         </activity>
         <activity android:name="com.ysl.photo.PhotoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.ysl.photo.TakePhotoActivity">
+
         </activity>
         <activity android:name=".myview.ExpandableTextViewAct">
         </activity>
