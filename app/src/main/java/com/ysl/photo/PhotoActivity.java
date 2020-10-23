@@ -55,22 +55,29 @@ public class PhotoActivity extends AppCompatActivity {
                 .subscribe(granted -> {
                     if (granted) {
                         photo.setOnClickListener(v -> {
-                            Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                            File file = new File(getPictureDirPath().getAbsolutePath(),
-                                    System.currentTimeMillis() + ".jpg");
-                            path = file.getPath();
-                            System.out.println("---------->"+path);
-//                            Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
-//                                    "com.ysl.myandroidbase.provider", file);
-                            imageUri = createImageUri();
-                            openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                            openCameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                            PhotoActivity.this.startActivityForResult(openCameraIntent, 0);
+//                            systemCamera();
+                            PhotoActivity.this.startActivityForResult(new Intent(PhotoActivity.this,
+                                    Camera2Activity.class), 1);
                         });
                     }
                 });
 
     }
+
+    private void systemCamera() {
+        Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = new File(getPictureDirPath().getAbsolutePath(),
+                System.currentTimeMillis() + ".jpg");
+        path = file.getPath();
+        System.out.println("---------->"+path);
+//                            Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
+//                                    "com.ysl.myandroidbase.provider", file);
+        imageUri = createImageUri();
+        openCameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        openCameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        PhotoActivity.this.startActivityForResult(openCameraIntent, 0);
+    }
+
     private Uri createImageUri() {
         //设置保存参数到ContentValues中
         ContentValues contentValues = new ContentValues();

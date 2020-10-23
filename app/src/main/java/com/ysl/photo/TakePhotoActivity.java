@@ -1,6 +1,7 @@
 package com.ysl.photo;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -16,13 +17,13 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ysl.myandroidbase.R;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -31,6 +32,7 @@ import io.reactivex.disposables.Disposable;
 
 public class TakePhotoActivity extends AppCompatActivity {
     private String path;
+    private Uri imageUri;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,9 +53,10 @@ public class TakePhotoActivity extends AppCompatActivity {
         File file = new File(getPictureDirPath().getAbsolutePath(),
                 System.currentTimeMillis() + ".jpg");
         path = file.getAbsolutePath();
-        Uri imageUri = FileProvider.getUriForFile(getApplicationContext(),
-                "com.ysl.myandroidbase.provider", file);
-        System.out.println("-------->"+imageUri);
+//        imageUri = FileProvider.getUriForFile(getApplicationContext(),
+//                "com.ysl.myandroidbase.provider", file);
+        imageUri = createImageUri();
+        System.out.println("-------->"+ imageUri);
         //-------->content://com.ysl.myandroidbase.provider/m/MyAndroidBase/mybase/1574394370534.jpg
         System.out.println("-------->"+path);
         //-------->/storage/emulated/0/MyAndroidBase/mybase/1574394370534.jpg
@@ -71,19 +74,44 @@ public class TakePhotoActivity extends AppCompatActivity {
         }
         TakePhotoActivity.this.startActivityForResult(openCameraIntent, 0);
     }
+    private Uri createImageUri() {
+        //设置保存参数到ContentValues中
+        ContentValues contentValues = new ContentValues();
+        //设置文件名
+        contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, System.currentTimeMillis()+"");
+        //兼容Android Q和以下版本
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            //android Q中不再使用DATA字段，而用RELATIVE_PATH代替
+            //RELATIVE_PATH是相对路径不是绝对路径;照片存储的地方为：内部存储/Pictures/preventpro
+            contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/MyAndroidBase/mybase");
+        } else {
+            contentValues.put(MediaStore.Images.Media.DATA,
+                    Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath());
+        }
+        //设置文件类型
+        contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/JPEG");
+        //执行insert操作，向系统文件夹中添加文件
+        //EXTERNAL_CONTENT_URI代表外部存储器，该值不变
+        Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        return uri;
 
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case 0:
-                if (!TextUtils.isEmpty(path) && resultCode == -1) {
-                    Bitmap mBitmap = BitmapFactory.decodeFile(path);
-                    saveBitmapFile(mBitmap);
-                }
-                break;
-            default:
-                break;
+        try {
+            switch (requestCode) {
+                case 0:
+                    if (!TextUtils.isEmpty(path) && resultCode == -1) {
+                        Bitmap mBitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        saveBitmapFile(mBitmap);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -122,8 +150,8 @@ public class TakePhotoActivity extends AppCompatActivity {
     public static File getPictureDirPath() {
         File mIVMSFolder = null;
         try {
-            String path = Environment.getExternalStorageDirectory().getAbsolutePath()
-                    + File.separator + "MyAndroidBase" + File.separator + "mybase";
+            String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                    .getAbsolutePath() + File.separator + "MyAndroidBase" + File.separator + "mybase";
             mIVMSFolder = new File(path);
             if (!mIVMSFolder.exists()) {
                 mIVMSFolder.mkdirs();

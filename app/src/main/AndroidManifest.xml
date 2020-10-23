@@ -154,6 +154,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.ysl.photo.Camera2Activity">
+
+        </activity>
         <activity android:name="com.ysl.photo.TakePhotoActivity">
 
         </activity>
