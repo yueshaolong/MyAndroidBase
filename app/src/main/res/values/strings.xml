@@ -193,9 +193,9 @@ TroubleFra	//施工报备
     <string name="refreshing">下拉刷新</string>
 	<string name="network_err">网络异常</string>
 
-	<string name="title_home">Home</string>
-	<string name="title_dashboard">Dashboard</string>
-	<string name="title_notifications">Notification</string>
-	<string name="title_person">Personal</string>
+	<string name="title_home">首页</string>
+	<string name="title_dashboard">任务</string>
+	<string name="title_notifications">消息</string>
+	<string name="title_person">我的</string>
 	<string name="title_center">Center</string>
 </resources>

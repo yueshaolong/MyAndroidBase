@@ -25,15 +25,19 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp_5"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:labelVisibilityMode="labeled"
         app:itemIconTint="@color/color_state_menu_navi"
+        app:itemIconSize="@dimen/dp_25"
         app:itemTextColor="@color/color_state_menu_navi"
+        app:itemTextAppearanceActive="@style/ToolbarSubtitle"
+        app:itemTextAppearanceInactive="@style/ToolbarSubtitle"
+        app:itemBackground="@null"
         app:menu="@menu/bottom_navigation">
-        <!--android:background="@color/white"-->
-        <!--app:itemBackground="@color/gray"-->
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

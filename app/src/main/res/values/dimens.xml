@@ -425,10 +425,10 @@
     <dimen name="sp_48">48sp</dimen>
 
     <!--BottomNavigationView 的选中没有选中的字体大小设置一致,要取消动画，只需把下面的两行代码打开即可-->
-    <!--<dimen name="design_bottom_navigation_active_text_size">14dp</dimen>-->
-    <!--<dimen name="design_bottom_navigation_text_size">14dp</dimen>-->
+    <dimen name="design_bottom_navigation_active_text_size">14dp</dimen>
+    <dimen name="design_bottom_navigation_text_size">14dp</dimen>
     <!--BottomNavigationView 文字和图标的距离-->
-    <!--<dimen name="design_bottom_navigation_margin">1dp</dimen>-->
+    <dimen name="design_bottom_navigation_margin">0.1dp</dimen>
     <!--BottomNavigationView 整体高度-->
-    <!--<dimen tools:override="true" name="design_bottom_navigation_height">56dp</dimen>-->
+<!--    <dimen tools:override="true" name="design_bottom_navigation_height">56dp</dimen>-->
 </resources>

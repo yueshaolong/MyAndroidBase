@@ -27,7 +27,6 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
         BottomNavigationView bottom_navigation = findViewById(R.id.bottom_navigation);
         bottom_navigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
-//        bottom_navigation.setItemIconTintList(null);
         initData();
     }
 

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!--<style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">-->
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -26,7 +26,7 @@
     <!--子标题-->
     <style name="ToolbarSubtitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
         <item name="android:textColor">#f0f0</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <!--新增一个item，用于控制menu-->
